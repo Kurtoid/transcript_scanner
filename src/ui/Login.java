@@ -6,25 +6,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import networking.NetworkClient;
 
 public class Login extends Application {
-    public static void main(String[] args) {
-        ApplicationState.c = new NetworkClient("localhost", 8080);
-        launch(args);
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("LoginLayout.fxml"));
+	LoginController lControl;
 
-        Scene scene = new Scene(root, 300, 275);
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginLayout.fxml"));
+		Parent root = loader.load();
 
-        primaryStage.setTitle("FXML Welcome");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+		Scene scene = new Scene(root, 300, 275);
+		scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+
+		lControl = loader.getController();
+		ApplicationState.startNetworkClient(status -> lControl.setNetworkStatus(status));
+
+		primaryStage.setTitle("FXML Welcome");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 //        ApplicationState.c.connect(new );
 
-    }
+	}
 
 }
