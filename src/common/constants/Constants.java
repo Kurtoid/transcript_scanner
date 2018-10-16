@@ -1,4 +1,4 @@
-package constants;
+package common.constants;
 
 public class Constants {
 	public final static String versionName = "b0.1";
