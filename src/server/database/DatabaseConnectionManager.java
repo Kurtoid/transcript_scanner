@@ -1,6 +1,5 @@
 package server.database;
 
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -26,9 +25,9 @@ public class DatabaseConnectionManager {
 	 */
 	private DatabaseConnectionManager() throws SQLException {
 
-		final String DB_URL = "jdbc:sqlserver://localhost\\sqlexpress;databaseName=" + "ApplicationServer";
+		final String DB_URL = "jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=ApplicationServer";
 
-		String username = "SA";
+		String username = "sa";
 		String password = "Suncoast$1";
 		logger.log(Level.INFO, "Connecting with username and password");
 		con = DriverManager.getConnection(DB_URL, username, password);
@@ -36,7 +35,7 @@ public class DatabaseConnectionManager {
 		logger.log(Level.INFO, "Connected");
 		try {
 			if (con != null) {
-				DatabaseMetaData dm = (DatabaseMetaData) con.getMetaData();
+				DatabaseMetaData dm = con.getMetaData();
 				logger.log(Level.INFO, "Driver name: " + dm.getDriverName());
 				logger.log(Level.INFO, "Driver version: " + dm.getDriverVersion());
 				logger.log(Level.INFO, "Product name: " + dm.getDatabaseProductName());

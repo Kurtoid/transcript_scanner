@@ -1,7 +1,13 @@
 package server.networking;
 
-import java.io.*;
+import common.networking.Message;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
+import java.nio.ByteBuffer;
+
 public class WrkrRunnable implements Runnable {
 	protected Socket clntSocket = null;
 	protected String txtFrmSrvr = null;
@@ -18,13 +24,25 @@ public class WrkrRunnable implements Runnable {
 		try {
 			in = new DataInputStream(clntSocket.getInputStream());
 			out = new DataOutputStream(clntSocket.getOutputStream());
-			
-			long timetaken = System.currentTimeMillis();
-			out.write(("OK\n\nWrkrRunnable: " + this.txtFrmSrvr + " - " + timetaken + "").getBytes());
+
+            while (true) {
+                int size = in.readInt();
+                System.out.println(size);
+                ByteBuffer b = ByteBuffer.allocate(size);
+                b.putInt(size);
+                while (b.hasRemaining()) {
+                    b.put(in.readByte());
+                }
+                Message m = Message.getMessageFromBuffer(b);
+                System.out.println(m.toString());
+                System.out.println("processed input");
+                if (false)
+                    break;
+            }
+
 			out.close();
-			
 			in.close();
-			System.out.println("Your request has processed in time : " + timetaken);
+            System.out.println("done");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

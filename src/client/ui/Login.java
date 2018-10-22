@@ -28,7 +28,6 @@ public class Login extends Application {
 		primaryStage.setTitle("FXML Welcome");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-//        ApplicationState.c.connect(new );
 
 	}
 

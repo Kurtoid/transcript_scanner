@@ -2,25 +2,26 @@ package client.core;
 
 import java.io.IOException;
 
-import common.networking.NetworkClient;
 public class ApplicationState {
 	public interface NetworkConnectedCallback {
 		void done(NetworkConnectionStatus status); 
 	}
-	static public enum NetworkConnectionStatus{
+
+	public enum NetworkConnectionStatus {
 		CONNECTED, BAD, DISCONNECTED
 	}
-	public static NetworkClient c;
+
+	public static NetworkClient connection;
 
 	public static void startNetworkClient(NetworkConnectedCallback cb)  {
-		if (c == null) {
+		if (connection == null) {
 			new Thread(new Runnable() {
 				
 				@Override
 				public void run() {
-					c = new NetworkClient("localhost", 8080);
+					connection = new NetworkClient("localhost", 8080);
 					try {
-						c.connect();
+						connection.connect();
 						cb.done(NetworkConnectionStatus.CONNECTED);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
