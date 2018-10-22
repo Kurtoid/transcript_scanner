@@ -9,21 +9,20 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 
 public class WrkrRunnable implements Runnable {
-	protected Socket clntSocket = null;
-	protected String txtFrmSrvr = null;
+    protected Socket clntSocket = null;
+    protected String txtFrmSrvr = null;
+    DataInputStream in;
+    DataOutputStream out;
 
-	public WrkrRunnable(Socket clntSocket, String txtFrmSrvr) {
-		this.clntSocket = clntSocket;
-		this.txtFrmSrvr = txtFrmSrvr;
-	}
+    public WrkrRunnable(Socket clntSocket, String txtFrmSrvr) {
+        this.clntSocket = clntSocket;
+        this.txtFrmSrvr = txtFrmSrvr;
+    }
 
-	DataInputStream in;
-	DataOutputStream out;
-
-	public void run() {
-		try {
-			in = new DataInputStream(clntSocket.getInputStream());
-			out = new DataOutputStream(clntSocket.getOutputStream());
+    public void run() {
+        try {
+            in = new DataInputStream(clntSocket.getInputStream());
+            out = new DataOutputStream(clntSocket.getOutputStream());
 
             while (true) {
                 int size = in.readInt();
@@ -40,11 +39,11 @@ public class WrkrRunnable implements Runnable {
                     break;
             }
 
-			out.close();
-			in.close();
+            out.close();
+            in.close();
             System.out.println("done");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

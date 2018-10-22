@@ -25,12 +25,6 @@ public abstract class Message {
         return null;
     }
 
-    abstract void readMessage(byte[] message);
-
-    public byte getMessageType() {
-        return messageType;
-    }
-
     public static String getStringFromBuffer(ByteBuffer bf, int length) {
         byte[] bytes = new byte[length];
         bf.get(bytes);
@@ -50,6 +44,12 @@ public abstract class Message {
         // System.out.println(Arrays.toString(filledBytes));
         bf.put(filledBytes);
 
+    }
+
+    abstract void readMessage(byte[] message);
+
+    public byte getMessageType() {
+        return messageType;
     }
 
     public abstract byte[] getBytes();

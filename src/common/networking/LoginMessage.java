@@ -8,13 +8,23 @@ import java.util.Arrays;
 import static common.networking.Message.MESSAGE_TYPE.LOGIN_MESSAGE;
 
 public class LoginMessage extends Message {
-    private final byte message_type = LOGIN_MESSAGE.message_id;
     public final int message_size = Integer.BYTES + 1 + Integer.BYTES * common.constants.Constants.MAX_USERNAME_LENGTH
             + Integer.BYTES * common.constants.Constants.PASSWORD_HASH_LENGTH;
+    private final byte message_type = LOGIN_MESSAGE.message_id;
     String username;
     byte[] hash;
 
     ByteBuffer out;
+
+    public LoginMessage(String username, byte[] hash) {
+        this.username = username;
+        this.hash = hash;
+    }
+
+    public LoginMessage(ByteBuffer b) {
+        b.position(Integer.BYTES + 1);
+        username = getStringFromBuffer(b, Constants.MAX_USERNAME_LENGTH);
+    }
 
     @Override
     void readMessage(byte[] message) {
@@ -27,16 +37,6 @@ public class LoginMessage extends Message {
     public String toString() {
         return "LoginMessage [message_type=" + message_type + ", username=" + username + ", hash="
                 + Arrays.toString(hash) + "]";
-    }
-
-    public LoginMessage(String username, byte[] hash) {
-        this.username = username;
-        this.hash = hash;
-    }
-
-    public LoginMessage(ByteBuffer b) {
-        b.position(Integer.BYTES + 1);
-        username = getStringFromBuffer(b, Constants.MAX_USERNAME_LENGTH);
     }
 
     @Override

@@ -22,32 +22,32 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class LoginController {
-	@FXML
-	private Button actiontarget;
+    @FXML
+    private Button actiontarget;
 
-	@FXML
-	private Text networkStatusLabel;
+    @FXML
+    private Text networkStatusLabel;
 
-	@FXML
-	private TextField usernameField;
+    @FXML
+    private TextField usernameField;
 
-	@FXML
-	private PasswordField passwordField;
+    @FXML
+    private PasswordField passwordField;
 
-	@FXML
-	protected void loginUser(ActionEvent event) {
-		System.out.println("button pressed");
-		try {
-			// TODO: refactor
-			MessageDigest digest;
-			
-			// TODO: use bCrypt
-			digest = MessageDigest.getInstance("SHA-256");
+    @FXML
+    protected void loginUser(ActionEvent event) {
+        System.out.println("button pressed");
+        try {
+            // TODO: refactor
+            MessageDigest digest;
+
+            // TODO: use bCrypt
+            digest = MessageDigest.getInstance("SHA-256");
 
             byte[] hash = digest.digest(passwordField.getText().getBytes(StandardCharsets.UTF_8));
 
-			LoginMessage m = new LoginMessage(usernameField.getText(), hash);
-			System.out.println("hi " + usernameField.getText());
+            LoginMessage m = new LoginMessage(usernameField.getText(), hash);
+            System.out.println("hi " + usernameField.getText());
             System.out.println("password hash: " + Arrays.toString(hash));
 /*
             StringBuilder sb = new StringBuilder();
@@ -59,29 +59,29 @@ public class LoginController {
             System.out.println(m.message_size);
 */
             ApplicationState.connection.send(m);
-			Parent root = null;
-			try {
-				root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-			Scene scene = new Scene(root, 300, 275);
+            Scene scene = new Scene(root, 300, 275);
 
-			((Stage) ((Node) event.getSource()).getScene().getWindow()).setScene(scene);
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).setScene(scene);
 
         } catch (NoSuchAlgorithmException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
     }
 
-	public void setNetworkStatus(NetworkConnectionStatus status) {
-		if (status == NetworkConnectionStatus.CONNECTED) {
-			networkStatusLabel.setText("Connected");
-		} else {
-			networkStatusLabel.setText("Connection Failure, check log");
-		}
-	}
+    public void setNetworkStatus(NetworkConnectionStatus status) {
+        if (status == NetworkConnectionStatus.CONNECTED) {
+            networkStatusLabel.setText("Connected");
+        } else {
+            networkStatusLabel.setText("Connection Failure, check log");
+        }
+    }
 
 }

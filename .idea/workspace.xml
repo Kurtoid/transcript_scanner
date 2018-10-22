@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e827d78-7588-4b3f-a884-ee5f92d3ac19" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqljdbc42.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ScannerUIClient.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ScannerUIClient.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/core/ApplicationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/core/ApplicationState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/core/NetworkClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/core/NetworkClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/ui/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/ui/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/LoginLayout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/LoginLayout.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/MainMenu.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/constants/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/networking/LoginMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/networking/LoginMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/networking/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/networking/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/networking/NetworkClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/core/NetworkClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/settings/SettingsReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/settings/SettingsReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/database/DatabaseConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/database/DatabaseConnectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/networking/ServerMaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/networking/ServerMaster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/networking/WrkrRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/networking/WrkrRunnable.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -63,12 +65,14 @@
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1787" />
+          <entry key="java" value="1788" />
+          <entry key="txt" value="44" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1787" />
+          <entry key="JAVA" value="1788" />
+          <entry key="PLAIN_TEXT" value="44" />
         </counts>
       </usages-collector>
     </session>
@@ -79,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/src/server/networking/ServerMaster.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-926">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -87,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/networking/LoginMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+            <state relative-caret-position="1040">
+              <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -110,6 +114,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="920">
               <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+              <folding>
+                <element signature="e#291#292#0" expanded="true" />
+                <element signature="e#310#311#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,7 +148,7 @@
         <entry file="file://$PROJECT_DIR$/src/server/networking/WrkrRunnable.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="800">
-              <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+              <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -149,7 +157,7 @@
         <entry file="file://$PROJECT_DIR$/src/server/database/DatabaseConnectionManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-80">
-              <caret line="28" column="102" selection-start-line="28" selection-start-column="102" selection-end-line="28" selection-end-column="102" />
+              <caret line="26" column="102" selection-start-line="26" selection-start-column="102" selection-end-line="26" selection-end-column="102" />
             </state>
           </provider>
         </entry>
@@ -158,7 +166,7 @@
         <entry file="file://$PROJECT_DIR$/src/client/core/NetworkClient.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="880">
-              <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+              <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -166,6 +174,11 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Kurt Wilson &lt;kurt4wilson@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -298,7 +311,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540170271606" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540170381348" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/sqljdbc42.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -365,6 +378,14 @@
       <option name="presentableId" value="Default" />
       <updated>1538676617510</updated>
     </task>
+    <task id="LOCAL-00001" summary="added basic message system including lookup">
+      <created>1540170330513</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1540170330513</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -402,6 +423,15 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="added basic message system including lookup" />
+    <option name="LAST_COMMIT_MESSAGE" value="added basic message system including lookup" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ui/LoginLayout.fxml" />
     <entry file="file://$PROJECT_DIR$/src/client/core/ApplicationState.java">
@@ -421,14 +451,14 @@
     <entry file="file://$PROJECT_DIR$/src/server/database/DatabaseConnectionManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-80">
-          <caret line="28" column="102" selection-start-line="28" selection-start-column="102" selection-end-line="28" selection-end-column="102" />
+          <caret line="26" column="102" selection-start-line="26" selection-start-column="102" selection-end-line="26" selection-end-column="102" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/server/networking/ServerMaster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-926">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -442,7 +472,7 @@
     <entry file="file://$PROJECT_DIR$/src/server/networking/WrkrRunnable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="800">
-          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+          <caret line="34" column="47" selection-start-line="34" selection-start-column="47" selection-end-line="34" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -466,8 +496,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/networking/LoginMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="27" column="26" lean-forward="true" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+        <state relative-caret-position="1040">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -477,7 +507,7 @@
     <entry file="file://$PROJECT_DIR$/src/client/core/NetworkClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
-          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -485,6 +515,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="920">
           <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#310#311#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
