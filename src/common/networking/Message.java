@@ -6,7 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
 public abstract class Message {
-    private byte messageType;
+    protected MESSAGE_TYPE messageType;
 
     public static Message getMessageFromBuffer(ByteBuffer b) {
         b.position(Integer.BYTES);
@@ -15,7 +15,9 @@ public abstract class Message {
             if (type == t.message_id) {
                 try {
                     Constructor c = t.mclass.getConstructor(ByteBuffer.class);
-                    return (Message) c.newInstance(b);
+                    Message m = (Message) c.newInstance(b);
+                    m.messageType = t;
+                    return m;
                 } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
@@ -46,9 +48,9 @@ public abstract class Message {
 
     }
 
-    abstract void readMessage(byte[] message);
+    abstract void readMessage(ByteBuffer bf);
 
-    public byte getMessageType() {
+    public MESSAGE_TYPE getMessageType() {
         return messageType;
     }
 
