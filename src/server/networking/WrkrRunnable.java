@@ -45,6 +45,11 @@ public class WrkrRunnable implements Runnable {
 					try {
 						User u = uDB.loginUser(lm.username, lm.hash);
 						System.out.println("user found");
+/*
+						LoginTokenDBO tDB = new LoginTokenDBO();
+						UserLoginToken tok= tDB.getToken(u.id);
+						TokenGenerator.verifyKey(lm.token, u.username, tok.loginToken);
+*/
 					} catch (SQLException e) {
 						System.err.println("user not found");
 						e.printStackTrace();

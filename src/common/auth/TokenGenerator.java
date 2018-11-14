@@ -1,7 +1,7 @@
 package common.auth;
 
-import java.security.Key;
 
+import common.constants.Constants;
 import org.jose4j.jwa.AlgorithmConstraints;
 import org.jose4j.jwa.AlgorithmConstraints.ConstraintType;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
@@ -11,8 +11,10 @@ import org.jose4j.keys.AesKey;
 import org.jose4j.lang.ByteUtil;
 import org.jose4j.lang.JoseException;
 
+import java.security.Key;
+
 public class TokenGenerator {
-	public static String makeKey(String payload, byte[] aeskey) {
+	public static String makeKey(String payload, byte[] aeskey) throws JoseException {
 		Key key = new AesKey(aeskey);
 		JsonWebEncryption jwe = new JsonWebEncryption();
 		jwe.setPayload(payload);
@@ -23,7 +25,7 @@ public class TokenGenerator {
 		return serializedJwe;
 	}
 
-	public static boolean verifyKey(String message, String expected, byte[] key) {
+	public static boolean verifyKey(String message, String expected, byte[] key) throws JoseException {
 		JsonWebEncryption jwe = new JsonWebEncryption();
 		jwe.setAlgorithmConstraints(
 				new AlgorithmConstraints(ConstraintType.WHITELIST, KeyManagementAlgorithmIdentifiers.A128KW));
@@ -33,9 +35,19 @@ public class TokenGenerator {
 		jwe.setKey(aesKey);
 		jwe.setCompactSerialization(message);
 		System.out.println("Payload: " + jwe.getPayload());
-		if (jwe.getPayload().equals(expected)) {
-			return true;
+		return jwe.getPayload().equals(expected);
+	}
+
+	public static void main(String[] args) {
+		Key key = new AesKey(ByteUtil.randomBytes(16));
+		try {
+			String k = makeKey(String.format("%-" + Constants.MAX_USERNAME_LENGTH + "s", "hi there!"), key.getEncoded());
+			System.out.println(k.length());
+			System.out.println(verifyKey(k, String.format("%-" + Constants.MAX_USERNAME_LENGTH + "s", "hi there!"), key.getEncoded()));
+		} catch (JoseException e) {
+			e.printStackTrace();
 		}
+
 	}
 
 }

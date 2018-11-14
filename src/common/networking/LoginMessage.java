@@ -1,18 +1,17 @@
 package common.networking;
 
+import common.constants.Constants;
+
+import javax.xml.bind.DatatypeConverter;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-import javax.xml.bind.DatatypeConverter;
-
-import common.constants.Constants;
-
 public class LoginMessage extends Message {
 	public final int message_size = Integer.BYTES + 1 + common.constants.Constants.MAX_USERNAME_LENGTH
-			+ common.constants.Constants.PASSWORD_HASH_LENGTH;
+			+ common.constants.Constants.PASSWORD_HASH_LENGTH + common.constants.Constants.USER_LOGIN_TOKEN_LENGTH;
 	public String username;
 	public byte[] hash;
-
+	public String token;
 	ByteBuffer out;
 	public LoginMessage(String username, byte[] hash) {
 		this();

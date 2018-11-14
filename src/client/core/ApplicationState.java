@@ -7,22 +7,18 @@ public class ApplicationState {
 
     public static void startNetworkClient(NetworkConnectedCallback cb) {
         if (connection == null) {
-            new Thread(new Runnable() {
-
-                @Override
-                public void run() {
-                    connection = new NetworkClient("localhost", 8080);
-                    try {
-                        connection.connect();
-                        cb.done(NetworkConnectionStatus.CONNECTED);
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                        cb.done(NetworkConnectionStatus.DISCONNECTED);
-
-                    }
+            new Thread(() -> {
+                connection = new NetworkClient("localhost", 8080);
+                try {
+                    connection.connect();
+                    cb.done(NetworkConnectionStatus.CONNECTED);
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    cb.done(NetworkConnectionStatus.DISCONNECTED);
 
                 }
+
             }).start();
 
         } else {

@@ -8,4 +8,5 @@ public class Constants {
     public static final int MAX_USERNAME_LENGTH = 256;
     public static final int PASSWORD_HASH_LENGTH = 32;
 
+    public static final int USER_LOGIN_TOKEN_LENGTH = 516;
 }
