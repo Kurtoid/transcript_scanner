@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="opencv-400">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs/opencv" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="https://docs.opencv.org/4.0.0/" />
+    </JAVADOC>
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/libs/opencv/x64" />
+    </NATIVE>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/" />
+      <root url="file://$PROJECT_DIR$/libs/opencv" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/libs/opencv" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/libs/opencv" recursive="false" type="SOURCES" />
+  </library>
+</component>
