@@ -20,7 +20,7 @@ public class Login extends Application {
         Parent root = loader.load();
 
         Scene scene = new Scene(root, 300, 275);
-        scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
 
         lControl = loader.getController();
         ApplicationState.startNetworkClient(status -> lControl.setNetworkStatus(status));

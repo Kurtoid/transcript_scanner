@@ -1,8 +1,10 @@
 package server.networking;
 
 import common.User;
+import common.UserLoginToken;
 import common.networking.LoginMessage;
 import common.networking.Message;
+import server.database.LoginTokenDBO;
 import server.database.UserDBO;
 
 import java.io.DataInputStream;
@@ -45,11 +47,9 @@ public class WrkrRunnable implements Runnable {
 					try {
 						User u = uDB.loginUser(lm.username, lm.hash);
 						System.out.println("user found");
-/*
+                        UserLoginToken tok = UserLoginToken.generate(u);
 						LoginTokenDBO tDB = new LoginTokenDBO();
-						UserLoginToken tok= tDB.getToken(u.id);
-						TokenGenerator.verifyKey(lm.token, u.username, tok.loginToken);
-*/
+                        tDB.setToken(u, tok);
 					} catch (SQLException e) {
 						System.err.println("user not found");
 						e.printStackTrace();
