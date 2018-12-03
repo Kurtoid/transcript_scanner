@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  *
  * @author Kurt Wilson
  */
-public class DatabaseConnectionManager {
+public final class DatabaseConnectionManager {
     private static DatabaseConnectionManager dbObject = null;
     Logger logger = Logger.getLogger(this.getClass().getName());
     private Connection con;

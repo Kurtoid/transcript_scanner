@@ -145,29 +145,30 @@ public class ImagePreprocessor {
         Core.compare(horiz_proj, th, filtered_hist, Core.CMP_LE);
 //        System.out.println(filtered_hist.dump());
 
-        // Get mean coordinate of white white pixels groups
-        ArrayList<Integer> ycoords = new ArrayList<>();
-        int y = 0;
-        int count = 0;
-        boolean isSpace = false;
-        for (int i = 0; i < rotated.rows(); ++i) {
-            if (!isSpace) {
-                if (filtered_hist.get(i, 0)[0] != 0) {
-                    isSpace = true;
-                    count = 1;
-                    y = i;
-                }
-            } else {
-                if (filtered_hist.get(i, 0)[0] == 0) {
-                    isSpace = false;
-                    ycoords.add(y / count);
-                } else {
-                    y += i;
-                    count++;
-                }
-            }
-        }
-//        System.out.println(ycoords.toString());
+		// Get mean coordinate of white white pixels groups
+		ArrayList<Long> ycoords = new ArrayList<>();
+		long y = 0;
+		int count = 0;
+		boolean isSpace = false;
+		for (int i = 0; i < img.rows(); ++i) {
+			if (!isSpace) {
+				if (filtered_hist.get(i, 0)[0] != 0) {
+					isSpace = true;
+					count = 1;
+					y = i;
+				}
+			} else {
+				if (filtered_hist.get(i, 0)[0] == 0) {
+					isSpace = false;
+					ycoords.add(y / count);
+				} else {
+					y += i;
+					count++;
+				}
+			}
+
+		}
+		return ycoords;
 
         Imgproc.cvtColor(rotated, rotated, Imgproc.COLOR_GRAY2BGR);
         for (int i = 0; i < ycoords.size(); ++i) {
@@ -225,4 +226,10 @@ public class ImagePreprocessor {
 //        Imgcodecs.imwrite("rot.png", rotated);
 
     }
+
+
+	void splitImage(long[] lines, File f) {
+		new File("tmp").mkdir();
+
+	}
 }
