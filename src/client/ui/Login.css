@@ -2,10 +2,10 @@
 /*-fx-base: #4f9d4f;  green */
     -fx-focus-color: green;
 }
-.scroll-bar:horizontal {
+/*.scroll-bar:horizontal {
     -fx-pref-height: 20;
     -fx-padding: 3;
-}
+}*/
 .thumb{
   /*  -fx-background-color: #2d60d8;*/
 }

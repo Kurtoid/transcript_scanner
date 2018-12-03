@@ -16,18 +16,17 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-        <Button fx:id="LoadImagesButton" alignment="CENTER" onAction="#loadImages" text="Load Images"/>
-    </HBox>
-    <ScrollPane fx:id="imageScroller" fitToHeight="true" hbarPolicy="ALWAYS" pannable="true" vbarPolicy="NEVER"
-                GridPane.rowIndex="2">
-        <content>
-            <HBox fx:id="imageContainer" prefHeight="100.0" prefWidth="200.0"/>
-        </content>
+    <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+        <Button fx:id="LoadImagesButton" alignment="TOP_RIGHT" onAction="#loadImages" text="Load Images"/>
+        <Button mnemonicParsing="false" onAction="#alignAllImages" text="Align All"/>
+    </VBox>
+    <ScrollPane fx:id="imageScroller" hbarPolicy="ALWAYS" vbarPolicy="NEVER" GridPane.rowIndex="2">
+        <HBox fx:id="imageContainer"/>
     </ScrollPane>
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+    <HBox GridPane.rowSpan="2">
+        <children>
+            <ImageView fx:id="imagePreview" fitHeight="100" pickOnBounds="true" preserveRatio="true">
+            </ImageView>
+        </children>
     </HBox>
-    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2"/>
-    <ImageView fx:id="imagePreview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"
-               GridPane.rowIndex="1"/>
 </GridPane>

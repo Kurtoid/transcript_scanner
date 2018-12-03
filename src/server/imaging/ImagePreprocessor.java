@@ -176,4 +176,53 @@ public class ImagePreprocessor {
         Imgcodecs.imwrite("rot.png", rotated);
 //*/
     }
+
+    public static void alignImage(File imageFile) {
+        System.out.println(imageFile.toURI().toString());
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        File imageFile = new File("image.jpg");
+//        System.out.println(imageFile.exists());
+        Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
+        Mat gray = new Mat();
+        Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+
+        Mat thresh = new Mat();
+        Core.bitwise_not(gray, thresh);
+
+        Imgproc.threshold(thresh, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+
+//        Imgcodecs.imwrite("thresh.png", thresh);
+//        HashSet<Point> coords = new HashSet<>();
+        ArrayList<Point> coords = new ArrayList<>();
+        for (int i = 0; i < thresh.rows(); i++) {
+            for (int j = 0; j < thresh.cols(); j++) {
+//                System.out.println(thresh.get(i, j)[0]);
+                if (thresh.get(i, j)[0] > 0) {
+                    coords.add(new Point(i, j));
+                }
+            }
+        }//        Imgproc.cv
+        MatOfPoint2f points = new MatOfPoint2f();
+        points.fromList(coords);
+        RotatedRect angle = Imgproc.minAreaRect(points);
+        if (angle.angle < -45)
+            angle.angle = -(angle.angle + 90);
+        else
+            angle.angle *= -1;
+        System.out.println(angle.angle);
+//        return angle.angle;
+//*
+        double w, h;
+        h = thresh.size().height;
+        w = thresh.size().width;
+
+        Point center = new Point(w / 2, h / 2);
+        Mat rotMat = Imgproc.getRotationMatrix2D(center, angle.angle, 1.0);
+        Mat rotated = new Mat();
+        Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
+
+        Imgcodecs.imwrite(imageFile.getAbsolutePath(), rotated);
+//        Imgcodecs.imwrite("rot.png", rotated);
+
+    }
 }
