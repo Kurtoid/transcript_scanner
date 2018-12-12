@@ -29,4 +29,9 @@
             </ImageView>
         </children>
     </HBox>
+    <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <children>
+            <Button fx:id="scanImageButton" mnemonicParsing="false" onAction="#scanSelectedImage" text="Scan"/>
+        </children>
+    </VBox>
 </GridPane>

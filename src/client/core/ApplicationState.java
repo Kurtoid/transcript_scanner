@@ -1,6 +1,10 @@
 package client.core;
 
+import common.ScannedPaper;
+
 import java.io.IOException;
+import java.util.ArrayList;
+
 
 public class ApplicationState {
     public static NetworkClient connection;
@@ -31,7 +35,10 @@ public class ApplicationState {
         CONNECTED, BAD, DISCONNECTED
     }
 
+    public static ArrayList<ScannedPaper> scannedImages = new ArrayList<>();
+
     public interface NetworkConnectedCallback {
         void done(NetworkConnectionStatus status);
     }
+
 }

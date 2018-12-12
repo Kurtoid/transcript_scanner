@@ -1,5 +1,6 @@
 package server.imaging;
 
+import common.FileManager;
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
@@ -178,8 +179,8 @@ public class ImagePreprocessor {
 //*/
     }
 
-    public static void alignImage(File imageFile) {
-        System.out.println(imageFile.toURI().toString());
+    public static File alignImage(File imageFile) {
+        System.out.println(imageFile.getName());
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 //        File imageFile = new File("image.jpg");
 //        System.out.println(imageFile.exists());
@@ -222,14 +223,19 @@ public class ImagePreprocessor {
         Mat rotated = new Mat();
         Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
 
-        Imgcodecs.imwrite(imageFile.getAbsolutePath(), rotated);
+        Imgcodecs.imwrite(FileManager.temp.getAbsolutePath() + File.pathSeparator + imageFile.getName(), rotated);
+        return new File(FileManager.temp.getAbsolutePath() + File.pathSeparator + imageFile.getName());
 //        Imgcodecs.imwrite("rot.png", rotated);
 
     }
 
 
-	void splitImage(long[] lines, File f) {
-		new File("tmp").mkdir();
+    void splitImage(long[] lines, File f) {
+        new File("tmp").mkdir();
 
-	}
+    }
+
+    public File splitImage(File image) {
+        
+    }
 }
