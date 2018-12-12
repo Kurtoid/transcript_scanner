@@ -97,8 +97,10 @@ public class ReadingWindow {
         }
     }
 
+    @FXML
     public void scanSelectedImage(ActionEvent actionEvent) {
         if (selectedImage != null) {
+        	System.out.println(selectedImage.file.getName());
             OCRReader.scanImage(selectedImage);
         }
     }

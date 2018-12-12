@@ -7,143 +7,225 @@ import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
 import java.util.ArrayList;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ImagePreprocessor {
-    public static void main(String[] args) {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        File imageFile = new File("image.jpg");
-        System.out.println(imageFile.exists());
-        Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
-        Mat gray = new Mat();
-        Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
-        Core.bitwise_not(gray, gray);
+	public static void main(String[] args) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+		File imageFile = new File("image.jpg");
+		System.out.println(imageFile.exists());
+		Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
+		Mat gray = new Mat();
+		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+		Core.bitwise_not(gray, gray);
 
-        Mat thresh = new Mat();
-        Imgproc.threshold(gray, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+		Mat thresh = new Mat();
+		Imgproc.threshold(gray, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
 
-        Imgcodecs.imwrite("thresh.png", thresh);
+		Imgcodecs.imwrite("thresh.png", thresh);
 //        HashSet<Point> coords = new HashSet<>();
-        ArrayList<Point> coords = new ArrayList<>();
-        for (int i = 0; i < thresh.rows(); i++) {
-            for (int j = 0; j < thresh.cols(); j++) {
+		ArrayList<Point> coords = new ArrayList<>();
+		for (int i = 0; i < thresh.rows(); i++) {
+			for (int j = 0; j < thresh.cols(); j++) {
 //                System.out.println(thresh.get(i, j)[0]);
-                if (thresh.get(i, j)[0] > 0) {
-                    coords.add(new Point(i, j));
-                }
-            }
-        }//        Imgproc.cv
-        MatOfPoint2f points = new MatOfPoint2f();
-        points.fromList(coords);
-        RotatedRect angle = Imgproc.minAreaRect(points);
-        if (angle.angle < -45)
-            angle.angle = -(angle.angle + 90);
-        else
-            angle.angle *= -1;
-        System.out.println(angle.angle);
+				if (thresh.get(i, j)[0] > 0) {
+					coords.add(new Point(i, j));
+				}
+			}
+		} // Imgproc.cv
+		MatOfPoint2f points = new MatOfPoint2f();
+		points.fromList(coords);
+		RotatedRect angle = Imgproc.minAreaRect(points);
+		if (angle.angle < -45)
+			angle.angle = -(angle.angle + 90);
+		else
+			angle.angle *= -1;
+		System.out.println(angle.angle);
 
-        double w, h;
-        h = thresh.size().height;
-        w = thresh.size().width;
+		double w, h;
+		h = thresh.size().height;
+		w = thresh.size().width;
 
-        Point center = new Point(w / 2, h / 2);
-        Mat rotMat = Imgproc.getRotationMatrix2D(center, angle.angle, 1.0);
-        Mat rotated = new Mat();
-        Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
+		Point center = new Point(w / 2, h / 2);
+		Mat rotMat = Imgproc.getRotationMatrix2D(center, angle.angle, 1.0);
+		Mat rotated = new Mat();
+		Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
 
-        Mat horiz_proj = new Mat();
-        Core.reduce(rotated, horiz_proj, 1, Core.REDUCE_AVG);
+		Mat horiz_proj = new Mat();
+		Core.reduce(rotated, horiz_proj, 1, Core.REDUCE_AVG);
 //        Core.bitwise_not(horiz_proj, horiz_proj);
-        Imgcodecs.imwrite("line.png", horiz_proj);
+		Imgcodecs.imwrite("line.png", horiz_proj);
 
 //        System.out.println(horiz_proj.dump());
-        Scalar th = new Scalar(10);
-        Mat filtered_hist = new Mat();
-        Core.compare(horiz_proj, th, filtered_hist, Core.CMP_LE);
+		Scalar th = new Scalar(10);
+		Mat filtered_hist = new Mat();
+		Core.compare(horiz_proj, th, filtered_hist, Core.CMP_LE);
 //        System.out.println(filtered_hist.dump());
 
-        // Get mean coordinate of white white pixels groups
-        ArrayList<Integer> ycoords = new ArrayList<>();
-        int y = 0;
-        int count = 0;
-        boolean isSpace = false;
-        for (int i = 0; i < rotated.rows(); ++i) {
-            if (!isSpace) {
-                if (filtered_hist.get(i, 0)[0] != 0) {
-                    isSpace = true;
-                    count = 1;
-                    y = i;
-                }
-            } else {
-                if (filtered_hist.get(i, 0)[0] == 0) {
-                    isSpace = false;
-                    ycoords.add(y / count);
-                } else {
-                    y += i;
-                    count++;
-                }
-            }
-        }
+		// Get mean coordinate of white white pixels groups
+		ArrayList<Integer> ycoords = new ArrayList<>();
+		int y = 0;
+		int count = 0;
+		boolean isSpace = false;
+		for (int i = 0; i < rotated.rows(); ++i) {
+			if (!isSpace) {
+				if (filtered_hist.get(i, 0)[0] != 0) {
+					isSpace = true;
+					count = 1;
+					y = i;
+				}
+			} else {
+				if (filtered_hist.get(i, 0)[0] == 0) {
+					isSpace = false;
+					ycoords.add(y / count);
+				} else {
+					y += i;
+					count++;
+				}
+			}
+		}
 //        System.out.println(ycoords.toString());
 
-        Imgproc.cvtColor(rotated, rotated, Imgproc.COLOR_GRAY2BGR);
-        for (int i = 0; i < ycoords.size(); ++i) {
-            Imgproc.line(rotated, new Point(0, ycoords.get(i)), new Point(rotated.cols(), ycoords.get(i)), new Scalar(0, 255, 0));
-        }
-        Imgcodecs.imwrite("rot.png", rotated);
-    }
+		Imgproc.cvtColor(rotated, rotated, Imgproc.COLOR_GRAY2BGR);
+		for (int i = 0; i < ycoords.size(); ++i) {
+			Imgproc.line(rotated, new Point(0, ycoords.get(i)), new Point(rotated.cols(), ycoords.get(i)),
+					new Scalar(0, 255, 0));
+		}
+		Imgcodecs.imwrite("rot.png", rotated);
+	}
 
-    public static double getImageAngle(File imageFile) {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+	public static double getImageAngle(File imageFile) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 //        File imageFile = new File("image.jpg");
 //        System.out.println(imageFile.exists());
-        Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
-        Mat gray = new Mat();
-        Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
-        Core.bitwise_not(gray, gray);
+		Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
+		Mat gray = new Mat();
+		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+		Core.bitwise_not(gray, gray);
 
-        Mat thresh = new Mat();
-        Imgproc.threshold(gray, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+		Mat thresh = new Mat();
+		Imgproc.threshold(gray, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
 
 //        Imgcodecs.imwrite("thresh.png", thresh);
 //        HashSet<Point> coords = new HashSet<>();
-        ArrayList<Point> coords = new ArrayList<>();
-        for (int i = 0; i < thresh.rows(); i++) {
-            for (int j = 0; j < thresh.cols(); j++) {
+		ArrayList<Point> coords = new ArrayList<>();
+		for (int i = 0; i < thresh.rows(); i++) {
+			for (int j = 0; j < thresh.cols(); j++) {
 //                System.out.println(thresh.get(i, j)[0]);
-                if (thresh.get(i, j)[0] > 0) {
-                    coords.add(new Point(i, j));
-                }
-            }
-        }//        Imgproc.cv
-        MatOfPoint2f points = new MatOfPoint2f();
-        points.fromList(coords);
-        RotatedRect angle = Imgproc.minAreaRect(points);
-        if (angle.angle < -45)
-            angle.angle = -(angle.angle + 90);
-        else
-            angle.angle *= -1;
+				if (thresh.get(i, j)[0] > 0) {
+					coords.add(new Point(i, j));
+				}
+			}
+		} // Imgproc.cv
+		MatOfPoint2f points = new MatOfPoint2f();
+		points.fromList(coords);
+		RotatedRect angle = Imgproc.minAreaRect(points);
+		if (angle.angle < -45)
+			angle.angle = -(angle.angle + 90);
+		else
+			angle.angle *= -1;
 //        System.out.println(angle.angle);
-        return angle.angle;
-/*
-        double w, h;
-        h = thresh.size().height;
-        w = thresh.size().width;
+		return angle.angle;
+		/*
+		 * double w, h; h = thresh.size().height; w = thresh.size().width;
+		 * 
+		 * Point center = new Point(w / 2, h / 2); Mat rotMat =
+		 * Imgproc.getRotationMatrix2D(center, angle.angle, 1.0); Mat rotated = new
+		 * Mat(); Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h),
+		 * Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
+		 * 
+		 * Mat horiz_proj = new Mat(); Core.reduce(rotated, horiz_proj, 1,
+		 * Core.REDUCE_AVG); // Core.bitwise_not(horiz_proj, horiz_proj);
+		 * Imgcodecs.imwrite("line.png", horiz_proj);
+		 * 
+		 * // System.out.println(horiz_proj.dump()); Scalar th = new Scalar(10); Mat
+		 * filtered_hist = new Mat(); Core.compare(horiz_proj, th, filtered_hist,
+		 * Core.CMP_LE); // System.out.println(filtered_hist.dump());
+		 * 
+		 * // Get mean coordinate of white white pixels groups ArrayList<Long> ycoords =
+		 * new ArrayList<>(); long y = 0; int count = 0; boolean isSpace = false; for
+		 * (int i = 0; i < img.rows(); ++i) { if (!isSpace) { if (filtered_hist.get(i,
+		 * 0)[0] != 0) { isSpace = true; count = 1; y = i; } } else { if
+		 * (filtered_hist.get(i, 0)[0] == 0) { isSpace = false; ycoords.add(y / count);
+		 * } else { y += i; count++; } }
+		 * 
+		 * } return ycoords;
+		 * 
+		 * Imgproc.cvtColor(rotated, rotated, Imgproc.COLOR_GRAY2BGR); for (int i = 0; i
+		 * < ycoords.size(); ++i) { Imgproc.line(rotated, new Point(0, ycoords.get(i)),
+		 * new Point(rotated.cols(), ycoords.get(i)), new Scalar(0, 255, 0)); }
+		 * Imgcodecs.imwrite("rot.png", rotated); //
+		 */
+	}
 
-        Point center = new Point(w / 2, h / 2);
-        Mat rotMat = Imgproc.getRotationMatrix2D(center, angle.angle, 1.0);
-        Mat rotated = new Mat();
-        Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
+	public static File alignImage(File imageFile) {
+		System.out.println(imageFile.getName());
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//        File imageFile = new File("image.jpg");
+//        System.out.println(imageFile.exists());
+		Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
+		Mat gray = new Mat();
+		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
 
-        Mat horiz_proj = new Mat();
-        Core.reduce(rotated, horiz_proj, 1, Core.REDUCE_AVG);
+		Mat thresh = new Mat();
+		Core.bitwise_not(gray, thresh);
+
+		Imgproc.threshold(thresh, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+
+//        Imgcodecs.imwrite("thresh.png", thresh);
+//        HashSet<Point> coords = new HashSet<>();
+		ArrayList<Point> coords = new ArrayList<>();
+		for (int i = 0; i < thresh.rows(); i++) {
+			for (int j = 0; j < thresh.cols(); j++) {
+//                System.out.println(thresh.get(i, j)[0]);
+				if (thresh.get(i, j)[0] > 0) {
+					coords.add(new Point(i, j));
+				}
+			}
+		} // Imgproc.cv
+		MatOfPoint2f points = new MatOfPoint2f();
+		points.fromList(coords);
+		RotatedRect angle = Imgproc.minAreaRect(points);
+		if (angle.angle < -45)
+			angle.angle = -(angle.angle + 90);
+		else
+			angle.angle *= -1;
+		System.out.println(angle.angle);
+//        return angle.angle;
+//*
+		double w, h;
+		h = thresh.size().height;
+		w = thresh.size().width;
+
+		Point center = new Point(w / 2, h / 2);
+		Mat rotMat = Imgproc.getRotationMatrix2D(center, angle.angle, 1.0);
+		Mat rotated = new Mat();
+		Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
+
+		Imgcodecs.imwrite(FileManager.temp.getAbsolutePath() + File.separator + imageFile.getName(), rotated);
+		return new File(FileManager.temp.getAbsolutePath() + File.separator + imageFile.getName());
+//        Imgcodecs.imwrite("rot.png", rotated);
+
+	}
+
+	static public File splitImage(File image) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+//      File imageFile = new File("image.jpg");
+//      System.out.println(imageFile.exists());
+		Mat img = Imgcodecs.imread(image.getAbsolutePath());
+		Mat gray = new Mat();
+		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+
+		Mat horiz_proj = new Mat();
+		Core.reduce(gray, horiz_proj, 1, Core.REDUCE_AVG);
 //        Core.bitwise_not(horiz_proj, horiz_proj);
-        Imgcodecs.imwrite("line.png", horiz_proj);
+//		Imgcodecs.imwrite("line.png", horiz_proj);
 
 //        System.out.println(horiz_proj.dump());
-        Scalar th = new Scalar(10);
-        Mat filtered_hist = new Mat();
-        Core.compare(horiz_proj, th, filtered_hist, Core.CMP_LE);
+		Scalar th = new Scalar(10);
+		Mat filtered_hist = new Mat();
+		Core.compare(horiz_proj, th, filtered_hist, Core.CMP_LE);
 //        System.out.println(filtered_hist.dump());
 
 		// Get mean coordinate of white white pixels groups
@@ -169,73 +251,18 @@ public class ImagePreprocessor {
 			}
 
 		}
-		return ycoords;
 
-        Imgproc.cvtColor(rotated, rotated, Imgproc.COLOR_GRAY2BGR);
-        for (int i = 0; i < ycoords.size(); ++i) {
-            Imgproc.line(rotated, new Point(0, ycoords.get(i)), new Point(rotated.cols(), ycoords.get(i)), new Scalar(0, 255, 0));
-        }
-        Imgcodecs.imwrite("rot.png", rotated);
-//*/
-    }
+		Imgproc.cvtColor(gray, gray, Imgproc.COLOR_GRAY2BGR);
+		for (int i = 0; i < ycoords.size(); ++i) {
+			Imgproc.line(gray, new Point(0, ycoords.get(i)), new Point(gray.cols(), ycoords.get(i)),
+					new Scalar(0, 255, 0));
+		}
 
-    public static File alignImage(File imageFile) {
-        System.out.println(imageFile.getName());
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-//        File imageFile = new File("image.jpg");
-//        System.out.println(imageFile.exists());
-        Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
-        Mat gray = new Mat();
-        Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+		File folder = new File(FileManager.temp.getAbsolutePath() + File.separator + image.getName());
+		folder.mkdirs();
 
-        Mat thresh = new Mat();
-        Core.bitwise_not(gray, thresh);
+		Imgcodecs.imwrite(folder.getAbsolutePath() + File.separator + image.getName(), gray);
+		return new File(folder.getAbsolutePath() + File.separator + image.getName());
 
-        Imgproc.threshold(thresh, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
-
-//        Imgcodecs.imwrite("thresh.png", thresh);
-//        HashSet<Point> coords = new HashSet<>();
-        ArrayList<Point> coords = new ArrayList<>();
-        for (int i = 0; i < thresh.rows(); i++) {
-            for (int j = 0; j < thresh.cols(); j++) {
-//                System.out.println(thresh.get(i, j)[0]);
-                if (thresh.get(i, j)[0] > 0) {
-                    coords.add(new Point(i, j));
-                }
-            }
-        }//        Imgproc.cv
-        MatOfPoint2f points = new MatOfPoint2f();
-        points.fromList(coords);
-        RotatedRect angle = Imgproc.minAreaRect(points);
-        if (angle.angle < -45)
-            angle.angle = -(angle.angle + 90);
-        else
-            angle.angle *= -1;
-        System.out.println(angle.angle);
-//        return angle.angle;
-//*
-        double w, h;
-        h = thresh.size().height;
-        w = thresh.size().width;
-
-        Point center = new Point(w / 2, h / 2);
-        Mat rotMat = Imgproc.getRotationMatrix2D(center, angle.angle, 1.0);
-        Mat rotated = new Mat();
-        Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
-
-        Imgcodecs.imwrite(FileManager.temp.getAbsolutePath() + File.pathSeparator + imageFile.getName(), rotated);
-        return new File(FileManager.temp.getAbsolutePath() + File.pathSeparator + imageFile.getName());
-//        Imgcodecs.imwrite("rot.png", rotated);
-
-    }
-
-
-    void splitImage(long[] lines, File f) {
-        new File("tmp").mkdir();
-
-    }
-
-    public File splitImage(File image) {
-        
-    }
+	}
 }

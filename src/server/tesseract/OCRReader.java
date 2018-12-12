@@ -4,6 +4,7 @@ import common.ScannedPaper;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract1;
 import net.sourceforge.tess4j.TesseractException;
+import server.imaging.ImagePreprocessor;
 
 import java.io.File;
 
@@ -32,7 +33,7 @@ public class OCRReader {
 		System.out.println(System.getenv("TESSDATA_PREFIX"));
 //        instance.setDatapath("../" + System.getenv("TESSDATA_PREFIX"));
 //		instance.setDatapath(LoadLibs.extractTessResources("tessdata").getParent());
-
+		ImagePreprocessor.splitImage(selectedImage.file);
 		File imageFile = selectedImage.file;
 		System.out.println(imageFile.exists());
 		try {
