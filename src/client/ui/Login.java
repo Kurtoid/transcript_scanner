@@ -1,6 +1,9 @@
 package client.ui;
 
+import java.io.IOException;
+
 import client.core.ApplicationState;
+import common.FileManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +14,12 @@ public class Login extends Application {
     LoginController lControl;
 
     public static void main(String[] args) {
+    	try {
+			FileManager.removeTempFiles();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         launch(args);
     }
 
@@ -25,7 +34,7 @@ public class Login extends Application {
         lControl = loader.getController();
         ApplicationState.startNetworkClient(status -> lControl.setNetworkStatus(status));
 
-        primaryStage.setTitle("FXML Welcome");
+        primaryStage.setTitle("Suncoast Transcript Scanner");
         primaryStage.setScene(scene);
         primaryStage.show();
 

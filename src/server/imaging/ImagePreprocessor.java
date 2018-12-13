@@ -12,8 +12,8 @@ import java.util.regex.Pattern;
 
 public class ImagePreprocessor {
 	public static void main(String[] args) {
-		System.out.println(getFileName("test.jpg"));
-		splitImage(new File("temp/image.jpg"));
+//		System.out.println(getFileName("test.jpg"));
+		splitImage(new File("rot.jpg"));
 		/*
 		 * System.loadLibrary(Core.NATIVE_LIBRARY_NAME); File imageFile = new
 		 * File("image.jpg"); System.out.println(imageFile.exists()); Mat img =
@@ -198,8 +198,8 @@ public class ImagePreprocessor {
 //        System.out.println(filtered_hist.dump());
 
 		// Get mean coordinate of white white pixels groups
-		ArrayList<Long> ycoords = new ArrayList<>();
-		long y = 0;
+		ArrayList<Integer> ycoords = new ArrayList<>();
+		int y = 0;
 		int count = 0;
 		boolean isSpace = false;
 		for (int i = 0; i < img.rows(); ++i) {
@@ -212,7 +212,7 @@ public class ImagePreprocessor {
 			} else {
 				if (filtered_hist.get(i, 0)[0] == 0) {
 					isSpace = false;
-					ycoords.add(y / count);
+					ycoords.add((int) (y / count));
 				} else {
 					y += i;
 					count++;
@@ -220,24 +220,33 @@ public class ImagePreprocessor {
 			}
 
 		}
-//		System.out.println(ycoords.toString());
-
-		Imgproc.cvtColor(gray, gray, Imgproc.COLOR_GRAY2BGR);
-		for (int i = 0; i < ycoords.size(); ++i) {
-			Imgproc.line(gray, new Point(0, ycoords.get(i)), new Point(gray.cols(), ycoords.get(i)),
-					new Scalar(0, 255, 0));
-		}
-
-		File folder = new File(
-				FileManager.temp.getAbsolutePath() + File.separator + getFileName(image.getName()));
+		File folder = new File(FileManager.temp.getAbsolutePath() + File.separator + getFileName(image.getName()));
 		folder.mkdirs();
+		System.out.println("saving new images at " + folder.getAbsolutePath());
 
-		File f = new File(folder.getAbsolutePath() + File.separator + image.getName());
-		System.out.println("saving new images as " + f.getAbsolutePath());
+//		System.out.println(ycoords.toString());
+		for (int i = 0; i < ycoords.size() - 1; i++) {
+			Rect roi = new Rect(0, Math.max(0, (int) ycoords.get(i) - 3), (int) gray.width(),
+					Math.min((int) ycoords.get(i + 1) - (ycoords.get(i)) + 3, gray.height()));
+//			System.out.println(roi.toString()+"\t"+i);
+			Mat cropped = new Mat(gray, roi);
+			Scalar s = Core.mean(cropped);
+			System.out.println(s.val[0] + "\t" + i);
+//			if (s.val[0] >= 9) {
+				File f = new File(
+						folder.getAbsolutePath() + File.separator + getFileName(image.getName()) + "_" + i + ".png");
 
+				Imgcodecs.imwrite(f.getAbsolutePath(), cropped);
+//			}
 
-		Imgcodecs.imwrite(f.getAbsolutePath(), gray);
-		return f;
+		}
+		return folder;
+
+		/*
+		 * Imgproc.cvtColor(gray, gray, Imgproc.COLOR_GRAY2BGR); for (int i = 0; i <
+		 * ycoords.size(); ++i) { Imgproc.line(gray, new Point(0, ycoords.get(i)), new
+		 * Point(gray.cols(), ycoords.get(i)), new Scalar(0, 255, 0)); } //
+		 */
 
 	}
 
