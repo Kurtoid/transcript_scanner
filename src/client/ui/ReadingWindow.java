@@ -101,7 +101,9 @@ public class ReadingWindow {
     public void scanSelectedImage(ActionEvent actionEvent) {
         if (selectedImage != null) {
         	System.out.println(selectedImage.file.getName());
-            OCRReader.scanImage(selectedImage);
+    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
+
+//            OCRReader.scanImage(selectedImage);
         }
     }
 }
