@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import client.ui.ResizableCanvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-          prefWidth="600.0" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.172-ea"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ui.ReadingWindow">
+<GridPane fx:id="basePane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Login.css"
+          xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="client.ui.ReadingWindow">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -14,24 +15,21 @@
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
     </rowConstraints>
-    <VBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+    <VBox alignment="TOP_RIGHT" fillWidth="false" GridPane.columnIndex="1" GridPane.hgrow="NEVER"
+          GridPane.vgrow="NEVER">
         <Button fx:id="LoadImagesButton" alignment="TOP_RIGHT" onAction="#loadImages" text="Load Images"/>
         <Button mnemonicParsing="false" onAction="#alignAllImages" text="Align All"/>
+        <Button fx:id="scanImageButton" mnemonicParsing="false" onAction="#scanSelectedImage" text="Scan"/>
     </VBox>
-    <ScrollPane fx:id="imageScroller" hbarPolicy="ALWAYS" vbarPolicy="NEVER" GridPane.rowIndex="2">
+    <Pane fx:id="canvasContainer" prefHeight="200.0" prefWidth="200.0" GridPane.hgrow="ALWAYS">
+        <children>
+            <ResizableCanvas fx:id="imagePreview" height="169.0" width="126.0" AnchorPane.bottomAnchor="0.0"
+                             AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        </children>
+    </Pane>
+    <ScrollPane fx:id="imageScroller" hbarPolicy="ALWAYS" prefHeight="133.0" prefWidth="174.0" vbarPolicy="NEVER"
+                GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
         <HBox fx:id="imageContainer"/>
     </ScrollPane>
-    <HBox GridPane.rowSpan="2">
-        <children>
-            <ImageView fx:id="imagePreview" fitHeight="100" pickOnBounds="true" preserveRatio="true">
-            </ImageView>
-        </children>
-    </HBox>
-    <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <children>
-            <Button fx:id="scanImageButton" mnemonicParsing="false" onAction="#scanSelectedImage" text="Scan"/>
-        </children>
-    </VBox>
 </GridPane>

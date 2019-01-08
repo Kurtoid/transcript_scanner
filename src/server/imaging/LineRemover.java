@@ -1,7 +1,5 @@
 package server.imaging;
 
-import java.io.File;
-
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -10,11 +8,11 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 public class LineRemover {
-	public static void removeLines(File f) {
+	public static Mat removeLines(Mat src) {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
 		// Load the image
-		Mat src = Imgcodecs.imread(f.getAbsolutePath());
+//		Mat src = Imgcodecs.imread(f.getAbsolutePath());
 		// Check if image is loaded fine
 		if (src.empty())
 			System.err.println("image not loaded!");
@@ -26,7 +24,7 @@ public class LineRemover {
 			gray = src;
 		}
 		Mat bw = new Mat();
-		Core.bitwise_not(gray, gray);
+//		Core.bitwise_not(gray, gray);
 		Imgproc.adaptiveThreshold(gray, bw, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C, Imgproc.THRESH_BINARY, 15, -2);
 		Mat horizontal = bw.clone();
 
@@ -43,9 +41,11 @@ public class LineRemover {
 
 		Imgcodecs.imwrite("removed.png", horizontal);
 
+		Core.bitwise_not(horizontal, horizontal);
+		return horizontal;
 	}
 
-	public static void main(String[] args) {
-		removeLines(new File("C:\\Users\\s26083758\\Desktop\\rot.jpg"));
-	}
+//	public static void main(String[] args) {
+//		removeLines(new File("rot.jpg"));
+//	}
 }
