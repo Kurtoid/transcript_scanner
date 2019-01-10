@@ -39,8 +39,19 @@ public class OCRReader {
         }
 
     }
-
     public static void scanImage(ScannedPaper selectedImage, double selectedLeft, double selectedRight) {
+    	scanImage(selectedImage, selectedLeft, selectedRight, 7);
+    }
+
+    /**
+     * scans an image in tesseract according to mode. Prints result for now
+     * 
+     * @param selectedImage the split image line
+     * @param selectedLeft the right start bound (in decimal from 0 to 1)
+     * @param selectedRight the left start bound
+     * @param mode 7 is single line, 10 is single character
+     */
+    public static void scanImage(ScannedPaper selectedImage, double selectedLeft, double selectedRight, int mode) {
         //TODO: move this out
         CoursesReader cr = new CoursesReader();
         List<Course> courses = null;
@@ -52,16 +63,8 @@ public class OCRReader {
             e.printStackTrace();
         }
         ITesseract instance = new Tesseract1();
-/*        try {
-            instance.getSegmentedRegions(ImageIO.read(selectedImage.file), 0);
-        } catch (TesseractException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-  //*/
-        instance.setTessVariable("psm", "7");
+        instance.setTessVariable("psm", Integer.toString(mode));
         System.out.println(System.getenv("TESSDATA_PREFIX"));
 //        instance.setDatapath("../" + System.getenv("TESSDATA_PREFIX"));
 //		instance.setDatapath(LoadLibs.extractTessResources("tessdata").getParent());
@@ -74,7 +77,7 @@ public class OCRReader {
                 String result = (instance.doOCR(cropped));
 //                result = result.replaceAll("IB", "International Baccalaureate");
                 System.out.println("Line: " + result.replace("\n", ""));
-
+/*
                 PriorityQueue<dPair> matches = new PriorityQueue<>();
                 for (int i = 0; i < courses.size(); i++) {
                     Course c = courses.get(i);
@@ -86,6 +89,7 @@ public class OCRReader {
                     dPair dp = matches.poll();
                     System.out.println(courses.get(dp.key) + "\t" + dp.value);
                 }
+                //*/
             } catch (TesseractException e) {
                 e.printStackTrace();
             }

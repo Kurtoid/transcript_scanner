@@ -127,7 +127,8 @@ public class ReadingWindow implements Initializable {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
 
-			OCRReader.scanImage(selectedImage, selectedLeft, selectedRight);
+//			OCRReader.scanImage(selectedImage, nameColumnLeft, nameColumnRight);
+			OCRReader.scanImage(selectedImage, gradeColumnLeft, gradeColumnRight, 10);
 		}
 	}
 
@@ -171,21 +172,39 @@ public class ReadingWindow implements Initializable {
 					if (event.getX() > imagePreview.getWidth() || event.getY() > imagePreview.getHeight()
 							|| event.getY() < 0 || event.getX() < 0)
 						return;
-					if (inLeftBuffer(event.getX())) {
-						selectedLeft = event.getX() / imagePreview.getWidth();
-						if (selectedLeft > 0.8)
-							selectedLeft = 0.8;
-						if (Math.abs(selectedLeft - selectedRight) < 0.1)
-							selectedLeft = selectedRight - 0.1;
-					}
-					if (inRightBuffer(event.getX())) {
-						selectedRight = event.getX() / imagePreview.getWidth();
-						if (selectedRight > 0.8)
-							selectedRight = 0.8;
-						if (Math.abs(selectedLeft - selectedRight) < 0.1)
-							selectedRight = selectedLeft + 0.1;
+					if (inLeftBuffer(event.getX()) && inRightBuffer(event.getX())) {
+						double mousePos = event.getX() / imagePreview.getWidth();
+						if (Math.abs(mousePos - selectedLeft) > Math.abs(mousePos - selectedRight)) {
+							moveLeft(event.getX());
+						} else {
+							moveRight(event.getX());
+						}
+					} else if (inLeftBuffer(event.getX())) {
+						moveLeft(event.getX());
+
+					} else if (inRightBuffer(event.getX())) {
+						moveRight(event.getX());
+
 					}
 					updateCanvas();
+				}
+
+				private void moveRight(double x) {
+					selectedRight = x / imagePreview.getWidth();
+					if (selectedRight > 0.8)
+						selectedRight = 0.8;
+					if (Math.abs(selectedLeft - selectedRight) < 0.02)
+						selectedRight = selectedLeft + 0.02;
+
+				}
+
+				private void moveLeft(double x) {
+					selectedLeft = x / imagePreview.getWidth();
+					if (selectedLeft > 0.8)
+						selectedLeft = 0.8;
+					if (Math.abs(selectedLeft - selectedRight) < 0.02)
+						selectedLeft = selectedRight - 0.02;
+
 				}
 			});
 
@@ -227,13 +246,13 @@ public class ReadingWindow implements Initializable {
 	}
 
 	private boolean inLeftBuffer(double mouseX) {
-		return mouseX > (selectedLeft * imagePreview.getWidth() - (imagePreview.getWidth() * 0.1))
-				&& mouseX < (selectedLeft * imagePreview.getWidth() + (imagePreview.getWidth() * 0.1));
+		return mouseX > (selectedLeft * imagePreview.getWidth() - (imagePreview.getWidth() * 0.02))
+				&& mouseX < (selectedLeft * imagePreview.getWidth() + (imagePreview.getWidth() * 0.02));
 	}
 
 	private boolean inRightBuffer(double mouseX) {
-		return mouseX > (selectedRight * imagePreview.getWidth() - (imagePreview.getWidth() * 0.1))
-				&& mouseX < (selectedRight * imagePreview.getWidth() + (imagePreview.getWidth() * 0.1));
+		return mouseX > (selectedRight * imagePreview.getWidth() - (imagePreview.getWidth() * 0.02))
+				&& mouseX < (selectedRight * imagePreview.getWidth() + (imagePreview.getWidth() * 0.02));
 	}
 
 	@Override
