@@ -1,6 +1,4 @@
-package common.csvreader;
-
-import common.Course;
+package common.courses;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,8 +15,8 @@ public class CoursesReader {
 		String l = r.readLine();
 		while (l != null) {
 			Course c = new Course();
-			c.courseID = l.split(",")[0];
-			c.courseDesc = l.split(",")[1];
+			c.courseID = l.split(",")[0].toLowerCase();
+			c.courseDesc = l.split(",")[1].toLowerCase();
 			courses.add(c);
 			l = r.readLine();
 		}

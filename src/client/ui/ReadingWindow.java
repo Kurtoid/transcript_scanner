@@ -127,8 +127,8 @@ public class ReadingWindow implements Initializable {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
 
-//			OCRReader.scanImage(selectedImage, nameColumnLeft, nameColumnRight);
-			OCRReader.scanImage(selectedImage, gradeColumnLeft, gradeColumnRight, 10);
+			OCRReader.scanImage(selectedImage, nameColumnLeft, nameColumnRight);
+//			OCRReader.scanImage(selectedImage, gradeColumnLeft, gradeColumnRight, 10);
 		}
 	}
 
