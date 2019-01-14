@@ -15,8 +15,8 @@ public class CoursesReader {
 		String l = r.readLine();
 		while (l != null) {
 			Course c = new Course();
-			c.courseID = l.split(",")[0].toLowerCase();
-			c.courseDesc = l.split(",")[1].toLowerCase();
+			c.courseID = l.split(",")[0];
+			c.courseDesc = l.split(",")[1];
 			courses.add(c);
 			l = r.readLine();
 		}

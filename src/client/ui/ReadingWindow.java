@@ -1,5 +1,10 @@
 package client.ui;
 
+import java.io.File;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import client.core.ApplicationState;
 import common.ScannedPaper;
 import javafx.beans.value.ChangeListener;
@@ -23,11 +28,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import server.imaging.ImagePreprocessor;
 import server.tesseract.OCRReader;
-
-import java.io.File;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class ReadingWindow implements Initializable {
 
@@ -191,6 +191,7 @@ public class ReadingWindow implements Initializable {
 
 				private void moveRight(double x) {
 					selectedRight = x / imagePreview.getWidth();
+					System.out.println(selectedRight);
 					if (selectedRight > 0.8)
 						selectedRight = 0.8;
 					if (Math.abs(selectedLeft - selectedRight) < 0.02)
@@ -200,6 +201,7 @@ public class ReadingWindow implements Initializable {
 
 				private void moveLeft(double x) {
 					selectedLeft = x / imagePreview.getWidth();
+					System.out.println(selectedLeft);
 					if (selectedLeft > 0.8)
 						selectedLeft = 0.8;
 					if (Math.abs(selectedLeft - selectedRight) < 0.02)
@@ -211,8 +213,8 @@ public class ReadingWindow implements Initializable {
 		}
 		GraphicsContext gc = imagePreview.getGraphicsContext2D();
 		double scaleFactor;
-		System.out.println(imagePreview.getHeight());
-		System.out.println(selectedImage.getImage().getHeight());
+//		System.out.println(imagePreview.getHeight());
+//		System.out.println(selectedImage.getImage().getHeight());
 		if (imagePreview.getHeight() / selectedImage.getImage().getHeight() > imagePreview.getWidth()
 				/ selectedImage.getImage().getWidth()) {
 			scaleFactor = imagePreview.getHeight() / selectedImage.getImage().getHeight();

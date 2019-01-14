@@ -1,14 +1,23 @@
 package server.imaging;
 
-import common.FileManager;
-import org.opencv.core.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.RotatedRect;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import common.FileManager;
 
 public class ImagePreprocessor {
     public static void main(String[] args) {
@@ -182,7 +191,7 @@ public class ImagePreprocessor {
      * @param image already-aligned, original color image
      * @return file folder location of split files
      */
-    static public File splitImage(File image) {
+	static public LinkedList<File> splitImage(File image) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 //      File imageFile = new File("image.jpg");
 //      System.out.println(imageFile.exists());
@@ -200,9 +209,10 @@ public class ImagePreprocessor {
         Mat filtered_hist = new Mat();
         Core.compare(horiz_proj, th, filtered_hist, Core.CMP_LE);
         System.out.println(filtered_hist);
-        for (int i = 0; i < filtered_hist.rows(); i++) {
-            System.out.println(filtered_hist.get(i, 0)[0]);
-        }
+		/*
+		 * for (int i = 0; i < filtered_hist.rows(); i++) {
+		 * System.out.println(filtered_hist.get(i, 0)[0]); }
+		 */
         //        System.out.println(filtered_hist.dump());
 
         // Get mean coordinate of white white pixels groups
@@ -237,22 +247,23 @@ public class ImagePreprocessor {
 //        int cropRight = (int) (gray.width()-(gray.width()/100.0)*75);
 
 //		System.out.println(ycoords.toString());
+		LinkedList<File> files = new LinkedList<>();
         for (int i = 0; i < ycoords.size() - 1; i++) {
             Rect roi = new Rect(0, Math.max(0, ycoords.get(i)), gray.width(),
                     Math.min((int) ycoords.get(i + 1) - (ycoords.get(i)), gray.height()));
 //			System.out.println(roi.toString()+"\t"+i);
             Mat cropped = new Mat(gray, roi);
             Scalar s = Core.mean(cropped);
-            System.out.println(s.val[0] + "\t" + i);
+//            System.out.println(s.val[0] + "\t" + i);
 //			if (s.val[0] >= 9) {
             File f = new File(
                     folder.getAbsolutePath() + File.separator + getFileName(image.getName()) + "_" + i + ".png");
-
+			files.add(f);
             Imgcodecs.imwrite(f.getAbsolutePath(), cropped);
 //			}
 
         }
-        return folder;
+		return files;
 
         /*
          * Imgproc.cvtColor(gray, gray, Imgproc.COLOR_GRAY2BGR); for (int i = 0; i <

@@ -1,12 +1,12 @@
 package common.courses;
 
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+
+import me.xdrop.fuzzywuzzy.FuzzySearch;
 
 public class CourseMatcher {
     public static List<Course> matchCourse(String s, int limit) {
@@ -21,7 +21,7 @@ public class CourseMatcher {
         PriorityQueue<dPair> matches = new PriorityQueue<>();
         for (int i = 0; i < courses.size(); i++) {
             Course c = courses.get(i);
-            double dist = FuzzySearch.ratio(c.courseDesc + " " + c.courseID, s);
+			double dist = FuzzySearch.ratio(c.courseDesc.toLowerCase() + " " + c.courseID.toLowerCase(), s);
             matches.add(new dPair(i, dist));
         }
         List<Course> c = new ArrayList<>();
