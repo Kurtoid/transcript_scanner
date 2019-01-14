@@ -16,6 +16,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
+import static server.imaging.ImagePreprocessor.getFileName;
+
 public class OCRReader {
     public static void main(String[] args) {
         ITesseract instance = new Tesseract1();
@@ -36,9 +38,6 @@ public class OCRReader {
 
     }
 
-    public static void scanImage(ScannedPaper selectedImage, double selectedLeft, double selectedRight) {
-        scanImage(selectedImage, selectedLeft, selectedRight, 7);
-    }
 
     /**
      * scans an image in tesseract according to mode, with left and right boundaries. Prints result for now
@@ -47,17 +46,13 @@ public class OCRReader {
      * TODO: clean-up cropped images
      *
      * @param selectedImage the split image line
-     * @param selectedLeft  the right start bound (in decimal from 0 to 1)
-     * @param selectedRight the left start bound
-     * @param mode          7 is single line, 10 is single character
      */
-    public static void scanImage(ScannedPaper selectedImage, double selectedLeft, double selectedRight, int mode) {
+    public static void scanImage(ScannedPaper selectedImage, double nameSelectedLeft, double nameSelectedRight, double gradeSelectedLeft, double gradeSelectedRight) {
         //TODO: move this out
         List<Course> courses = null;
 
         ITesseract instance = new Tesseract1();
 
-        instance.setTessVariable("psm", Integer.toString(mode));
         System.out.println(System.getenv("TESSDATA_PREFIX"));
 //        instance.setDatapath("../" + System.getenv("TESSDATA_PREFIX"));
 //		instance.setDatapath(LoadLibs.extractTessResources("tessdata").getParent());
@@ -66,11 +61,16 @@ public class OCRReader {
 
         for (File f : Objects.requireNonNull(folder.listFiles())) {
             try {
-                File cropped = cropImage(f, selectedLeft, selectedRight);
+                File cropped = cropImage(f, nameSelectedLeft, nameSelectedRight);
+                instance.setTessVariable("psm", "7");
+
                 String result = (instance.doOCR(cropped));
 //                result = result.replaceAll("IB", "International Baccalaureate");
                 System.out.println("Line: " + result.replace("\n", "").toLowerCase());
                 System.out.println(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
+                instance.setTessVariable("psm", "10");
+
+                System.out.println("grade: " + instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight)));
             } catch (TesseractException e) {
                 e.printStackTrace();
             }
@@ -101,14 +101,20 @@ public class OCRReader {
     private static File cropImage(File f, double selectedLeft, double selectedRight) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         Mat img = Imgcodecs.imread(f.getAbsolutePath());
-        f.delete();
+//        f.delete();
 
         Rect roi = new Rect((int) (selectedLeft * img.width()), 0, (int) ((selectedRight - selectedLeft) * img.width()), img.height());
 //        System.out.println(roi.toString());
 //			System.out.println(roi.toString()+"\t"+i);
         Mat cropped = new Mat(img, roi);
-        Imgcodecs.imwrite(f.getAbsolutePath(), cropped);
-        return new File(f.toURI());
+        File result = new File(f.getParent() + File.separator + getFileName(f.getName()) + ((int) (Math.random() * 100)) + ".png");
+//        Imgproc.cvtColor(cropped, cropped, Imgproc.COLOR_BGR2GRAY);
+//        Imgproc.threshold(cropped, cropped, 40, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+//        double erosion_size = 2;
+//        Mat element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2*erosion_size + 1, 2*erosion_size+1));
+//        Imgproc.erode(cropped, cropped, element);
+        Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
+        return (result);
     }
 
 }

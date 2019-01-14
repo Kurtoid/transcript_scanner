@@ -238,8 +238,8 @@ public class ImagePreprocessor {
 
 //		System.out.println(ycoords.toString());
         for (int i = 0; i < ycoords.size() - 1; i++) {
-            Rect roi = new Rect(0, Math.max(0, ycoords.get(i) - 3), gray.width(),
-                    Math.min((int) ycoords.get(i + 1) - (ycoords.get(i)) + 3, gray.height()));
+            Rect roi = new Rect(0, Math.max(0, ycoords.get(i)), gray.width(),
+                    Math.min((int) ycoords.get(i + 1) - (ycoords.get(i)), gray.height()));
 //			System.out.println(roi.toString()+"\t"+i);
             Mat cropped = new Mat(gray, roi);
             Scalar s = Core.mean(cropped);
@@ -262,7 +262,7 @@ public class ImagePreprocessor {
 
     }
 
-    private static String getFileName(String line) {
+    public static String getFileName(String line) {
         String expression = "^(.*)\\.";
         Pattern pattern = Pattern.compile(expression);
         Matcher matcher = pattern.matcher(line);
