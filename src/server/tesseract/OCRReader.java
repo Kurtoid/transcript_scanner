@@ -1,24 +1,23 @@
 package server.tesseract;
 
-import static server.imaging.ImagePreprocessor.getFileName;
-
-import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-
+import common.ScannedPaper;
+import common.courses.Course;
+import common.courses.CourseMatcher;
+import common.imaging.ImagePreprocessor;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract1;
+import net.sourceforge.tess4j.TesseractException;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 
-import common.ScannedPaper;
-import common.courses.Course;
-import common.courses.CourseMatcher;
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract1;
-import net.sourceforge.tess4j.TesseractException;
-import server.imaging.ImagePreprocessor;
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+
+import static common.imaging.ImagePreprocessor.getFileName;
 
 public class OCRReader {
 	public static void main(String[] args) {
@@ -77,7 +76,7 @@ public class OCRReader {
 //                result = result.replaceAll("IB", "International Baccalaureate");
 						System.out.println("Line: " + result.replace("\n", ""));
 						System.out.println(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
-						instance.setTessVariable("psm", "10");
+						instance.setTessVariable("psm", "11");
 
 						System.out.println(
 								"grade: " + instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight)));
@@ -140,7 +139,7 @@ public class OCRReader {
 			 * 
 			 * Core.bitwise_not(cropped, cropped);
 			 */
-		System.out.println(result.getAbsolutePath());
+//		System.out.println(result.getAbsolutePath());
 		Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
 		return (result);
 	}
