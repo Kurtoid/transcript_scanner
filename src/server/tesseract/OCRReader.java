@@ -11,6 +11,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 
+import common.GradeParser;
 import common.ScannedPaper;
 import common.courses.Course;
 import common.courses.CourseMatcher;
@@ -79,7 +80,7 @@ public class OCRReader {
 						System.out.println(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
 						instance.setTessVariable("psm", "10");
 						String grade = instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight));
-						System.out.println("grade: " + grade + "\tParsed: " + parseGrade(grade));
+						System.out.println("grade: " + grade + "\tParsed: " + GradeParser.parseGrade(grade));
 					}
 				}
 			} catch (TesseractException e) {
@@ -91,22 +92,6 @@ public class OCRReader {
 			System.out.println("We never found a header!!! (thats bad)");
 		}
 
-	}
-
-	// TODO move these
-	static String[] validGrade = { "A", "B", "C", "D", "F", "P" };
-	private static String parseGrade(String grade) {
-		grade = grade.trim().toUpperCase();
-		if (grade.equals("")) {
-			return "NONE";
-		}
-		if (grade.length() == 1) {
-			return grade.toUpperCase();
-		}
-		if (grade.charAt(0) == grade.charAt(1)) {
-			return String.valueOf(grade.charAt(0));
-		}
-		return grade;
 	}
 
 	public static String doOcr(File f) {
