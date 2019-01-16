@@ -1,6 +1,10 @@
+
 package client.ui;
 
 import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import client.core.ApplicationState;
 import common.FileManager;
@@ -12,8 +16,9 @@ import javafx.stage.Stage;
 
 public class Login extends Application {
     LoginController lControl;
-
+	final static Logger logger = LoggerFactory.getLogger(Login.class);
     public static void main(String[] args) {
+		logger.info("Started login main");
     	try {
 			FileManager.removeTempFiles();
 		} catch (IOException e) {
@@ -25,6 +30,7 @@ public class Login extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+		logger.info("stage started");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginLayout.fxml"));
         Parent root = loader.load();
 

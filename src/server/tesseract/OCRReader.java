@@ -10,6 +10,8 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import common.GradeParser;
 import common.ScannedPaper;
@@ -22,6 +24,8 @@ import net.sourceforge.tess4j.TesseractException;
 import server.imaging.ImagePreprocessor;
 
 public class OCRReader {
+	final static Logger logger = LoggerFactory.getLogger(OCRReader.class);
+
 	public static void main(String[] args) {
 		ITesseract instance = new Tesseract1();
 		System.out.println(System.getenv("TESSDATA_PREFIX"));
@@ -60,7 +64,7 @@ public class OCRReader {
 //		instance.setDatapath(LoadLibs.extractTessResources("tessdata").getParent());
 		LinkedList<File> folder = ImagePreprocessor.splitImage(selectedImage.file);
 
-		System.out.println("looking for course header");
+		logger.debug("looking for course header");
 		boolean headerFound = false;
 		for (File f : folder) {
 			try {
@@ -76,11 +80,11 @@ public class OCRReader {
 						}
 					} else {
 //                result = result.replaceAll("IB", "International Baccalaureate");
-						System.out.println("Line: " + result.replace("\n", ""));
-						System.out.println(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
+						logger.debug("Line: " + result.replace("\n", ""));
+						logger.info(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
 						instance.setTessVariable("psm", "10");
 						String grade = instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight));
-						System.out.println("grade: " + grade + "\tParsed: " + GradeParser.parseGrade(grade));
+						logger.info("grade: " + grade + "\tParsed: " + GradeParser.parseGrade(grade));
 					}
 				}
 			} catch (TesseractException e) {
@@ -89,7 +93,7 @@ public class OCRReader {
 
 		}
 		if (!headerFound) {
-			System.out.println("We never found a header!!! (thats bad)");
+			logger.warn("We never found a header!!! (thats bad)");
 		}
 
 	}
@@ -140,7 +144,7 @@ public class OCRReader {
 		 * 
 		 * Core.bitwise_not(cropped, cropped);
 		 */
-		System.out.println(result.getAbsolutePath());
+		logger.trace(result.getAbsolutePath());
 		Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
 		return (result);
 	}

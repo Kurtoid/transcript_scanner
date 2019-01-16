@@ -9,7 +9,8 @@ package common;
  */
 public class GradeParser {
 
-	static String[] validGrade = { "A", "B", "C", "D", "F", "P" };
+	static String[] validGrade = { "A", "B", "C", "D", "F", "P", "M", "W", "E" };
+	// M: No grade, W: Withdraw, I: Incomplete, F: elementary school fail, E: exempt
 
 	/**
 	 * reads in a line from a paper cell and returns a grade
