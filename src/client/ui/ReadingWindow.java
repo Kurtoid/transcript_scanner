@@ -2,6 +2,7 @@ package client.ui;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -18,6 +19,7 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +28,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import server.imaging.ColumnDetector;
 import server.imaging.ImagePreprocessor;
 import server.tesseract.OCRReader;
 
@@ -37,6 +40,8 @@ public class ReadingWindow implements Initializable {
 	public Button LoadImagesButton;
 	public GridPane basePane;
 	private ScannedPaper selectedImage;
+	@FXML
+	private CheckBox columnSnapBox;
 	private double selectedLeft;
 	private double selectedRight;
 	private boolean selectionStarted = false;
@@ -46,6 +51,7 @@ public class ReadingWindow implements Initializable {
 
 	private double gradeColumnRight = -1;
 	private double gradeColumnLeft = -1;
+	private ArrayList<Double> columnLocations;
 	private EventHandler<MouseEvent> smallImageClicked = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
@@ -61,14 +67,16 @@ public class ReadingWindow implements Initializable {
 			ChangeListener<Number> stageSizeListener = (observable, oldV, newV) -> updateCanvas();
 			basePane.getScene().getWindow().widthProperty().addListener(stageSizeListener);
 			basePane.getScene().getWindow().widthProperty().addListener(stageSizeListener);
-
+			columnLocations = ColumnDetector.findColumns(selectedImage.file);
 			updateCanvas();
 		}
+
 	};
 	public Pane canvasContainer;
 
 	@FXML
 	public void loadImages(ActionEvent actionEvent) {
+		System.out.println(columnSnapBox.isSelected());
 		FileChooser fc = new FileChooser();
 		fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
@@ -169,22 +177,43 @@ public class ReadingWindow implements Initializable {
 			imagePreview.setOnMouseDragged(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					if (event.getX() > imagePreview.getWidth() || event.getY() > imagePreview.getHeight()
-							|| event.getY() < 0 || event.getX() < 0)
-						return;
-					if (inLeftBuffer(event.getX()) && inRightBuffer(event.getX())) {
-						double mousePos = event.getX() / imagePreview.getWidth();
-						if (Math.abs(mousePos - selectedLeft) > Math.abs(mousePos - selectedRight)) {
+					if (!columnSnapBox.isSelected()) {
+						if (event.getX() > imagePreview.getWidth() || event.getY() > imagePreview.getHeight()
+								|| event.getY() < 0 || event.getX() < 0)
+							return;
+						if (inLeftBuffer(event.getX()) && inRightBuffer(event.getX())) {
+							double mousePos = event.getX() / imagePreview.getWidth();
+							if (Math.abs(mousePos - selectedLeft) > Math.abs(mousePos - selectedRight)) {
+								moveLeft(event.getX());
+							} else {
+								moveRight(event.getX());
+							}
+						} else if (inLeftBuffer(event.getX())) {
 							moveLeft(event.getX());
-						} else {
+
+						} else if (inRightBuffer(event.getX())) {
 							moveRight(event.getX());
+
 						}
-					} else if (inLeftBuffer(event.getX())) {
-						moveLeft(event.getX());
+					} else {
+						double mPercent = event.getX() / imagePreview.getWidth();
+						double distance = Math.abs(columnLocations.get(0) - mPercent);
+						int idx = 0;
+						for (int c = 1; c < columnLocations.size(); c++) {
+							double cdistance = Math.abs(columnLocations.get(c) - mPercent);
+							if (cdistance < distance) {
+								idx = c;
+								distance = cdistance;
+							}
+						}
+						double closestColumnNumber = columnLocations.get(idx);
 
-					} else if (inRightBuffer(event.getX())) {
-						moveRight(event.getX());
-
+						if (Math.abs(mPercent - selectedLeft) < Math.abs(mPercent - selectedRight)) { // if closer to
+																										// right
+							selectedLeft = closestColumnNumber;
+						} else {
+							selectedRight = closestColumnNumber;
+						}
 					}
 					updateCanvas();
 				}
