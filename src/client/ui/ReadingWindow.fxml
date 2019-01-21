@@ -2,7 +2,9 @@
 
 <?import client.ui.ResizableCanvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="basePane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ui.ReadingWindow">
+<GridPane fx:id="basePane" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Login.css"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ui.ReadingWindow">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -24,8 +26,10 @@
         <Button fx:id="LoadImagesButton" alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" onAction="#loadImages" text="Load Images" />
         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#alignAllImages" text="Align All" />
         <Button fx:id="scanImageButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#scanSelectedImage" text="Scan" />
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Set Grade Column" onAction="#setGradeColumn" />
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Set Name Column" onAction="#setNameColumn"/>
+      <Separator prefHeight="10.0" prefWidth="200.0" />
+      <CheckBox fx:id="columnSnapBox" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Snap to Columns" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setNameColumn" text="Set Name Column" />
+      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setGradeColumn" text="Set Grade Column" />
     </VBox>
     <Pane fx:id="canvasContainer" prefHeight="200.0" prefWidth="200.0" GridPane.hgrow="ALWAYS">
         <children>
