@@ -1,12 +1,12 @@
 package tests;
 
-import java.io.File;
-import java.io.IOException;
-
 import common.FileManager;
 import common.ScannedPaper;
-import server.imaging.ImagePreprocessor;
+import common.imaging.ImagePreprocessor;
 import server.tesseract.OCRReader;
+
+import java.io.File;
+import java.io.IOException;
 
 public class QuickScanRunner {
 	static double nameColumnLeft = 0.1681027868852459;
