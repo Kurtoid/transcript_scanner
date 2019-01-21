@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e827d78-7588-4b3f-a884-ee5f92d3ac19" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/common/imaging/PaperAligner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image_rot.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/log4j-1.2.17.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/slf4j-log4j12-1.7.25.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/common/GradeParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/server/imaging/ColumnDetector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tests/QuickScanRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/line.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/split.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/slf4j-simple-1.7.25.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/AnnotatedImage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/ReadingWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/ReadingWindow.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/client/ui/ReadingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/ReadingWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/imaging/ImagePreprocessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/imaging/LineRemover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/imaging/LineRemover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/thresh.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,49 +30,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="125" column="36" selection-start-line="125" selection-start-column="36" selection-end-line="125" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/imaging/LineRemover.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="933">
-              <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/server/tesseract/OCRReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="961">
-              <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
+            <state relative-caret-position="-107">
+              <caret line="98" column="50" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3219#3220#0" expanded="true" />
-                <element signature="e#3244#3245#0" expanded="true" />
+                <element signature="e#3208#3209#0" expanded="true" />
+                <element signature="e#3233#3234#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/common/imaging/PaperAligner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
+            <state relative-caret-position="1000">
+              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2729#2730#0" expanded="true" />
                 <element signature="e#2803#2804#0" expanded="true" />
-                <element signature="e#1871#1872#0" expanded="true" />
-                <element signature="e#1956#1957#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/ParsedReport.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/courses/Course.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -74,7 +82,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="729">
+            <state relative-caret-position="47600">
               <caret line="1245" column="32" selection-start-line="1245" selection-start-column="32" selection-end-line="1245" selection-end-column="32" />
             </state>
           </provider>
@@ -83,7 +91,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ComparableTimSort.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1345">
+            <state relative-caret-position="6160">
               <caret line="178" column="16" selection-start-line="178" selection-start-column="16" selection-end-line="178" selection-end-column="20" />
             </state>
           </provider>
@@ -92,7 +100,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/org/opencv/core/DMatch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
+            <state relative-caret-position="960">
               <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
             </state>
           </provider>
@@ -101,7 +109,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/org/opencv/features2d/DescriptorMatcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
+            <state relative-caret-position="8920">
               <caret line="232" column="17" selection-start-line="232" selection-start-column="17" selection-end-line="232" selection-end-column="17" />
             </state>
           </provider>
@@ -110,8 +118,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/ui/ReadingWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
+            <state relative-caret-position="5720">
+              <caret line="143" column="22" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -119,11 +127,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/client/ui/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="840">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -215,14 +220,15 @@
         <option value="$PROJECT_DIR$/src/client/ui/ReadingWindow.fxml" />
         <option value="$PROJECT_DIR$/src/common/csvreader/CoursesReader.java" />
         <option value="$PROJECT_DIR$/src/common/dPair.java" />
-        <option value="$PROJECT_DIR$/src/common/courses/Course.java" />
         <option value="$PROJECT_DIR$/src/common/courses/CoursesReader.java" />
         <option value="$PROJECT_DIR$/src/common/courses/CourseMatcher.java" />
         <option value="$PROJECT_DIR$/src/client/ui/ReadingWindow.java" />
         <option value="$PROJECT_DIR$/src/server/imaging/ImagePreprocessor.java" />
-        <option value="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" />
         <option value="$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java" />
         <option value="$PROJECT_DIR$/src/common/imaging/PaperAligner.java" />
+        <option value="$PROJECT_DIR$/src/common/ParsedReport.java" />
+        <option value="$PROJECT_DIR$/src/common/courses/Course.java" />
+        <option value="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" />
       </list>
     </option>
   </component>
@@ -318,61 +324,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="ui" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="common" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="common" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="imaging" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -447,10 +398,38 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="common" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547591476816" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548096842410" />
     <property name="last_opened_file_path" value="/usr/lib/jvm/java-1.8.0-openjdk-amd64/jre" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
@@ -545,8 +524,8 @@
       <item itemvalue="Application.CoursesReader" />
       <item itemvalue="Application.ImagePreprocessor" />
       <item itemvalue="Application.Login" />
-      <item itemvalue="Application.ServerMaster" />
       <item itemvalue="Application.PaperAligner" />
+      <item itemvalue="Application.ServerMaster" />
     </list>
     <recent_temporary>
       <list>
@@ -660,14 +639,20 @@
       <option name="project" value="LOCAL" />
       <updated>1547428021888</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="WIP: mass image alignment">
+      <created>1547591528347</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1547591528347</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1906" y="0" width="1948" height="2098" extended-state="0" />
-    <editor active="true" />
+    <frame x="-16" y="-16" width="3872" height="2116" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49963847" weight="0.3409091" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49963847" visible="true" weight="0.35085836" />
       <window_info id="Structure" order="1" sideWeight="0.50036156" side_tool="true" weight="0.43684635" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -676,14 +661,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32931727" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49833703" visible="true" weight="0.26072234" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49833703" weight="0.25810057" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3995715" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3299356" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50166297" side_tool="true" weight="0.26072234" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.22829582" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.22793296" />
       <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.329582" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32674944" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -781,18 +766,12 @@
     <MESSAGE value="end winter break" />
     <MESSAGE value="improved accuracy by making everything same case (how did I miss this???)&#10;Refactor some things" />
     <MESSAGE value="afternoon progress" />
-    <option name="LAST_COMMIT_MESSAGE" value="afternoon progress" />
+    <MESSAGE value="WIP: mass image alignment" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: mass image alignment" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/common/networking/LoginMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
-          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/common/networking/LoginResponseMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -885,12 +864,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/removed.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rot.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/removed.png" />
+    <entry file="file://$PROJECT_DIR$/rot.jpg" />
     <entry file="jar://$PROJECT_DIR$/libs/tess4j-4.3.0.jar!/net/sourceforge/tess4j/Tesseract1.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1626">
@@ -998,13 +973,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/courses/Course.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/ui/MainMenu.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -1020,49 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/imaging/LineRemover.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="933">
-          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/tesseract/OCRReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="961">
-          <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3219#3220#0" expanded="true" />
-            <element signature="e#3244#3245#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ui/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ui/ReadingWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="135" column="22" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="125" column="36" selection-start-line="125" selection-start-column="36" selection-end-line="125" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/org/opencv/features2d/ORB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="569">
@@ -1070,44 +995,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/org/opencv/features2d/DescriptorMatcher.java">
+    <entry file="file://$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="232" column="17" selection-start-line="232" selection-start-column="17" selection-end-line="232" selection-end-column="17" />
+        <state relative-caret-position="4640">
+          <caret line="125" column="36" selection-start-line="125" selection-start-column="36" selection-end-line="125" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java">
+    <entry file="file://$PROJECT_DIR$/src/common/imaging/LineRemover.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="1245" column="32" selection-start-line="1245" selection-start-column="32" selection-end-line="1245" selection-end-column="32" />
+        <state relative-caret-position="1160">
+          <caret line="34" column="45" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/org/opencv/core/DMatch.java">
+    <entry file="file://$PROJECT_DIR$/src/server/tesseract/OCRReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ComparableTimSort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1345">
-          <caret line="178" column="16" selection-start-line="178" selection-start-column="16" selection-end-line="178" selection-end-column="20" />
+        <state relative-caret-position="-107">
+          <caret line="98" column="50" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3208#3209#0" expanded="true" />
+            <element signature="e#3233#3234#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/imaging/PaperAligner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
+        <state relative-caret-position="1000">
+          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2729#2730#0" expanded="true" />
             <element signature="e#2803#2804#0" expanded="true" />
-            <element signature="e#1871#1872#0" expanded="true" />
-            <element signature="e#1956#1957#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/ParsedReport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/courses/Course.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47600">
+          <caret line="1245" column="32" selection-start-line="1245" selection-start-column="32" selection-end-line="1245" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/ComparableTimSort.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6160">
+          <caret line="178" column="16" selection-start-line="178" selection-start-column="16" selection-end-line="178" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/org/opencv/core/DMatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/opencv/opencv-400.jar!/org/opencv/features2d/DescriptorMatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8920">
+          <caret line="232" column="17" selection-start-line="232" selection-start-column="17" selection-end-line="232" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/ui/ReadingWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5720">
+          <caret line="143" column="22" selection-start-line="143" selection-start-column="22" selection-end-line="143" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/ui/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
