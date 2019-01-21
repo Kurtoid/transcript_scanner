@@ -75,11 +75,10 @@ public class OCRReader {
 					} else {
 //                result = result.replaceAll("IB", "International Baccalaureate");
 						System.out.println("Line: " + result.replace("\n", ""));
-						System.out.println(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
+						Course c = (CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0));
 						instance.setTessVariable("psm", "11");
-
-						System.out.println(
-								"grade: " + instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight)));
+						c.grade = instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight));
+						System.out.println(c.toString());
 					}
 				}
 			} catch (TesseractException e) {
