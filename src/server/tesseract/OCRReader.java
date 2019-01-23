@@ -1,5 +1,6 @@
 package server.tesseract;
 
+import common.GradeParser;
 import common.ScannedPaper;
 import common.courses.Course;
 import common.courses.CourseMatcher;
@@ -12,6 +13,8 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.LinkedList;
