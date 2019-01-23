@@ -15,35 +15,35 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Login extends Application {
-    LoginController lControl;
+	LoginController lControl;
 	final static Logger logger = LoggerFactory.getLogger(Login.class);
-    public static void main(String[] args) {
+
+	public static void main(String[] args) {
 		logger.info("Started login main");
-    	try {
+		try {
 			FileManager.removeTempFiles();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("error removing temporary files", e);
 		}
-        launch(args);
-    }
+		launch(args);
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 		logger.info("stage started");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginLayout.fxml"));
-        Parent root = loader.load();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginLayout.fxml"));
+		Parent root = loader.load();
 
-        Scene scene = new Scene(root, 300, 275);
+		Scene scene = new Scene(root, 300, 275);
 //        scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
 
-        lControl = loader.getController();
-        ApplicationState.startNetworkClient(status -> lControl.setNetworkStatus(status));
+		lControl = loader.getController();
+		ApplicationState.startNetworkClient(status -> lControl.setNetworkStatus(status));
 
-        primaryStage.setTitle("Suncoast Transcript Scanner");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+		primaryStage.setTitle("Suncoast Transcript Scanner");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 
-    }
+	}
 
 }

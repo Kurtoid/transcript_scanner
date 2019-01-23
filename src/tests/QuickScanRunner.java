@@ -3,6 +3,9 @@ package tests;
 import java.io.File;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import common.FileManager;
 import common.ScannedPaper;
 import server.imaging.ImagePreprocessor;
@@ -17,12 +20,14 @@ public class QuickScanRunner {
 
 	static String imgPath = "image.jpg";
 
+	private static final Logger logger = LoggerFactory.getLogger(QuickScanRunner.class);
+
 	public static void main(String[] args) {
 		try {
 		FileManager.removeTempFiles();
 		}catch(IOException e) {
-			System.err.println("couldnt clear temporary files!");
-			System.err.println("quitting to prevent further problems");
+			logger.error("couldnt clear temporary files!");
+			logger.error("quitting to prevent further problems");
 			System.exit(-1);
 		}
 		File f = ImagePreprocessor.alignImage(new File(imgPath));

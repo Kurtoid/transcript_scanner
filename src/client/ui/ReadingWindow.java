@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.slf4j.Logger;
+
 import client.core.ApplicationState;
 import common.ScannedPaper;
 import javafx.beans.value.ChangeListener;
@@ -33,7 +35,7 @@ import server.imaging.ImagePreprocessor;
 import server.tesseract.OCRReader;
 
 public class ReadingWindow implements Initializable {
-
+	final static Logger logger = org.slf4j.LoggerFactory.getLogger(ReadingWindow.class);
 	public HBox imageContainer;
 	public ScrollPane imageScroller;
 	public Canvas imagePreview;
@@ -57,7 +59,7 @@ public class ReadingWindow implements Initializable {
 		public void handle(MouseEvent event) {
 			ImageView source = (ImageView) event.getSource();
 //            imagePreview.setImage(source.getImage());
-			System.out.println("clicked on " + source.getProperties().get("imageID"));
+			logger.trace("clicked on " + source.getProperties().get("imageID"));
 			for (ScannedPaper s : ApplicationState.scannedImages) {
 				if (s.id.equals(source.getProperties().get("imageID"))) {
 					selectedImage = s;
@@ -76,7 +78,8 @@ public class ReadingWindow implements Initializable {
 
 	@FXML
 	public void loadImages(ActionEvent actionEvent) {
-		System.out.println(columnSnapBox.isSelected());
+		logger.trace("loading image");
+		logger.trace("selecting image {}" + columnSnapBox.isSelected());
 		FileChooser fc = new FileChooser();
 		fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
@@ -89,10 +92,6 @@ public class ReadingWindow implements Initializable {
 //               imageViews[i].setF
 			}
 			showImages();
-			/*
-			 * for(File f : images){ System.out.println(ImagePreprocessor.getImageAngle(f));
-			 * }
-			 */
 		}
 	}
 
@@ -220,7 +219,7 @@ public class ReadingWindow implements Initializable {
 
 				private void moveRight(double x) {
 					selectedRight = x / imagePreview.getWidth();
-					System.out.println(selectedRight);
+					logger.trace("right selection bound: {}", selectedRight);
 					if (selectedRight > 0.8)
 						selectedRight = 0.8;
 					if (Math.abs(selectedLeft - selectedRight) < 0.02)
@@ -230,7 +229,7 @@ public class ReadingWindow implements Initializable {
 
 				private void moveLeft(double x) {
 					selectedLeft = x / imagePreview.getWidth();
-					System.out.println(selectedLeft);
+					logger.trace("left selection bound: {}", selectedLeft);
 					if (selectedLeft > 0.8)
 						selectedLeft = 0.8;
 					if (Math.abs(selectedLeft - selectedRight) < 0.02)
@@ -251,7 +250,7 @@ public class ReadingWindow implements Initializable {
 			scaleFactor = imagePreview.getWidth() / selectedImage.getImage().getWidth();
 
 		}
-		System.out.println(scaleFactor);
+		logger.trace("scale factor: {}", scaleFactor);
 		if (selectedImage != null) {
 			gc.drawImage(selectedImage.getImage(), 0, 0, selectedImage.getImage().getWidth() * scaleFactor,
 					selectedImage.getImage().getHeight() * scaleFactor);

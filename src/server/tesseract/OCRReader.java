@@ -28,19 +28,18 @@ public class OCRReader {
 
 	public static void main(String[] args) {
 		ITesseract instance = new Tesseract1();
-		System.out.println(System.getenv("TESSDATA_PREFIX"));
+		logger.debug("tessdata at {}", System.getenv("TESSDATA_PREFIX"));
 //        instance.setDatapath("../" + System.getenv("TESSDATA_PREFIX"));
 //		instance.setDatapath(LoadLibs.extractTessResources("tessdata").getParent());
 
 		File imageFile = new File("rot.png");
-		System.out.println(imageFile.exists());
 		try {
 			long time = System.currentTimeMillis();
 			String result = instance.doOCR(imageFile);
-			System.out.println(time - System.currentTimeMillis());
-			System.out.println(result);
+			logger.info(Long.toString(time - System.currentTimeMillis()));
+			logger.info(result);
 		} catch (TesseractException e) {
-			e.printStackTrace();
+			logger.error("some problem", e);
 		}
 
 	}
@@ -59,7 +58,7 @@ public class OCRReader {
 
 		ITesseract instance = new Tesseract1();
 
-		System.out.println(System.getenv("TESSDATA_PREFIX"));
+		logger.trace("TESSDATA_PREFIX: {}", System.getenv("TESSDATA_PREFIX"));
 //        instance.setDatapath("../" + System.getenv("TESSDATA_PREFIX"));
 //		instance.setDatapath(LoadLibs.extractTessResources("tessdata").getParent());
 		LinkedList<File> folder = ImagePreprocessor.splitImage(selectedImage.file);
@@ -75,7 +74,7 @@ public class OCRReader {
 				if (!result.trim().equals("")) {
 					if (!headerFound) {
 						if (FuzzySearch.ratio(result.toLowerCase(), "course") > 50) {
-							System.out.println("course header found!");
+							logger.info("course header found!");
 							headerFound = true;
 						}
 					} else {
@@ -84,11 +83,11 @@ public class OCRReader {
 						logger.info(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
 						instance.setTessVariable("psm", "10");
 						String grade = instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight));
-						logger.info("grade: " + grade + "\tParsed: " + GradeParser.parseGrade(grade));
+						logger.info("grade: {} Parsed: {}", grade, GradeParser.parseGrade(grade));
 					}
 				}
 			} catch (TesseractException e) {
-				e.printStackTrace();
+				logger.error("problem parsing paper", e);
 			}
 
 		}
@@ -110,7 +109,7 @@ public class OCRReader {
 		try {
 			return (instance.doOCR(f));
 		} catch (TesseractException e) {
-			e.printStackTrace();
+			logger.error("ocr error", e);
 			return null;
 		}
 

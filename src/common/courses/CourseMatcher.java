@@ -6,17 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 
 public class CourseMatcher {
-    public static List<Course> matchCourse(String s, int limit) {
+	static final Logger logger = LoggerFactory.getLogger(CourseMatcher.class);
+
+	public static List<Course> matchCourse(String s, int limit) {
         CoursesReader cr = new CoursesReader();
         List<Course> courses = new ArrayList<>();
         try {
             //TODO: move this string to constants
             courses = CoursesReader.getCoursesFromFile(new File("resources/allCourses.csv"));
         } catch (IOException e) {
-            e.printStackTrace();
+			logger.error("problem loading courses", e);
         }
         PriorityQueue<dPair> matches = new PriorityQueue<>();
         for (int i = 0; i < courses.size(); i++) {

@@ -8,16 +8,21 @@ import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ColumnDetector {
+
+	private static final Logger logger = LoggerFactory.getLogger(ColumnDetector.class);
+
 	public static void main(String[] args) {
-		System.out.println("Finding columns");
+		logger.trace("Finding columns");
 		findColumns(new File("image_rot.jpg"));
 	}
 
 	static public ArrayList<Double> findColumns(File image) {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-//		System.out.println("reading " + image.getAbsolutePath());
+		logger.trace("reading {}", image.getAbsolutePath());
 		Mat img = Imgcodecs.imread(image.getAbsolutePath());
 		Mat gray = new Mat();
 		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
@@ -38,7 +43,7 @@ public class ColumnDetector {
 		Scalar th = new Scalar(10);
 		Mat filtered_hist = new Mat();
 		Core.compare(vert_proj, th, filtered_hist, Core.CMP_LE);
-		System.out.println(filtered_hist);
+		logger.trace("filtered_hist", filtered_hist);
 
 		ArrayList<Double> xcoords = new ArrayList<>();
 		int y = 0;
@@ -62,14 +67,6 @@ public class ColumnDetector {
 			}
 
 		}
-		/*
-		 * System.out.println(xcoords.toString()); Imgproc.cvtColor(gray, gray,
-		 * Imgproc.COLOR_GRAY2BGR); for (int i = 0; i < xcoords.size(); ++i) {
-		 * Imgproc.line(gray, new Point(0, xcoords.get(i)), new Point(gray.cols(),
-		 * xcoords.get(i)), new Scalar(0, 255, 0)); } Core.transpose(gray, gray);
-		 * 
-		 * Imgcodecs.imwrite("columns_ovrlay.png", gray); //
-		 */
 		for (int i = 0; i < xcoords.size(); i++) {
 			xcoords.set(i, xcoords.get(i) / gray.rows());
 		}

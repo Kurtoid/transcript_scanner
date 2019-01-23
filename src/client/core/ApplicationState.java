@@ -1,13 +1,17 @@
 package client.core;
 
-import common.ScannedPaper;
-
 import java.io.IOException;
 import java.util.ArrayList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import common.ScannedPaper;
 
 
 public class ApplicationState {
     public static NetworkClient connection;
+	final static Logger logger = LoggerFactory.getLogger(ApplicationState.class);
 
     public static void startNetworkClient(NetworkConnectedCallback cb) {
         if (connection == null) {
@@ -18,7 +22,7 @@ public class ApplicationState {
                     cb.done(NetworkConnectionStatus.CONNECTED);
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
-                    e.printStackTrace();
+					logger.error("problem connecting to server/client");
                     cb.done(NetworkConnectionStatus.DISCONNECTED);
 
                 }
@@ -26,7 +30,7 @@ public class ApplicationState {
             }).start();
 
         } else {
-            System.err.println("Network system already started");
+			logger.error("Network system already started");
             cb.done(NetworkConnectionStatus.BAD);
         }
     }

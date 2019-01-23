@@ -1,5 +1,13 @@
 package client.ui;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import client.core.ApplicationState;
 import client.core.ApplicationState.NetworkConnectionStatus;
 import common.networking.LoginMessage;
@@ -15,73 +23,56 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
 public class LoginController {
-    @FXML
-    private Button actiontarget;
+	final static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @FXML
-    private Text networkStatusLabel;
+	@FXML
+	private Button actiontarget;
 
-    @FXML
-    private TextField usernameField;
+	@FXML
+	private Text networkStatusLabel;
 
-    @FXML
-    private PasswordField passwordField;
+	@FXML
+	private TextField usernameField;
 
-    @FXML
-    protected void loginUser(ActionEvent event) {
-        System.out.println("button pressed");
-        try {
-            // TODO: refactor
-            MessageDigest digest;
+	@FXML
+	private PasswordField passwordField;
 
-            // TODO: use bCrypt
-            digest = MessageDigest.getInstance("SHA-256");
+	@FXML
+	protected void loginUser(ActionEvent event) {
+		logger.trace("login button pressed");
+		try {
+			// TODO: refactor
+			MessageDigest digest;
 
-            byte[] hash = digest.digest(passwordField.getText().getBytes(StandardCharsets.UTF_8));
+			// TODO: use bCrypt
+			digest = MessageDigest.getInstance("SHA-256");
 
-            LoginMessage m = new LoginMessage(usernameField.getText(), hash);
-            System.out.println("hi " + usernameField.getText());
-            System.out.println("password hash: " + Arrays.toString(hash));
-/*
-            StringBuilder sb = new StringBuilder();
-            for (byte b : hash) {
-                sb.append(String.format("%02X ", b));
-            }
-            System.out.println(sb.toString());
-            System.out.println(hash.length);
-            System.out.println(m.message_size);
-*/
-            ApplicationState.connection.send(m);
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+			byte[] hash = digest.digest(passwordField.getText().getBytes(StandardCharsets.UTF_8));
 
-            Scene scene = new Scene(root, 300, 275);
+			LoginMessage m = new LoginMessage(usernameField.getText(), hash);
+			logger.trace("hi " + usernameField.getText());
+			ApplicationState.connection.send(m);
+			Parent root = null;
+			root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 
-            ((Stage) ((Node) event.getSource()).getScene().getWindow()).setScene(scene);
+			Scene scene = new Scene(root, 300, 275);
 
-        } catch (NoSuchAlgorithmException | IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-    }
+			((Stage) ((Node) event.getSource()).getScene().getWindow()).setScene(scene);
 
-    public void setNetworkStatus(NetworkConnectionStatus status) {
-        if (status == NetworkConnectionStatus.CONNECTED) {
-            networkStatusLabel.setText("Connected");
-        } else {
-            networkStatusLabel.setText("Connection Failure, check log");
-        }
-    }
+		} catch (IOException e) {
+			logger.error("problem loading ui", e);
+		} catch (NoSuchAlgorithmException e) {
+			logger.error("password encryption error", e);
+		}
+	}
+
+	public void setNetworkStatus(NetworkConnectionStatus status) {
+		if (status == NetworkConnectionStatus.CONNECTED) {
+			networkStatusLabel.setText("Connected");
+		} else {
+			networkStatusLabel.setText("Connection Failure, check log");
+		}
+	}
 
 }

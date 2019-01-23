@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class CoursesReader {
+	static final Logger logger = LoggerFactory.getLogger(CoursesReader.class);
 	public static List<Course> getCoursesFromFile(File f) throws IOException {
 		BufferedReader r = new BufferedReader(new FileReader(f));
 		ArrayList<Course> courses = new ArrayList<>();
@@ -26,10 +30,10 @@ public class CoursesReader {
 	public static void main(String[] args) {
 		File f = new File("resources/mathCourses.csv");
 		try {
-			System.out.println(getCoursesFromFile(f).toString());
+			logger.info(getCoursesFromFile(f).toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("problem loading courses", e);
 		}
 	}
 }

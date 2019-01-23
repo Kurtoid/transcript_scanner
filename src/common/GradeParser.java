@@ -1,5 +1,8 @@
 package common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Parses scanned grade cells from the scanner handles duplicate letters,
  * extraneous letters, and extra whitespace
@@ -8,6 +11,8 @@ package common;
  *
  */
 public class GradeParser {
+
+	private static final Logger logger = LoggerFactory.getLogger(GradeParser.class);
 
 	static String[] validGrade = { "A", "B", "C", "D", "F", "P", "M", "W", "E" };
 	// M: No grade, W: Withdraw, I: Incomplete, F: elementary school fail, E: exempt
