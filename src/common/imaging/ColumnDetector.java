@@ -1,6 +1,5 @@
-package common;
+package common.imaging;
 
-import common.imaging.LineRemover;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
@@ -12,6 +11,9 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * used by 'Snap to Columns'
+ */
 public class ColumnDetector {
 
 	private static final Logger logger = LoggerFactory.getLogger(ColumnDetector.class);

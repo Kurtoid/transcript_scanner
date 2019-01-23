@@ -1,17 +1,17 @@
 package client.core;
 
 import common.ScannedPaper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
-
+/**
+ * things needed throughout the lifecycle of the application
+ *
+ * @author Kurt Wilson
+ */
 public class ApplicationState {
-    final static Logger logger = LoggerFactory.getLogger(ApplicationState.class);
-
-
+    /**
+     * images scanned
+     */
     public static ArrayList<ScannedPaper> scannedImages = new ArrayList<>();
-
-
 }

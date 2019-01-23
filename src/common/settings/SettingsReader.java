@@ -6,6 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * read settings from a file
+ * not used yet
+ */
 public class SettingsReader {
     final static String filePath = "settings/defaultProperties";
 

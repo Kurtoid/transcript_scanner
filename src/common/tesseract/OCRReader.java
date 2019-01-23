@@ -1,9 +1,9 @@
 package common.tesseract;
 
-import common.GradeParser;
 import common.ScannedPaper;
 import common.courses.Course;
 import common.courses.CourseMatcher;
+import common.courses.GradeParser;
 import common.imaging.ImagePreprocessor;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import net.sourceforge.tess4j.ITesseract;
@@ -22,6 +22,9 @@ import java.util.List;
 
 import static common.imaging.ImagePreprocessor.getFileName;
 
+/**
+ * convenience functions for using Tesseract
+ */
 public class OCRReader {
 	final static Logger logger = LoggerFactory.getLogger(OCRReader.class);
 
@@ -51,7 +54,7 @@ public class OCRReader {
 	 * @param selectedImage the split image line
 	 */
 	public static void scanImage(ScannedPaper selectedImage, double nameSelectedLeft, double nameSelectedRight,
-			double gradeSelectedLeft, double gradeSelectedRight) {
+								 double gradeSelectedLeft, double gradeSelectedRight) {
 		// TODO: move this out
 		List<Course> courses = null;
 
@@ -100,6 +103,13 @@ public class OCRReader {
 		return doOcr(f, 7);
 	}
 
+	/**
+	 * runs tesseract on an image by PSM mode
+	 *
+	 * @param f    file to be read
+	 * @param mode mode to use; see https://github.com/tesseract-ocr/tesseract/wiki/Command-Line-Usage
+	 * @return
+	 */
 	public static String doOcr(File f, int mode) {
 		// TODO: maybe keep the instance as a static variable?
 		ITesseract instance = new Tesseract1();
@@ -114,6 +124,14 @@ public class OCRReader {
 
 	}
 
+	/**
+	 * crops an image given left and right percentage values
+	 * creates a new file and manipulates that
+	 * @param f the file to crop
+	 * @param selectedLeft
+	 * @param selectedRight
+	 * @return a cropped image
+	 */
 	private static File cropImage(File f, double selectedLeft, double selectedRight) {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		Mat img = Imgcodecs.imread(f.getAbsolutePath());
@@ -132,16 +150,16 @@ public class OCRReader {
 		 * Imgproc.threshold(cropped, cropped, 40, 255, Imgproc.THRESH_BINARY |
 		 * Imgproc.THRESH_OTSU);
 		 */ /*
-			 * Core.bitwise_not(cropped, cropped); double erosion_size = 1; Mat element =
-			 * Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2 * erosion_size +
-			 * 1, 2 * erosion_size + 1)); Imgproc.erode(cropped, cropped, element);
-			 * erosion_size = 1; element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,
-			 * new Size(2 * erosion_size + 1, 2 * erosion_size + 1));
-			 *
-			 * Imgproc.dilate(cropped, cropped, element);
-			 *
-			 * Core.bitwise_not(cropped, cropped);
-			 */
+		 * Core.bitwise_not(cropped, cropped); double erosion_size = 1; Mat element =
+		 * Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2 * erosion_size +
+		 * 1, 2 * erosion_size + 1)); Imgproc.erode(cropped, cropped, element);
+		 * erosion_size = 1; element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,
+		 * new Size(2 * erosion_size + 1, 2 * erosion_size + 1));
+		 *
+		 * Imgproc.dilate(cropped, cropped, element);
+		 *
+		 * Core.bitwise_not(cropped, cropped);
+		 */
 //		System.out.println(result.getAbsolutePath());
 		Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
 		return (result);

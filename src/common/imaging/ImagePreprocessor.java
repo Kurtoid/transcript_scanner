@@ -4,6 +4,8 @@ import common.FileManager;
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,21 +13,9 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.MatOfPoint2f;
-import org.opencv.core.Point;
-import org.opencv.core.Rect;
-import org.opencv.core.RotatedRect;
-import org.opencv.core.Scalar;
-import org.opencv.core.Size;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import common.FileManager;
-
+/**
+ * convenience functions to manipulate images
+ */
 public class ImagePreprocessor {
 
 	private static final Logger logger = LoggerFactory.getLogger(ImagePreprocessor.class);
@@ -34,34 +24,14 @@ public class ImagePreprocessor {
 		splitImage(new File("rot.jpg"));
 	}
 
-	public static double getImageAngle(File imageFile) {
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		Mat img = Imgcodecs.imread(imageFile.getAbsolutePath());
-		Mat gray = new Mat();
-		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
-		Core.bitwise_not(gray, gray);
-
-		Mat thresh = new Mat();
-		Imgproc.threshold(gray, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
-
-		ArrayList<Point> coords = new ArrayList<>();
-		for (int i = 0; i < thresh.rows(); i++) {
-			for (int j = 0; j < thresh.cols(); j++) {
-				if (thresh.get(i, j)[0] > 0) {
-					coords.add(new Point(i, j));
-				}
-			}
-		} // Imgproc.cv
-		MatOfPoint2f points = new MatOfPoint2f();
-		points.fromList(coords);
-		RotatedRect angle = Imgproc.minAreaRect(points);
-		if (angle.angle < -45)
-			angle.angle = -(angle.angle + 90);
-		else
-			angle.angle *= -1;
-		return angle.angle;
-	}
-
+	/**
+	 * aligns an image from a file
+	 * creates a temporary file, and manipulates that one
+	 * returns a reference to the new file
+	 *
+	 * @param imageFile a skewed file fresh from the scanner
+	 * @return the newly aligned file
+	 */
 	public static File alignImage(File imageFile) {
 		logger.trace("aligning {}", imageFile.getName());
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
