@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 
 import client.core.ApplicationState;
 import common.ScannedPaper;
+import common.imaging.ImagePreprocessor;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,8 +32,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import server.imaging.ColumnDetector;
-import server.imaging.ImagePreprocessor;
 import server.tesseract.OCRReader;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class ReadingWindow implements Initializable {
 	final static Logger logger = org.slf4j.LoggerFactory.getLogger(ReadingWindow.class);

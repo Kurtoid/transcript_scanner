@@ -1,8 +1,6 @@
 package server.imaging;
 
-import java.io.File;
-import java.util.ArrayList;
-
+import common.imaging.LineRemover;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
@@ -10,6 +8,9 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class ColumnDetector {
 

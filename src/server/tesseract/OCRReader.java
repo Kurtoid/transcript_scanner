@@ -1,27 +1,23 @@
 package server.tesseract;
 
-import static server.imaging.ImagePreprocessor.getFileName;
+import common.ScannedPaper;
+import common.courses.Course;
+import common.courses.CourseMatcher;
+import common.imaging.ImagePreprocessor;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract1;
+import net.sourceforge.tess4j.TesseractException;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Rect;
+import org.opencv.imgcodecs.Imgcodecs;
 
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Rect;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import common.GradeParser;
-import common.ScannedPaper;
-import common.courses.Course;
-import common.courses.CourseMatcher;
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract1;
-import net.sourceforge.tess4j.TesseractException;
-import server.imaging.ImagePreprocessor;
+import static common.imaging.ImagePreprocessor.getFileName;
 
 public class OCRReader {
 	final static Logger logger = LoggerFactory.getLogger(OCRReader.class);
@@ -125,25 +121,25 @@ public class OCRReader {
 //        System.out.println(roi.toString());
 //			System.out.println(roi.toString()+"\t"+i);
 		Mat cropped = new Mat(img, roi);
-		File result = new File(f.getParent() + File.separator + getFileName(f.getName()) + "_"
-				+ ((int) (Math.random() * 1000)) + ".png");
+		File result = new File(
+				f.getParent() + File.separator + getFileName(f.getName()) + "_" + ((int) (Math.random() * 1000))
+						+ ".png");
 		/*
 		 * Imgproc.cvtColor(cropped, cropped, Imgproc.COLOR_BGR2GRAY);
 		 * Imgproc.threshold(cropped, cropped, 40, 255, Imgproc.THRESH_BINARY |
-		 * Imgproc.THRESH_OTSU); //
-		 */
-		/*
-		 * Core.bitwise_not(cropped, cropped); double erosion_size = 1; Mat element =
-		 * Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2 * erosion_size +
-		 * 1, 2 * erosion_size + 1)); Imgproc.erode(cropped, cropped, element);
-		 * erosion_size = 1; element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,
-		 * new Size(2 * erosion_size + 1, 2 * erosion_size + 1));
-		 * 
-		 * Imgproc.dilate(cropped, cropped, element);
-		 * 
-		 * Core.bitwise_not(cropped, cropped);
-		 */
-		logger.trace(result.getAbsolutePath());
+		 * Imgproc.THRESH_OTSU);
+		 */ /*
+			 * Core.bitwise_not(cropped, cropped); double erosion_size = 1; Mat element =
+			 * Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2 * erosion_size +
+			 * 1, 2 * erosion_size + 1)); Imgproc.erode(cropped, cropped, element);
+			 * erosion_size = 1; element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,
+			 * new Size(2 * erosion_size + 1, 2 * erosion_size + 1));
+			 *
+			 * Imgproc.dilate(cropped, cropped, element);
+			 *
+			 * Core.bitwise_not(cropped, cropped);
+			 */
+//		System.out.println(result.getAbsolutePath());
 		Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
 		return (result);
 	}

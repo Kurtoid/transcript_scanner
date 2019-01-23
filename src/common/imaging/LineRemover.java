@@ -1,4 +1,4 @@
-package server.imaging;
+package common.imaging;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
