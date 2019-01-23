@@ -82,10 +82,11 @@ public class OCRReader {
 					} else {
 //                result = result.replaceAll("IB", "International Baccalaureate");
 						logger.debug("Line: " + result.replace("\n", ""));
-						logger.info(CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0).toString());
+						Course course = (CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0));
 						instance.setTessVariable("psm", "10");
 						String grade = instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight));
-						logger.info("grade: {} Parsed: {}", grade, GradeParser.parseGrade(grade));
+						course.grade = GradeParser.parseGrade(grade);
+						logger.info("detected course {}", course);
 					}
 				}
 			} catch (TesseractException e) {
@@ -145,22 +146,6 @@ public class OCRReader {
 		File result = new File(
 				f.getParent() + File.separator + getFileName(f.getName()) + "_" + ((int) (Math.random() * 1000))
 						+ ".png");
-		/*
-		 * Imgproc.cvtColor(cropped, cropped, Imgproc.COLOR_BGR2GRAY);
-		 * Imgproc.threshold(cropped, cropped, 40, 255, Imgproc.THRESH_BINARY |
-		 * Imgproc.THRESH_OTSU);
-		 */ /*
-		 * Core.bitwise_not(cropped, cropped); double erosion_size = 1; Mat element =
-		 * Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(2 * erosion_size +
-		 * 1, 2 * erosion_size + 1)); Imgproc.erode(cropped, cropped, element);
-		 * erosion_size = 1; element = Imgproc.getStructuringElement(Imgproc.MORPH_RECT,
-		 * new Size(2 * erosion_size + 1, 2 * erosion_size + 1));
-		 *
-		 * Imgproc.dilate(cropped, cropped, element);
-		 *
-		 * Core.bitwise_not(cropped, cropped);
-		 */
-//		System.out.println(result.getAbsolutePath());
 		Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
 		return (result);
 	}

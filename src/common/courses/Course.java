@@ -18,6 +18,7 @@ public class Course {
 		SCIENCE,
 		ENGLISH,
 		LANGUAGE,
+		TECH,
 
 	}
 

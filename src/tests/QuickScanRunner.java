@@ -18,7 +18,7 @@ public class QuickScanRunner {
 		try {
 		FileManager.removeTempFiles();
 		}catch(IOException e) {
-			logger.error("couldnt clear temporary files!");
+			logger.error("couldnt clear temporary files!", e);
 			logger.error("quitting to prevent further problems");
 			System.exit(-1);
 		}
