@@ -1,4 +1,4 @@
-package server.tesseract;
+package common.tesseract;
 
 import common.GradeParser;
 import common.ScannedPaper;

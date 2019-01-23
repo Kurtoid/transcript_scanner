@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+    <option name="CUSTOM_SCOPE_NAME" value="&lt;unknown scope&gt;" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e827d78-7588-4b3f-a884-ee5f92d3ac19" name="Default Changelist" comment="">
+    <list default="true" id="5e827d78-7588-4b3f-a884-ee5f92d3ac19" name="Default Changelist" comment="fix logging typo">
+      <change afterPath="$PROJECT_DIR$/src/common/courses/PrereqChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/imaging/ColumnDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/imaging/ColumnDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/core/ApplicationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/core/ApplicationState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/core/NetworkClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/Login.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/client/ui/ReadingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/client/ui/ReadingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/ScannedPaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/ScannedPaper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/courses/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/courses/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/LoginHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/database/DatabaseConnectionManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/database/LoginTokenDBO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/database/UserDBO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/imaging/ColumnDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/ColumnDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/networking/ServerMaster.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/networking/WrkrRunnable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/tesseract/OCRReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/QuickScanRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/QuickScanRunner.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,60 +40,70 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/courses/CoursesReader.java">
+        <entry file="file://$PROJECT_DIR$/src/common/tesseract/OCRReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/server/tesseract/OCRReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="84" column="69" lean-forward="true" selection-start-line="84" selection-start-column="69" selection-end-line="84" selection-end-column="69" />
+            <state relative-caret-position="1020">
+              <caret line="84" column="69" selection-start-line="84" selection-start-column="69" selection-end-line="84" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3333#3334#0" expanded="true" />
-                <element signature="e#3358#3359#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/server/LoginHandler.java">
+        <entry file="file://$PROJECT_DIR$/src/common/courses/PrereqChecker.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/log4j.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tests/QuickScanRunner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/client/ui/ReadingWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1513">
-              <caret line="135" selection-start-line="135" selection-end-line="135" />
+            <state relative-caret-position="119">
+              <caret line="61" column="44" lean-forward="true" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/courses/CourseMatcher.java">
+        <entry file="file://$PROJECT_DIR$/src/client/core/ApplicationState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+            <state relative-caret-position="136">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/courses/Course.java">
+        <entry file="file://$PROJECT_DIR$/src/common/ColumnDetector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="68">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -88,10 +119,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/client/ui/ResizableCanvas.java">
+        <entry file="file://$PROJECT_DIR$/src/client/ui/MainMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            <state relative-caret-position="527">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/courses/Course.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -150,6 +190,11 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -167,16 +212,12 @@
         <option value="$PROJECT_DIR$/src/common/networking/LoginMessage.java" />
         <option value="$PROJECT_DIR$/src/server/database/LoginTokenDBO.java" />
         <option value="$PROJECT_DIR$/src/client/ui/ScanningWindow.fxml" />
-        <option value="$PROJECT_DIR$/src/client/ui/MainMenuController.java" />
         <option value="$PROJECT_DIR$/src/client/ui/MainMenu.fxml" />
-        <option value="$PROJECT_DIR$/src/client/ui/Login.java" />
         <option value="$PROJECT_DIR$/src/client/ui/LoginLayout.fxml" />
         <option value="$PROJECT_DIR$/src/client/ui/Login.css" />
         <option value="$PROJECT_DIR$/src/common/FileManager.java" />
         <option value="$PROJECT_DIR$/src/client/ui/AnnotatedImage.java" />
-        <option value="$PROJECT_DIR$/src/client/core/ApplicationState.java" />
         <option value="$PROJECT_DIR$/src/server/imaging/LineRemover.java" />
-        <option value="$PROJECT_DIR$/src/common/ScannedPaper.java" />
         <option value="$PROJECT_DIR$/src/client/ui/ResizableCanvas.java" />
         <option value="$PROJECT_DIR$/src/client/ui/ColumnSelect.fxml" />
         <option value="$PROJECT_DIR$/src/client/ui/ColumnSelect.java" />
@@ -189,24 +230,104 @@
         <option value="$PROJECT_DIR$/src/common/imaging/ImagePreprocessor.java" />
         <option value="$PROJECT_DIR$/src/common/imaging/PaperAligner.java" />
         <option value="$PROJECT_DIR$/src/common/ParsedReport.java" />
-        <option value="$PROJECT_DIR$/src/common/courses/Course.java" />
-        <option value="$PROJECT_DIR$/src/client/ui/ReadingWindow.java" />
         <option value="$PROJECT_DIR$/src/server/imaging/ColumnDetector.java" />
-        <option value="$PROJECT_DIR$/src/tests/QuickScanRunner.java" />
         <option value="$PROJECT_DIR$/src/server/tesseract/OCRReader.java" />
+        <option value="$PROJECT_DIR$/src/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/common/ScannedPaper.java" />
+        <option value="$PROJECT_DIR$/src/common/courses/Course.java" />
+        <option value="$PROJECT_DIR$/src/tests/QuickScanRunner.java" />
+        <option value="$PROJECT_DIR$/src/client/ui/Login.java" />
+        <option value="$PROJECT_DIR$/src/client/ui/MainMenuController.java" />
+        <option value="$PROJECT_DIR$/src/client/core/ApplicationState.java" />
+        <option value="$PROJECT_DIR$/src/client/ui/ReadingWindow.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-14" />
-    <option name="width" value="3872" />
-    <option name="height" value="2192" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="client" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="client" type="1f31426a:PackageElementNode" />
+              <item name="core" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="client" type="1f31426a:PackageElementNode" />
+              <item name="ui" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="common" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="common" type="1f31426a:PackageElementNode" />
+              <item name="auth" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="common" type="1f31426a:PackageElementNode" />
+              <item name="networking" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
+              <item name="database" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
+              <item name="imaging" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
+              <item name="networking" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
+              <item name="tesseract" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -223,14 +344,33 @@
               <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="tesseract" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="core" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="ui" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="common" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="scannerui" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="ScannerUIClient" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="tests" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -317,90 +457,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="client" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="client" type="1f31426a:PackageElementNode" />
-              <item name="core" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="client" type="1f31426a:PackageElementNode" />
-              <item name="ui" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="common" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="common" type="1f31426a:PackageElementNode" />
-              <item name="auth" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="common" type="1f31426a:PackageElementNode" />
-              <item name="networking" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="server" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="server" type="1f31426a:PackageElementNode" />
-              <item name="database" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="server" type="1f31426a:PackageElementNode" />
-              <item name="imaging" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="server" type="1f31426a:PackageElementNode" />
-              <item name="networking" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="scannerui" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ScannerUIClient" type="616d4139:PackageViewModuleNode" />
-              <item name="server" type="1f31426a:PackageElementNode" />
-              <item name="tesseract" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548099240986" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548274951444" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -419,13 +485,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.QuickScanRunner">
-    <configuration name="CoursesReader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="common.courses.CoursesReader" />
+  <component name="RunManager" selected="Application.MainMenuController">
+    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.ui.Login" />
       <module name="ScannerUIClient" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="common.courses.*" />
+          <option name="PATTERN" value="client.ui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -433,8 +499,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Login" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="client.ui.Login" />
+    <configuration name="MainMenuController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.ui.MainMenuController" />
       <module name="ScannerUIClient" />
       <extension name="coverage">
         <pattern>
@@ -486,19 +552,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.CoursesReader" />
       <item itemvalue="Application.Login" />
       <item itemvalue="Application.ServerMaster" />
       <item itemvalue="Application.PaperAligner" />
       <item itemvalue="Application.QuickScanRunner" />
+      <item itemvalue="Application.MainMenuController" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainMenuController" />
         <item itemvalue="Application.QuickScanRunner" />
         <item itemvalue="Application.PaperAligner" />
         <item itemvalue="Application.Login" />
         <item itemvalue="Application.ServerMaster" />
-        <item itemvalue="Application.CoursesReader" />
       </list>
     </recent_temporary>
   </component>
@@ -618,14 +684,28 @@
       <option name="project" value="LOCAL" />
       <updated>1548099124328</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="who knows at this point">
+      <created>1548272336155</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1548272336155</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fix logging typo">
+      <created>1548272401292</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1548272401292</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49963847" visible="true" weight="0.1641791" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49963847" visible="true" weight="0.16577825" />
       <window_info id="Structure" order="1" sideWeight="0.50036156" side_tool="true" weight="0.43684635" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -633,9 +713,9 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32931727" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49833703" weight="0.25810057" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3995715" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32827735" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49833703" weight="0.34561214" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39869988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -643,7 +723,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50166297" side_tool="true" weight="0.26072234" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.22793296" />
       <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.329582" />
-      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.326257" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3261105" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -741,29 +821,13 @@
     <MESSAGE value="afternoon progress" />
     <MESSAGE value="WIP: mass image alignment" />
     <MESSAGE value="merge test branch because I'm an idiot" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge test branch because I'm an idiot" />
+    <MESSAGE value="who knows at this point" />
+    <MESSAGE value="fix logging typo" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix logging typo" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/server/database/UserDBO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/networking/WrkrRunnable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out.png" />
-    <entry file="file://$PROJECT_DIR$/thresh.png" />
-    <entry file="file://$PROJECT_DIR$/rot.png" />
-    <entry file="file://$PROJECT_DIR$/line.png" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/Runnable.java" />
     <entry file="file://$PROJECT_DIR$/src/server/database/LoginTokenDBO.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -801,16 +865,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/ui/AnnotatedImage.java" />
-    <entry file="file://$PROJECT_DIR$/src/client/core/ApplicationState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/removed.png" />
     <entry file="file://$PROJECT_DIR$/rot.jpg" />
     <entry file="jar://$PROJECT_DIR$/libs/tess4j-4.3.0.jar!/net/sourceforge/tess4j/Tesseract1.class">
@@ -844,28 +898,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/ScannedPaper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/client/ui/LoginLayout.fxml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ui/MainMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/client/ui/ColumnSelect.fxml" />
     <entry file="file://$PROJECT_DIR$/src/client/ui/ColumnSelect.java" />
@@ -903,35 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
           <caret line="125" selection-start-line="125" selection-end-line="125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/courses/CoursesReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/courses/CourseMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ui/MainMenu.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="80" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ui/ResizableCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -978,13 +984,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/courses/Course.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/util/Arrays.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47600">
@@ -1013,34 +1012,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ui/Login.java">
+    <entry file="file://$PROJECT_DIR$/src/common/courses/CoursesReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="170">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/client/ui/ReadingWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/common/courses/CourseMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
-          <caret line="135" selection-start-line="135" selection-end-line="135" />
+        <state relative-caret-position="187">
+          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/imaging/ColumnDetector.java">
+    <entry file="file://$PROJECT_DIR$/src/client/ui/ResizableCanvas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="27" column="25" lean-forward="true" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        <state relative-caret-position="68">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tests/QuickScanRunner.java">
+    <entry file="file://$PROJECT_DIR$/src/common/ScannedPaper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="22" />
+        <state relative-caret-position="374">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/tesseract/OCRReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="84" column="69" selection-start-line="84" selection-start-column="69" selection-end-line="84" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/courses/PrereqChecker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/courses/Course.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/image.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/networking/ServerMaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/server/networking/WrkrRunnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/ColumnDetector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1051,14 +1098,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/server/tesseract/OCRReader.java">
+    <entry file="file://$PROJECT_DIR$/src/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="84" column="69" lean-forward="true" selection-start-line="84" selection-start-column="69" selection-end-line="84" selection-end-column="69" />
+        <state relative-caret-position="17">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/ui/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/ui/MainMenu.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="80" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/core/NetworkClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tests/QuickScanRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="6" column="31" lean-forward="true" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/ui/MainMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/core/ApplicationState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/client/ui/ReadingWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="61" column="44" lean-forward="true" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3333#3334#0" expanded="true" />
-            <element signature="e#3358#3359#0" expanded="true" />
           </folding>
         </state>
       </provider>

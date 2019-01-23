@@ -1,12 +1,11 @@
 package common;
 
-import java.io.File;
-import java.util.UUID;
-
+import javafx.scene.image.Image;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javafx.scene.image.Image;
+import java.io.File;
+import java.util.UUID;
 
 public class ScannedPaper {
 	public File file;
@@ -21,7 +20,8 @@ public class ScannedPaper {
 		try {
 			img = new Image(file.toURI().toString());
 		} catch (RuntimeException e) {
-			logger.error("problem loading image", e);
+            // handle it silently
+            // logger.error("problem loading image", e);
 		}
 
 	}

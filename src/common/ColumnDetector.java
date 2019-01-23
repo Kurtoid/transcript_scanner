@@ -1,4 +1,4 @@
-package server.imaging;
+package common;
 
 import common.imaging.LineRemover;
 import org.opencv.core.Core;
