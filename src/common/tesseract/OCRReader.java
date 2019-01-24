@@ -17,8 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Set;
 
 import static common.imaging.ImagePreprocessor.getFileName;
 
@@ -53,18 +54,15 @@ public class OCRReader {
 	 *
 	 * @param selectedImage the split image line
 	 */
-	public static void scanImage(ScannedPaper selectedImage, double nameSelectedLeft, double nameSelectedRight,
-								 double gradeSelectedLeft, double gradeSelectedRight) {
-		// TODO: move this out
-		List<Course> courses = null;
-
+	public static Set<Course> scanImage(ScannedPaper selectedImage, double nameSelectedLeft, double nameSelectedRight,
+										double gradeSelectedLeft, double gradeSelectedRight) {
 		ITesseract instance = new Tesseract1();
 
 		logger.trace("TESSDATA_PREFIX: {}", System.getenv("TESSDATA_PREFIX"));
 //        instance.setDatapath("../" + System.getenv("TESSDATA_PREFIX"));
 //		instance.setDatapath(LoadLibs.extractTessResources("tessdata").getParent());
 		LinkedList<File> folder = ImagePreprocessor.splitImage(selectedImage.file);
-
+		Set<Course> foundCourses = new HashSet<>();
 		logger.debug("looking for course header");
 		boolean headerFound = false;
 		for (File f : folder) {
@@ -87,6 +85,11 @@ public class OCRReader {
 						String grade = instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight));
 						course.grade = GradeParser.parseGrade(grade);
 						logger.info("detected course {}", course);
+						if (course.grade.equals("P")) {
+							logger.info("found elementary school classes, so lets quit here");
+							break;
+						}
+						foundCourses.add(course);
 					}
 				}
 			} catch (TesseractException e) {
@@ -97,6 +100,7 @@ public class OCRReader {
 		if (!headerFound) {
 			logger.warn("We never found a header!!! (thats bad)");
 		}
+		return foundCourses;
 
 	}
 
@@ -146,6 +150,7 @@ public class OCRReader {
 		File result = new File(
 				f.getParent() + File.separator + getFileName(f.getName()) + "_" + ((int) (Math.random() * 1000))
 						+ ".png");
+		logger.trace("saving file at {}", result.getAbsolutePath());
 		Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
 		return (result);
 	}

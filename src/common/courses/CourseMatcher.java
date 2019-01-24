@@ -68,7 +68,9 @@ public class CourseMatcher {
 
     }
 
-    private static String[] search_courses = {"Math 3", "Pre-Algebra", "Algebra 1", "Algebra 1 H", "Geometry", "Geometry H", "Algebra 2", "Pre-Calculus", "Earth and Space Science", "English 1", "World History", "Biology"};
+    private static String[] search_courses = {"Math 3", "Pre-Algebra", "Algebra 1", "Algebra 1 H", "Geometry",
+            "Geometry H", "Algebra 2", "Pre-Calculus", "Earth and Space Science", "English 1", "World History",
+            "Biology"};
 
     static String classifyCourse(String course) {
         CoursesReader cr = new CoursesReader();

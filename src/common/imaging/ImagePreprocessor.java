@@ -122,8 +122,8 @@ public class ImagePreprocessor {
 		// TODO: some system for this
 		LinkedList<File> files = new LinkedList<>();
 		for (int i = 0; i < ycoords.size() - 1; i++) {
-			Rect roi = new Rect(0, Math.max(0, ycoords.get(i) + 1), gray.width(),
-					Math.min(((int) ycoords.get(i + 1) - (ycoords.get(i))) - 2, gray.height()));
+			Rect roi = new Rect(0, Math.max(0, ycoords.get(i) + 2), gray.width(),
+					Math.min(((int) ycoords.get(i + 1) - (ycoords.get(i))) - 3, gray.height()));
 			Mat cropped = new Mat(gray, roi);
 			Scalar s = Core.mean(cropped);
 			File f = new File(

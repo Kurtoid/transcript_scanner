@@ -12,16 +12,6 @@ public class Course {
 		return courseDesc + " " + courseID;
 	}
 
-	// TODO: finish these
-	enum COURSE_TYPE {
-		MATH,
-		SCIENCE,
-		ENGLISH,
-		LANGUAGE,
-		TECH,
-
-	}
-
 	@Override
 	public String toString() {
 		return "Course{" +

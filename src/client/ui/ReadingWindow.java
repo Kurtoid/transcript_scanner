@@ -2,6 +2,7 @@ package client.ui;
 
 import client.core.ApplicationState;
 import common.ScannedPaper;
+import common.courses.Course;
 import common.imaging.ColumnDetector;
 import common.imaging.ImagePreprocessor;
 import common.tesseract.OCRReader;
@@ -9,8 +10,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -23,11 +27,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * the meat of  the application
@@ -41,6 +48,7 @@ public class ReadingWindow {
     public Button LoadImagesButton;
     public GridPane basePane;
     private ScannedPaper selectedImage;
+    @FXML
     private CheckBox columnSnapBox;
     private double selectedLeft;
     private double selectedRight;
@@ -140,8 +148,22 @@ public class ReadingWindow {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
 
-            OCRReader.scanImage(selectedImage, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
-//			OCRReader.scanImage(selectedImage, gradeColumnLeft, gradeColumnRight, 10);
+            Set<Course> courses = OCRReader.scanImage(selectedImage, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+            Parent root = null;
+            FXMLLoader loader = null;
+            try {
+                /**
+                 * load the FXML files needed for reader layout
+                 */
+                loader = new FXMLLoader(getClass().getResource("ResultWindow.fxml"));
+                root = loader.load();
+            } catch (IOException e) {
+                logger.error("couldnt load ui", e);
+            }
+            ResultWindowController controller = loader.getController();
+            controller.setCourses(courses);
+            Scene scene = new Scene(root);
+            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).setScene(scene);
         }
     }
 

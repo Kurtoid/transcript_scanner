@@ -15,6 +15,7 @@ import java.util.Comparator;
 /**
  * test; do not use
  */
+@Deprecated
 public class PaperAligner {
     static int MAX_FEATURES = 1000;
 

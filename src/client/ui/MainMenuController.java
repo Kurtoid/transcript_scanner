@@ -36,7 +36,7 @@ public class MainMenuController extends Application {
             logger.error("couldnt load ui", e);
         }
 
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root);
         ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).setScene(scene);
     }
 

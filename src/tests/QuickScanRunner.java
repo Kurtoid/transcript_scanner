@@ -30,7 +30,6 @@ public class QuickScanRunner {
 		double gradeColumnRight = 0.4800693989071038;
 		OCRReader.scanImage(new ScannedPaper(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
 
-
 	}
 
 }

@@ -19,22 +19,35 @@ public class GradeParser {
 
 	/**
 	 * reads in a line from a paper cell and returns a grade
-	 * 
+	 * does several simple stringent string slinging strategies to pick parsed pass grades
 	 * @param grade String scanned from paper, raw from Tesseract
 	 * @return Processed grade
 	 */
 	public static String parseGrade(String grade) {
 		grade = grade.trim().toUpperCase();
+		// remove extra characters
+		grade = grade.replaceAll("[^A-Z]+", "");
+
+		// empty string case
 		if (grade.equals("")) {
 			return "NONE";
 		}
+
+		// oh look, just one letter! that must be it
 		if (grade.length() == 1) {
 			return grade.toUpperCase();
 		}
+		// some ocr engines (looking at you tesseract) like to throw duplicates wherever it wants
+		// so cover for that
 		if (grade.charAt(0) == grade.charAt(1)) {
 			return String.valueOf(grade.charAt(0));
 		}
+		// ok, that didn't work
 		return grade;
+	}
+
+	public static void main(String[] args) {
+		logger.info(parseGrade("=a"));
 	}
 
 }
