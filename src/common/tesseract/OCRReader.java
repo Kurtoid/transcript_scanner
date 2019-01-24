@@ -5,6 +5,7 @@ import common.courses.Course;
 import common.courses.CourseMatcher;
 import common.courses.GradeParser;
 import common.imaging.ImagePreprocessor;
+import javafx.scene.image.Image;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract1;
@@ -83,7 +84,8 @@ public class OCRReader {
 						Course course = (CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0));
 						instance.setTessVariable("psm", "10");
 						String grade = instance.doOCR(cropImage(f, gradeSelectedLeft, gradeSelectedRight));
-						course.grade = GradeParser.parseGrade(grade);
+						// todo: dont repeat this crop
+						course.setGrade(GradeParser.parseGrade(grade), new Image(cropImage(f, gradeSelectedLeft, gradeSelectedRight).toURI().toString()));
 						logger.info("detected course {}", course);
 						if (course.grade.equals("P")) {
 							logger.info("found elementary school classes, so lets quit here");

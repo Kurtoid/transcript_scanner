@@ -43,7 +43,7 @@ public class GradeParser {
 			return String.valueOf(grade.charAt(0));
 		}
 		// ok, that didn't work
-		return grade;
+		return null;
 	}
 
 	public static void main(String[] args) {
