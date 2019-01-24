@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
 /**
@@ -66,4 +67,31 @@ public class CourseMatcher {
         }
 
     }
+
+    private static String[] search_courses = {"Math 3", "Pre-Algebra", "Algebra 1", "Algebra 1 H", "Geometry", "Geometry H", "Algebra 2", "Pre-Calculus", "Earth and Space Science", "English 1", "World History", "Biology"};
+
+    static String classifyCourse(String course) {
+        CoursesReader cr = new CoursesReader();
+        List<Course> courses = new ArrayList<>();
+        try {
+            //TODO: move this string to constants
+            courses = CoursesReader.getCoursesFromFile(new File("resources/allCourses.csv"));
+        } catch (IOException e) {
+            logger.error("problem loading courses", e);
+        }
+        PriorityQueue<dPair> matches = new PriorityQueue<>();
+        for (int i = 0; i < search_courses.length; i++) {
+            double dist = FuzzySearch.ratio(search_courses[i], course);
+            System.out.println(dist);
+            System.out.println(search_courses[i]);
+            matches.add(new dPair(i, dist));
+        }
+        List<Course> c = new ArrayList<>();
+        return search_courses[(Objects.requireNonNull(matches.poll()).key)];
+    }
+
+    public static void main(String[] args) {
+        System.out.println(classifyCourse("calculus"));
+    }
+
 }
