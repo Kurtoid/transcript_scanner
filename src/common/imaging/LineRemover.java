@@ -7,7 +7,17 @@ import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+/**
+ * removes horizontal lines from the image so it can be sliced by line
+ */
 public class LineRemover {
+	/**
+	 * removes horizontal lines from the image
+	 * hurts letter clarity, so dont scan directly from this
+	 *
+	 * @param src source image
+	 * @return a reference to a new formatted image
+	 */
 	public static Mat removeLines(Mat src) {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
@@ -45,7 +55,4 @@ public class LineRemover {
 		return horizontal;
 	}
 
-//	public static void main(String[] args) {
-//		removeLines(new File("rot.jpg"));
-//	}
 }

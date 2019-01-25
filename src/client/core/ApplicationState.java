@@ -7,7 +7,13 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import java.util.ArrayList;
 
+/**
+ * things needed throughout the lifecycle of the application
+ *
+ * @author Kurt Wilson
+ */
 public class ApplicationState {
     public static NetworkClient connection;
 	final static Logger logger = LoggerFactory.getLogger(ApplicationState.class);
@@ -37,7 +43,9 @@ public class ApplicationState {
     public enum NetworkConnectionStatus {
         CONNECTED, BAD, DISCONNECTED
     }
-
+    /**
+     * images scanned
+     */
     public static ArrayList<ScannedPaper> scannedImages = new ArrayList<>();
 
     public interface NetworkConnectedCallback {

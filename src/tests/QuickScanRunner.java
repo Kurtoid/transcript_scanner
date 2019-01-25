@@ -1,42 +1,58 @@
 package tests;
 
-import java.io.File;
-import java.io.IOException;
-
+import client.ui.MainMenuController;
+import client.ui.ResultWindowController;
+import common.FileManager;
+import common.ScannedPaper;
+import common.courses.Course;
+import common.imaging.ImagePreprocessor;
+import common.tesseract.OCRReader;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import common.FileManager;
-import common.ScannedPaper;
-import common.imaging.ImagePreprocessor;
-import server.tesseract.OCRReader;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
-public class QuickScanRunner {
-	static double nameColumnLeft = 0.1681027868852459;
-	static double nameColumnRight = 0.337431693989071;
-
-	static double gradeColumnLeft = 0.4620879120879121;
-	static double gradeColumnRight = 0.4800693989071038;
-
-	static String imgPath = "image.jpg";
+public class QuickScanRunner extends Application {
 
 	private static final Logger logger = LoggerFactory.getLogger(QuickScanRunner.class);
 
-	public static void main(String[] args) {
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 		try {
-		FileManager.removeTempFiles();
+			FileManager.removeTempFiles();
 		}catch(IOException e) {
-			logger.error("couldnt clear temporary files!");
+			logger.error("couldnt clear temporary files!", e);
 			logger.error("quitting to prevent further problems");
 			System.exit(-1);
 		}
+		String imgPath = "image.jpg";
 		File f = ImagePreprocessor.alignImage(new File(imgPath));
-		OCRReader.scanImage(new ScannedPaper(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+		double nameColumnLeft = 0.1681027868852459;
+		double nameColumnRight = 0.337431693989071;
+		double gradeColumnLeft = 0.4620879120879121;
+		double gradeColumnRight = 0.4800693989071038;
+		Set<Course> courses = OCRReader.scanImage(new ScannedPaper(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
 
+
+		logger.info("stage started");
+		FXMLLoader loader = new FXMLLoader(MainMenuController.class.getResource("ResultWindow.fxml"));
+		Parent root = loader.load();
+
+		Scene scene = new Scene(root, 300, 275);
+		ResultWindowController controller = loader.getController();
+		controller.setCourses(courses);
+
+		primaryStage.setTitle("Suncoast Transcript Scanner: TEST");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 
 	}
-
 }

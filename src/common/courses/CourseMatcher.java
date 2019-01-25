@@ -1,20 +1,28 @@
 package common.courses;
 
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-
+/**
+ * uses fuzzy search to find a course similar to a scanned one
+ */
 public class CourseMatcher {
 	static final Logger logger = LoggerFactory.getLogger(CourseMatcher.class);
 
-	public static List<Course> matchCourse(String s, int limit) {
+    /**
+     * @param scannedLine the course scanned from a paper
+     * @param matchLimit  maximum number of matches that can be returned
+     * @return a list of courses similar to the scanned course
+     */
+    public static List<Course> matchCourse(String scannedLine, int matchLimit) {
         CoursesReader cr = new CoursesReader();
         List<Course> courses = new ArrayList<>();
         try {
@@ -26,11 +34,11 @@ public class CourseMatcher {
         PriorityQueue<dPair> matches = new PriorityQueue<>();
         for (int i = 0; i < courses.size(); i++) {
             Course c = courses.get(i);
-			double dist = FuzzySearch.ratio(c.courseDesc.toLowerCase() + " " + c.courseID.toLowerCase(), s);
+			double dist = FuzzySearch.ratio(c.courseDesc.toLowerCase() + " " + c.courseID.toLowerCase(), scannedLine);
             matches.add(new dPair(i, dist));
         }
         List<Course> c = new ArrayList<>();
-        for (int i = 0; i < limit; i++) {
+        for (int i = 0; i < matchLimit; i++) {
             dPair dp = matches.poll();
             c.add(courses.get(dp.key));
 //            System.out.println(courses.get(dp.key) + "\t" + dp.value);
@@ -41,6 +49,9 @@ public class CourseMatcher {
 
     }
 
+    /**
+     * represents a pair sortable by value
+     */
     private static class dPair implements Comparable<dPair> {
         public int key;
         public double value;
@@ -56,4 +67,33 @@ public class CourseMatcher {
         }
 
     }
+
+    private static String[] search_courses = {"Math 3", "Pre-Algebra", "Algebra 1", "Algebra 1 H", "Geometry",
+            "Geometry H", "Algebra 2", "Pre-Calculus", "Earth and Space Science", "English 1", "World History",
+            "Biology"};
+
+    static String classifyCourse(String course) {
+        CoursesReader cr = new CoursesReader();
+        List<Course> courses = new ArrayList<>();
+        try {
+            //TODO: move this string to constants
+            courses = CoursesReader.getCoursesFromFile(new File("resources/allCourses.csv"));
+        } catch (IOException e) {
+            logger.error("problem loading courses", e);
+        }
+        PriorityQueue<dPair> matches = new PriorityQueue<>();
+        for (int i = 0; i < search_courses.length; i++) {
+            double dist = FuzzySearch.ratio(search_courses[i], course);
+            System.out.println(dist);
+            System.out.println(search_courses[i]);
+            matches.add(new dPair(i, dist));
+        }
+        List<Course> c = new ArrayList<>();
+        return search_courses[(Objects.requireNonNull(matches.poll()).key)];
+    }
+
+    public static void main(String[] args) {
+        System.out.println(classifyCourse("calculus"));
+    }
+
 }

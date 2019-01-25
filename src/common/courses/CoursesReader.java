@@ -1,5 +1,8 @@
 package common.courses;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,9 +10,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+/**
+ * reads a list of courses in a csv file exported from CPALMS
+ */
 public class CoursesReader {
 	static final Logger logger = LoggerFactory.getLogger(CoursesReader.class);
 	public static List<Course> getCoursesFromFile(File f) throws IOException {
@@ -19,8 +22,9 @@ public class CoursesReader {
 		String l = r.readLine();
 		while (l != null) {
 			Course c = new Course();
-			c.courseID = l.split(",")[0];
-			c.courseDesc = l.split(",")[1];
+			c.courseID = (l.split(",")[0]);
+			c.courseDesc = (l.split(",")[1]);
+			c.courseDesc = c.courseDesc.replace(";", ",");
 			courses.add(c);
 			l = r.readLine();
 		}
