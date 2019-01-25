@@ -45,10 +45,10 @@ public class ResultWindowController {
             });
             gradeCol.setEditable(true);
             gradeCol.setCellFactory(TextFieldTableCell.forTableColumn());
-//            gradeCol.setOnEditCommit(
-//                    t -> t.getTableView().getItems().get(
-//                            t.getTablePosition().getRow()).setGrade(t.getNewValue())
-//            );
+            gradeCol.setOnEditCommit(
+                    t -> t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setGrade(t.getNewValue())
+            );
 
             TableColumn<Course, ImageView> correctionCol = new TableColumn("Correction");
             correctionCol.setCellValueFactory(new PropertyValueFactory<Course, ImageView>("grade"));
