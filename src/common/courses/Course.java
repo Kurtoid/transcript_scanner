@@ -1,6 +1,8 @@
 package common.courses;
 
-import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import java.io.File;
 
 /**
  * represents a course taken by a student
@@ -9,7 +11,7 @@ public class Course {
     public String courseID;
     public String courseDesc;
     public String grade;
-    public Image gradeBox;
+    public File gradeBox;
 
     String getFullName() {
         return courseDesc + " " + courseID;
@@ -28,18 +30,13 @@ public class Course {
         grade = parseGrade;
     }
 
-    public void setGrade(String parseGrade, Image i) {
-        if (parseGrade != null) {
+    public void setGrade(String parseGrade, File i) {
             grade = parseGrade;
-        } else {
             gradeBox = i;
-        }
+
     }
 
-    public Object getGrade() {
-        if (grade != null)
-            return grade;
-        else
-            return gradeBox;
+    public ImageView getGrade() {
+        return new ImageView(gradeBox.toURI().toString());
     }
 }

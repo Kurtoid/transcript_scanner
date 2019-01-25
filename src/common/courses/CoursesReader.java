@@ -24,6 +24,7 @@ public class CoursesReader {
 			Course c = new Course();
 			c.courseID = (l.split(",")[0]);
 			c.courseDesc = (l.split(",")[1]);
+			c.courseDesc = c.courseDesc.replace(";", ",");
 			courses.add(c);
 			l = r.readLine();
 		}
