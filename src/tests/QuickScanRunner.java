@@ -33,14 +33,15 @@ public class QuickScanRunner extends Application {
 			logger.error("quitting to prevent further problems");
 			System.exit(-1);
 		}
-		String imgPath = "image.jpg";
-		File f = ImagePreprocessor.alignImage(new File(imgPath));
+		String imgPath = "C:/Users/s26083758/Desktop/source.jpg";
+		File f = new File(imgPath);
+		logger.info(" file {} exists: {}", f.getAbsolutePath(), f.exists());
+		f = ImagePreprocessor.alignImage(f);
 		double nameColumnLeft = 0.1681027868852459;
 		double nameColumnRight = 0.337431693989071;
 		double gradeColumnLeft = 0.4620879120879121;
 		double gradeColumnRight = 0.4800693989071038;
 		Set<Course> courses = OCRReader.scanImage(new ScannedPaper(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
-
 
 		logger.info("stage started");
 		FXMLLoader loader = new FXMLLoader(MainMenuController.class.getResource("ResultWindow.fxml"));

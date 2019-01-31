@@ -42,7 +42,8 @@ public class GradeParser {
 		if (grade.charAt(0) == grade.charAt(1)) {
 			return String.valueOf(grade.charAt(0));
 		}
-		// ok, that didn't work
+		// oh, that didn't work
+		// tell the user to check this one
 		return null;
 	}
 
