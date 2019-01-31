@@ -12,4 +12,8 @@ public class FileManager {
         if (temp.exists())
             FileUtils.cleanDirectory(temp);
     }
+
+    public static void createTempFolder() {
+        temp.mkdirs();
+    }
 }

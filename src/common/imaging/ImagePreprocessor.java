@@ -88,7 +88,7 @@ public class ImagePreprocessor {
 		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
 		Core.bitwise_not(gray, gray);
 		Mat horiz_proj = new Mat();
-		Core.reduce(LineRemover.removeLines(gray), horiz_proj, 1, Core.REDUCE_AVG);
+		Core.reduce(Lines.removeHorizontalLines(gray), horiz_proj, 1, Core.REDUCE_AVG);
 
 		Scalar th = new Scalar(10);
 		Mat filtered_hist = new Mat();

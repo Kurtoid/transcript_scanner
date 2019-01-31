@@ -1,5 +1,6 @@
 package client.ui;
 
+import common.FileManager;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -48,6 +49,8 @@ public class MainMenuController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         logger.info("stage started");
+        FileManager.createTempFolder();
+        FileManager.removeTempFiles();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
         Parent root = loader.load();
 

@@ -27,13 +27,14 @@ public class QuickScanRunner extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {
+			FileManager.createTempFolder();
 			FileManager.removeTempFiles();
 		}catch(IOException e) {
 			logger.error("couldnt clear temporary files!", e);
 			logger.error("quitting to prevent further problems");
 			System.exit(-1);
 		}
-		String imgPath = "C:/Users/s26083758/Desktop/source.jpg";
+		String imgPath = "C:/Users/s26083758/Desktop/image.jpg";
 		File f = new File(imgPath);
 		logger.info(" file {} exists: {}", f.getAbsolutePath(), f.exists());
 		f = ImagePreprocessor.alignImage(f);
