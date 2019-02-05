@@ -1,7 +1,7 @@
 package client.ui;
 
 import client.core.ApplicationState;
-import common.ScannedPaper;
+import common.GradeReport;
 import common.courses.Course;
 import common.imaging.ColumnDetector;
 import common.imaging.ImagePreprocessor;
@@ -47,7 +47,7 @@ public class ReadingWindow {
     public Canvas imagePreview;
     public Button LoadImagesButton;
     public GridPane basePane;
-    private ScannedPaper selectedImage;
+    private GradeReport selectedImage;
     @FXML
     private CheckBox columnSnapBox;
     private double selectedLeft;
@@ -69,7 +69,7 @@ public class ReadingWindow {
             ImageView source = (ImageView) event.getSource();
 //            imagePreview.setImage(source.getImage());
             logger.trace("clicked on " + source.getProperties().get("imageID"));
-            for (ScannedPaper s : ApplicationState.scannedImages) {
+            for (GradeReport s : ApplicationState.scannedImages) {
                 if (s.id.equals(source.getProperties().get("imageID"))) {
                     // found it; make it the big image
                     selectedImage = s;
@@ -102,7 +102,7 @@ public class ReadingWindow {
         List<File> images = fc.showOpenMultipleDialog(((Node) actionEvent.getTarget()).getScene().getWindow());
         if (images != null) {
             for (int i = 0; i < images.size(); i++) {
-                ScannedPaper p = new ScannedPaper(images.get(i));
+                GradeReport p = new GradeReport(images.get(i));
                 ApplicationState.scannedImages.add(p);
 
 //               imageViews[i].setF
@@ -136,7 +136,7 @@ public class ReadingWindow {
      * @param actionEvent
      */
     public void alignAllImages(ActionEvent actionEvent) {
-        for (ScannedPaper f : ApplicationState.scannedImages) {
+        for (GradeReport f : ApplicationState.scannedImages) {
             f.file = ImagePreprocessor.alignImage(f.file);
         }
         showImages();

@@ -25,6 +25,7 @@ public class CoursesReader {
 			c.courseID = (l.split(",")[0]);
 			c.courseDesc = (l.split(",")[1]);
 			c.courseDesc = c.courseDesc.replace(";", ",");
+			c.type = l.split(",")[2].split("Subject: ")[1].split(" >")[0];
 			courses.add(c);
 			l = r.readLine();
 		}

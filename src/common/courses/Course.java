@@ -12,9 +12,14 @@ public class Course {
     public String courseDesc;
     public String grade;
     public File gradeBox;
-
+    public String type;
     String getFullName() {
         return courseDesc + " " + courseID;
+    }
+
+
+    public void setGrade(String parseGrade) {
+        grade = parseGrade;
     }
 
     @Override
@@ -23,11 +28,8 @@ public class Course {
                 "courseID='" + courseID + '\'' +
                 ", courseDesc='" + courseDesc + '\'' +
                 ", grade='" + grade + '\'' +
+                ", type='" + type + '\'' +
                 '}';
-    }
-
-    public void setGrade(String parseGrade) {
-        grade = parseGrade;
     }
 
     public void setGrade(String parseGrade, File i) {
@@ -35,7 +37,6 @@ public class Course {
             gradeBox = i;
 
     }
-
     public ImageView getGrade() {
         return new ImageView(gradeBox.toURI().toString());
     }

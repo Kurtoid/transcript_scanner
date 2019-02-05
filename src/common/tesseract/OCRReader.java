@@ -1,6 +1,6 @@
 package common.tesseract;
 
-import common.ScannedPaper;
+import common.GradeReport;
 import common.courses.Course;
 import common.courses.CourseMatcher;
 import common.courses.GradeParser;
@@ -54,7 +54,7 @@ public class OCRReader {
 	 *
 	 * @param selectedImage the split image line
 	 */
-	public static Set<Course> scanImage(ScannedPaper selectedImage, double nameSelectedLeft, double nameSelectedRight,
+	public static Set<Course> scanImage(GradeReport selectedImage, double nameSelectedLeft, double nameSelectedRight,
 										double gradeSelectedLeft, double gradeSelectedRight) {
 		ITesseract instance = new Tesseract1();
 

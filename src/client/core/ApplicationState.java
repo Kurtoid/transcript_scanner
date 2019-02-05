@@ -1,6 +1,6 @@
 package client.core;
 
-import common.ScannedPaper;
+import common.GradeReport;
 
 import java.util.ArrayList;
 
@@ -13,5 +13,5 @@ public class ApplicationState {
     /**
      * images scanned
      */
-    public static ArrayList<ScannedPaper> scannedImages = new ArrayList<>();
+    public static ArrayList<GradeReport> scannedImages = new ArrayList<>();
 }

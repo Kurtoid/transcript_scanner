@@ -3,7 +3,7 @@ package tests;
 import client.ui.MainMenuController;
 import client.ui.ResultWindowController;
 import common.FileManager;
-import common.ScannedPaper;
+import common.GradeReport;
 import common.courses.Course;
 import common.imaging.ImagePreprocessor;
 import common.tesseract.OCRReader;
@@ -34,7 +34,7 @@ public class QuickScanRunner extends Application {
 			logger.error("quitting to prevent further problems");
 			System.exit(-1);
 		}
-		String imgPath = "C:/Users/s26083758/Desktop/image.jpg";
+		String imgPath = "corrupted.jpg";
 		File f = new File(imgPath);
 		logger.info(" file {} exists: {}", f.getAbsolutePath(), f.exists());
 		f = ImagePreprocessor.alignImage(f);
@@ -42,7 +42,7 @@ public class QuickScanRunner extends Application {
 		double nameColumnRight = 0.337431693989071;
 		double gradeColumnLeft = 0.4620879120879121;
 		double gradeColumnRight = 0.4800693989071038;
-		Set<Course> courses = OCRReader.scanImage(new ScannedPaper(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+		Set<Course> courses = OCRReader.scanImage(new GradeReport(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
 
 		logger.info("stage started");
 		FXMLLoader loader = new FXMLLoader(MainMenuController.class.getResource("ResultWindow.fxml"));

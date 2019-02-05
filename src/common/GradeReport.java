@@ -7,14 +7,14 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.util.UUID;
 
-public class ScannedPaper {
+public class GradeReport {
 	public File file;
 	public String id;
 	private Image img;
 
-	private static final Logger logger = LoggerFactory.getLogger(ScannedPaper.class);
+	private static final Logger logger = LoggerFactory.getLogger(GradeReport.class);
 
-	public ScannedPaper(File file) {
+	public GradeReport(File file) {
 		this.file = file;
 		id = UUID.randomUUID().toString();
 		try {
