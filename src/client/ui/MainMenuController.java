@@ -54,7 +54,7 @@ public class MainMenuController extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 300, 275);
+        Scene scene = new Scene(root);
 //        scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
 
         mControl = loader.getController();

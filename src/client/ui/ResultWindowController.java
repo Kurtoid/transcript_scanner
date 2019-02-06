@@ -1,5 +1,6 @@
 package client.ui;
 
+import common.ParsedReport;
 import common.courses.Course;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,15 +18,16 @@ import javafx.util.Callback;
 import javafx.util.converter.DefaultStringConverter;
 
 import javax.swing.text.html.ImageView;
-import java.util.Set;
 
 public class ResultWindowController {
     @FXML
     TableView resultTable;
-    private Set<Course> courses;
+    private ParsedReport report;
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    Course c;
+
+    public void setReport(ParsedReport reports) {
+        this.report = reports;
     }
 
     @FXML
@@ -55,10 +57,10 @@ public class ResultWindowController {
                             setText(empty ? "" : item);
                             TableRow row = getTableRow();
                             if (row != null && !empty) {
+                                // highlight missing or low grades
                                 if (item == null || item.equals("")) {
                                     row.setStyle("-fx-background-color:lightcoral");
-                                }
-                                if (item.equals("F") || item.equals("D")) {
+                                } else if (item.equals("F") || item.equals("D")) {
                                     row.setStyle("-fx-background-color:orange");
                                 } else if (item.equals("C")) {
                                     row.setStyle("-fx-background-color:yellow");
@@ -72,6 +74,7 @@ public class ResultWindowController {
 
                     };
                     cell.setConverter(new DefaultStringConverter());
+                    // we want operator to be able to correct mistakes
                     cell.setEditable(true);
                     return cell;
                 }
@@ -97,7 +100,7 @@ public class ResultWindowController {
             resultTable.getColumns().addAll(courseCol, gradeCol, correctionCol, typeCol);
 
             final ObservableList<Course> data = FXCollections.observableArrayList(
-                    courses
+                    report.getCourses()
             );
             resultTable.setEditable(true);
             resultTable.setItems(data);

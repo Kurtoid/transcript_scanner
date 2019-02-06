@@ -2,6 +2,7 @@ package client.ui;
 
 import client.core.ApplicationState;
 import common.GradeReport;
+import common.ParsedReport;
 import common.courses.Course;
 import common.imaging.ColumnDetector;
 import common.imaging.ImagePreprocessor;
@@ -33,6 +34,7 @@ import org.slf4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -144,27 +146,36 @@ public class ReadingWindow {
 
     @FXML
     public void scanSelectedImage(ActionEvent actionEvent) {
-        if (selectedImage != null) {
+        Set<ParsedReport> reports = new HashSet<>();
+
+        for (GradeReport f : ApplicationState.scannedImages) {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
 
-            Set<Course> courses = OCRReader.scanImage(selectedImage, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
-            Parent root = null;
-            FXMLLoader loader = null;
-            try {
-                /**
-                 * load the FXML files needed for reader layout
-                 */
-                loader = new FXMLLoader(getClass().getResource("ResultWindow.fxml"));
-                root = loader.load();
-            } catch (IOException e) {
-                logger.error("couldnt load ui", e);
-            }
-            ResultWindowController controller = loader.getController();
-            controller.setCourses(courses);
-            Scene scene = new Scene(root);
-            ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).setScene(scene);
+            Set<Course> courses = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+            ParsedReport pr = new ParsedReport();
+            pr.setCourses(courses);
+            reports.add(pr);
+
         }
+        Parent root = null;
+        FXMLLoader loader = null;
+
+        try {
+            /**
+             * load the FXML files needed for reader layout
+             */
+            loader = new FXMLLoader(getClass().getResource("ResultBrowser.fxml"));
+            root = loader.load();
+        } catch (IOException e) {
+            logger.error("couldnt load ui", e);
+        }
+
+        ResultBrowserController controller = loader.getController();
+        controller.setReports(reports);
+        Scene scene = new Scene(root);
+        ((Stage) ((Node) actionEvent.getSource()).getScene().getWindow()).setScene(scene);
+
     }
 
     @FXML
