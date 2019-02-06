@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ import java.util.Set;
 public class ResultBrowserController extends Application implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(ResultBrowserController.class);
     int index = 0;
+    ResultWindowController rwController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -54,18 +56,18 @@ public class ResultBrowserController extends Application implements Initializabl
     SubScene gridSubScene;
     @FXML
     Pane fitPane;
+    @FXML
+    Button nextButton;
+    @FXML
+    Button lastButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         logger.trace("initialized resultbrowser");
+        configureTable();
     }
 
-    public void previousPage(ActionEvent actionEvent) {
-        index--;
-        updateReport();
-    }
-
-    private void updateReport() {
+    private void configureTable() {
         Parent root = null;
         FXMLLoader loader = null;
         try {
@@ -77,12 +79,27 @@ public class ResultBrowserController extends Application implements Initializabl
         } catch (IOException e) {
             logger.error("couldnt load ui", e);
         }
-        ResultWindowController controller = loader.getController();
-        controller.setReport(reports.get(index));
+        rwController = loader.getController();
         gridSubScene.setRoot(root);
         gridSubScene.widthProperty().bind(fitPane.widthProperty());
         gridSubScene.heightProperty().bind(fitPane.heightProperty());
 
+    }
+
+    private void updateReport() {
+        if (index < 0)
+            index = 0;
+        if (index >= reports.size())
+            index = reports.size() - 1;
+        lastButton.setDisable(index == 0);
+        nextButton.setDisable(index == reports.size() - 1);
+
+        rwController.setReport(reports.get(index));
+    }
+
+    public void previousPage(ActionEvent actionEvent) {
+        index--;
+        updateReport();
     }
 
     public void nextPage(ActionEvent actionEvent) {

@@ -28,6 +28,9 @@ public class ParsedReport {
 
     }
 
+    /**
+     * super complicated patent-pending top secret proprietary GPA calculator
+     */
     private double calculateGPA() {
         double total = 0;
         for (Course c : courses) {

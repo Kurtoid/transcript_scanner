@@ -298,7 +298,7 @@ public class ReadingWindow {
             scaleFactor = imagePreview.getWidth() / selectedImage.getImage().getWidth();
 
         }
-        logger.trace("scale factor: {}", scaleFactor);
+//        logger.trace("scale factor: {}", scaleFactor);
         if (selectedImage != null) {
             gc.drawImage(selectedImage.getImage(), 0, 0, selectedImage.getImage().getWidth() * scaleFactor,
                     selectedImage.getImage().getHeight() * scaleFactor);
