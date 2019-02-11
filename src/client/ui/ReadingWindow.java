@@ -3,7 +3,6 @@ package client.ui;
 import client.core.ApplicationState;
 import common.GradeReport;
 import common.ParsedReport;
-import common.courses.Course;
 import common.imaging.ColumnDetector;
 import common.imaging.ImagePreprocessor;
 import common.tesseract.OCRReader;
@@ -153,9 +152,8 @@ public class ReadingWindow {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
 
-            Set<Course> courses = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
-            ParsedReport pr = new ParsedReport();
-            pr.setCourses(courses);
+
+            ParsedReport pr = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
             reports.add(pr);
 
         }

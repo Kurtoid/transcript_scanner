@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -24,6 +25,7 @@ import java.util.Set;
 
 public class ResultBrowserController extends Application implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(ResultBrowserController.class);
+    public Label gpaLabel;
     int index = 0;
     ResultWindowController rwController;
 
@@ -95,6 +97,7 @@ public class ResultBrowserController extends Application implements Initializabl
         nextButton.setDisable(index == reports.size() - 1);
 
         rwController.setReport(reports.get(index));
+        gpaLabel.setText("GPA: " + reports.get(index).getGPA());
     }
 
     public void previousPage(ActionEvent actionEvent) {

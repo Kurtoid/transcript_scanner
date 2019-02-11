@@ -5,7 +5,6 @@ import client.ui.ResultBrowserController;
 import common.FileManager;
 import common.GradeReport;
 import common.ParsedReport;
-import common.courses.Course;
 import common.imaging.ImagePreprocessor;
 import common.tesseract.OCRReader;
 import javafx.application.Application;
@@ -44,7 +43,7 @@ public class QuickScanRunner extends Application {
 		double nameColumnRight = 0.337431693989071;
 		double gradeColumnLeft = 0.4620879120879121;
 		double gradeColumnRight = 0.4800693989071038;
-		Set<Course> courses = OCRReader.scanImage(new GradeReport(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+		ParsedReport pr = OCRReader.scanImage(new GradeReport(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
 
 		logger.info("stage started");
 		FXMLLoader loader = new FXMLLoader(MainMenuController.class.getResource("ResultBrowser.fxml"));
@@ -52,8 +51,6 @@ public class QuickScanRunner extends Application {
 
 		ResultBrowserController controller = loader.getController();
 		Set<ParsedReport> reports = new HashSet<>();
-		ParsedReport pr = new ParsedReport();
-		pr.setCourses(courses);
 		logger.debug("GPA is {}", pr.getGPA());
 		reports.add(pr);
 		controller.setReports(reports);

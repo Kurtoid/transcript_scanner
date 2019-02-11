@@ -51,4 +51,8 @@ public class ParsedReport {
     public ArrayList<Course> getCourses() {
         return courses;
     }
+
+    public void setGPA(double gpa) {
+        this.GPA = gpa;
+    }
 }
