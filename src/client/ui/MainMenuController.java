@@ -7,11 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 /**
  * controls main menu, and includes buttons for accessing areas of the application
@@ -62,5 +65,19 @@ public class MainMenuController extends Application {
         primaryStage.setTitle("Suncoast Transcript Scanner");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void showHelp(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        stage.setTitle("Web View");
+        Scene scene;
+        try {
+            scene = new Scene(new Browser(new File("resources/help.html").toURI().toURL().toExternalForm()),750,500, Color.web("#666970"));
+            stage.setScene(scene);
+            stage.show();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
