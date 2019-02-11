@@ -142,6 +142,7 @@ public class ReadingWindow {
             f.file = ImagePreprocessor.alignImage(f.file);
         }
         showImages();
+        updateCanvas();
     }
 
     @FXML
@@ -182,12 +183,14 @@ public class ReadingWindow {
     public void setGradeColumn(ActionEvent e) {
         gradeColumnLeft = selectedLeft;
         gradeColumnRight = selectedRight;
+        updateCanvas();
     }
 
     @FXML
     public void setNameColumn(ActionEvent e) {
         nameColumnLeft = selectedLeft;
         nameColumnRight = selectedRight;
+        updateCanvas();
     }
 
     /**
