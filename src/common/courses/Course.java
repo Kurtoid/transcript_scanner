@@ -40,4 +40,8 @@ public class Course {
     public ImageView getGrade() {
         return new ImageView(gradeBox.toURI().toString());
     }
+
+    public void setDesc(String toUpperCase) {
+        courseDesc = toUpperCase;
+    }
 }

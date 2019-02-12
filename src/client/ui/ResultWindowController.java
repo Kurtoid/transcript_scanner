@@ -2,6 +2,7 @@ package client.ui;
 
 import common.ParsedReport;
 import common.courses.Course;
+import common.courses.CourseMatcher;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -57,12 +58,44 @@ public class ResultWindowController {
             // p.getValue() returns the Person instance for a particular TableView row
             return new SimpleStringProperty(p.getValue().courseDesc);
         });
+        courseCol.setCellFactory(new Callback<TableColumn<Course, String>, TableCell<Course, String>>() {
+            @Override
+            public TableCell<Course, String> call(TableColumn<Course, String> param) {
+                TextFieldTableCell<Course, String> cell = new TextFieldTableCell<Course, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        System.out.println("editing " + item);
+                        Course c = CourseMatcher.matchCourse(item, 1).get(0);
+                        Course current = (Course) getTableRow().getItem();
+                        c.grade = current.grade;
+                        c.gradeBox = current.gradeBox;
+
+                        getTableRow().setItem(c);
+                        setEditable(true);
+                    }
+                };
+                return cell;
+            }
+        });
+        courseCol.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Course, String>>() {
+                    @Override
+                    public void handle(TableColumn.CellEditEvent<Course, String> t) {
+                        t.getTableView().getItems().get(
+                                t.getTablePosition().getRow()).setDesc(t.getNewValue().toUpperCase());
+                    }
+                }
+        );
+
+        courseCol.setEditable(true);
 
 
         TableColumn<Course, String> gradeCol = new TableColumn<>("Grade");
         gradeCol.setCellValueFactory(p -> {
             return new SimpleStringProperty(p.getValue().grade);
         });
+
 //            gradeCol.setCellFactory(TextFieldTableCell.forTableColumn(new DefaultStringConverter()));
         gradeCol.setEditable(true);
         gradeCol.setCellFactory(new Callback<TableColumn<Course, String>, TableCell<Course, String>>() {
