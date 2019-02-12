@@ -1,9 +1,5 @@
 package client.ui;
 
-import javax.swing.text.html.ImageView;
-
-import org.slf4j.Logger;
-
 import common.ParsedReport;
 import common.courses.Course;
 import common.courses.CourseMatcher;
@@ -21,9 +17,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import javafx.util.converter.DefaultStringConverter;
+import org.slf4j.Logger;
 
+import javax.swing.text.html.ImageView;
+
+/**
+ * TODO: add todos
+ */
 public class ResultWindowController {
-	final static Logger logger = org.slf4j.LoggerFactory.getLogger(ResultWindowController.class);
+    final static Logger logger = org.slf4j.LoggerFactory.getLogger(ResultWindowController.class);
     @FXML
     TableView resultTable;
     private ParsedReport report;
@@ -58,7 +60,7 @@ public class ResultWindowController {
     private void setColumns() {
         TableColumn<Course, String> courseCol = new TableColumn<>("Course");
         courseCol.setCellValueFactory(p -> {
-			// p.getValue() returns the Course instance for a particular TableView row
+            // p.getValue() returns the Course instance for a particular TableView row
             return new SimpleStringProperty(p.getValue().courseDesc);
         });
         courseCol.setCellFactory(new Callback<TableColumn<Course, String>, TableCell<Course, String>>() {
@@ -68,10 +70,10 @@ public class ResultWindowController {
                     @Override
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
-					}
+                    }
                 };
-				cell.setConverter(new DefaultStringConverter());
-				cell.setEditable(true);
+                cell.setConverter(new DefaultStringConverter());
+                cell.setEditable(true);
                 return cell;
             }
         });
@@ -79,18 +81,18 @@ public class ResultWindowController {
                 new EventHandler<TableColumn.CellEditEvent<Course, String>>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent<Course, String> t) {
-						String item = t.getNewValue();
-						System.out.println("editing " + item);
-						if (item == null || t == null) {
-							logger.error("this row is null!");
-						} else {
-							Course c = CourseMatcher.matchCourseByDesc(item.toUpperCase());
-							Course current = t.getTableView().getItems().get(t.getTablePosition().getRow());
-							c.grade = current.grade;
-							c.gradeBox = current.gradeBox;
+                        String item = t.getNewValue();
+                        logger.trace("editing " + item);
+                        if (item == null) {
+                            logger.error("this row is null!");
+                        } else {
+                            Course c = CourseMatcher.matchCourseByDesc(item.toUpperCase());
+                            Course current = t.getTableView().getItems().get(t.getTablePosition().getRow());
+                            c.grade = current.grade;
+                            c.gradeBox = current.gradeBox;
 
-							t.getTableView().getItems().set(t.getTablePosition().getRow(), c);
-						}
+                            t.getTableView().getItems().set(t.getTablePosition().getRow(), c);
+                        }
                     }
                 }
         );
