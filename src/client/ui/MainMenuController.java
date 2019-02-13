@@ -12,9 +12,11 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
 
 /**
  * controls main menu, and includes buttons for accessing areas of the application
@@ -51,6 +53,21 @@ public class MainMenuController extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                File logs = new File("logs/log.log");
+                File out = new File(System.getProperty("user.home") + "/Desktop/transcriptscanner_logs.log");
+                logger.error("uncaught exception!", e);
+                try {
+                    Files.copy(logs.toPath(), out.toPath());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                JOptionPane.showMessageDialog(null, "Something went wrong. Please send transcriptscanner_logs (on your desktop) to kurtwilson099@gmail.com", "Error", JOptionPane.ERROR_MESSAGE, null);
+
+            }
+        });
         logger.info("stage started");
         FileManager.createTempFolder();
         FileManager.removeTempFiles();
