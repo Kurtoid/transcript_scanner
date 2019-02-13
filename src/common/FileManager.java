@@ -9,6 +9,11 @@ public class FileManager {
     public static File temp = new File("temp");
 
     public static void removeTempFiles() throws IOException {
-        FileUtils.cleanDirectory(temp);
+        if (temp.exists())
+            FileUtils.cleanDirectory(temp);
+    }
+
+    public static void createTempFolder() {
+        temp.mkdirs();
     }
 }

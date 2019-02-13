@@ -1,6 +1,6 @@
 package client.core;
 
-import common.ScannedPaper;
+import common.GradeReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,10 +46,9 @@ public class ApplicationState {
     /**
      * images scanned
      */
-    public static ArrayList<ScannedPaper> scannedImages = new ArrayList<>();
+    public static ArrayList<GradeReport> scannedImages = new ArrayList<>();
 
     public interface NetworkConnectedCallback {
         void done(NetworkConnectionStatus status);
     }
-
 }

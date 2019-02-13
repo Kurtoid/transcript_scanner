@@ -1,6 +1,7 @@
 package common.tesseract;
 
-import common.ScannedPaper;
+import common.GradeReport;
+import common.ParsedReport;
 import common.courses.Course;
 import common.courses.CourseMatcher;
 import common.courses.GradeParser;
@@ -20,6 +21,8 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static common.imaging.ImagePreprocessor.getFileName;
 
@@ -54,8 +57,8 @@ public class OCRReader {
 	 *
 	 * @param selectedImage the split image line
 	 */
-	public static Set<Course> scanImage(ScannedPaper selectedImage, double nameSelectedLeft, double nameSelectedRight,
-										double gradeSelectedLeft, double gradeSelectedRight) {
+	public static ParsedReport scanImage(GradeReport selectedImage, double nameSelectedLeft, double nameSelectedRight,
+										 double gradeSelectedLeft, double gradeSelectedRight) {
 		ITesseract instance = new Tesseract1();
 
 		logger.trace("TESSDATA_PREFIX: {}", System.getenv("TESSDATA_PREFIX"));
@@ -64,13 +67,33 @@ public class OCRReader {
 		LinkedList<File> folder = ImagePreprocessor.splitImage(selectedImage.file);
 		Set<Course> foundCourses = new HashSet<>();
 		logger.debug("looking for course header");
+		logger.debug("looking for GPA");
 		boolean headerFound = false;
+		boolean gpaFound = false;
+		double gpa = 0;
 		for (File f : folder) {
 			try {
-				File cropped = cropImage(f, nameSelectedLeft, nameSelectedRight);
+				if (!gpaFound) {
+					String wholeLine = doOcr(f);
+					logger.trace("read whole line: {}", wholeLine.trim());
+					if (isGPALine(wholeLine.trim())) {
+						Pattern pat = Pattern.compile("([0-9]\\.[0-9]{4})");
+						Matcher mat = pat.matcher(wholeLine);
+						mat.find();
+//						String gpaFilter = wholeLine.replaceAll("[^0-9]+", " ");
+						if (!mat.hitEnd()) {
+							logger.debug("GPA should be here somewhere: {}", mat.group(1));
+							gpa = Double.parseDouble(mat.group(1));
+						} else {
+							gpa = 0;
+						}
+						gpaFound = true;
+					}
+				}
 				instance.setTessVariable("psm", "7");
-
+				File cropped = cropImage(f, nameSelectedLeft, nameSelectedRight);
 				String result = (instance.doOCR(cropped));
+				logger.trace("read class line {}", result.trim());
 				if (!result.trim().equals("")) {
 					if (!headerFound) {
 						if (FuzzySearch.ratio(result.toLowerCase(), "course") > 50) {
@@ -102,8 +125,19 @@ public class OCRReader {
 		if (!headerFound) {
 			logger.warn("We never found a header!!! (thats bad)");
 		}
-		return foundCourses;
+		ParsedReport p = new ParsedReport();
+		p.setCourses(foundCourses);
+		p.setGPA(gpa);
+		return p;
 
+	}
+
+	private static boolean isGPALine(String wholeLine) {
+//        logger.trace("GPA search score: {}", FuzzySearch.partialRatio(wholeLine, "Cumulative GPA: "));
+//        logger.trace("CUM WEIGHTED GPA search score: {}", FuzzySearch.partialRatio(wholeLine, "Cumulative Weighted GPA: "));
+		double cumGPAScore = FuzzySearch.partialRatio(wholeLine, "Cumulative GPA:");
+		double cumWeightedGPAScore = FuzzySearch.partialRatio(wholeLine, "Cumulative Weighted GPA:");
+		return cumGPAScore > 50 && cumGPAScore > cumWeightedGPAScore;
 	}
 
 	public static String doOcr(File f) {

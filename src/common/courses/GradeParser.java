@@ -30,7 +30,7 @@ public class GradeParser {
 
 		// empty string case
 		if (grade.equals("")) {
-			return "NONE";
+			return "";
 		}
 
 		// oh look, just one letter! that must be it
@@ -42,8 +42,9 @@ public class GradeParser {
 		if (grade.charAt(0) == grade.charAt(1)) {
 			return String.valueOf(grade.charAt(0));
 		}
-		// ok, that didn't work
-		return null;
+		// oh, that didn't work
+		// tell the user to check this one
+		return "";
 	}
 
 	public static void main(String[] args) {
