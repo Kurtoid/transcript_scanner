@@ -7,7 +7,6 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -25,14 +24,17 @@ import javax.swing.text.html.ImageView;
  * TODO: add todos
  */
 public class ResultWindowController {
-    final static Logger logger = org.slf4j.LoggerFactory.getLogger(ResultWindowController.class);
+    private final static Logger logger = org.slf4j.LoggerFactory.getLogger(ResultWindowController.class);
     @FXML
     TableView resultTable;
     private ParsedReport report;
+    private EditAction onEdit;
 
-    Course c;
+    void setOnEdit(EditAction onEdit) {
+        this.onEdit = onEdit;
+    }
 
-    public void setReport(ParsedReport reports) {
+    void setReport(ParsedReport reports) {
         this.report = reports;
         final ObservableList<Course> data = FXCollections.observableArrayList(
                 report.getCourses()
@@ -41,21 +43,7 @@ public class ResultWindowController {
 
     }
 
-    @FXML
-    private void initialize() {
-
-        Platform.runLater(() -> {
-            setColumns();
-            final ObservableList<Course> data = FXCollections.observableArrayList(
-                    report.getCourses()
-            );
-            resultTable.setEditable(true);
-            resultTable.setItems(data);
-
-
-        });
-
-    }
+    Course c;
 
     private void setColumns() {
         TableColumn<Course, String> courseCol = new TableColumn<>("Course");
@@ -78,22 +66,19 @@ public class ResultWindowController {
             }
         });
         courseCol.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<Course, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<Course, String> t) {
-                        String item = t.getNewValue();
-                        logger.trace("editing " + item);
-                        if (item == null) {
-                            logger.error("this row is null!");
-                        } else {
-                            Course c = CourseMatcher.matchCourseByDesc(item.toUpperCase());
-                            Course current = t.getTableView().getItems().get(t.getTablePosition().getRow());
-                            c.grade = current.grade;
-                            c.gradeBox = current.gradeBox;
-
-                            t.getTableView().getItems().set(t.getTablePosition().getRow(), c);
-                        }
+                t -> {
+                    String item = t.getNewValue();
+                    logger.trace("editing " + item);
+                    if (item == null) {
+                        logger.error("this row is null!");
+                    } else {
+                        Course c = CourseMatcher.matchCourseByDesc(item.toUpperCase());
+                        Course current = t.getTableView().getItems().get(t.getTablePosition().getRow());
+                        current.setDesc(c.courseDesc);
+                        current.type = c.type;
+                        t.getTableView().getItems().set(t.getTablePosition().getRow(), current);
                     }
+                    onEdit.afterEdit();
                 }
         );
 
@@ -101,9 +86,7 @@ public class ResultWindowController {
 
 
         TableColumn<Course, String> gradeCol = new TableColumn<>("Grade");
-        gradeCol.setCellValueFactory(p -> {
-            return new SimpleStringProperty(p.getValue().grade);
-        });
+        gradeCol.setCellValueFactory(p -> new SimpleStringProperty(p.getValue().grade));
 
 //            gradeCol.setCellFactory(TextFieldTableCell.forTableColumn(new DefaultStringConverter()));
         gradeCol.setEditable(true);
@@ -141,12 +124,10 @@ public class ResultWindowController {
         });
 
         gradeCol.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<Course, String>>() {
-                    @Override
-                    public void handle(TableColumn.CellEditEvent<Course, String> t) {
-                        t.getTableView().getItems().get(
-                                t.getTablePosition().getRow()).setGrade(t.getNewValue().toUpperCase());
-                    }
+                t -> {
+                    t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()).setGrade(t.getNewValue().toUpperCase());
+                    onEdit.afterEdit();
                 }
         );
 
@@ -159,6 +140,26 @@ public class ResultWindowController {
         });
         resultTable.getColumns().addAll(courseCol, gradeCol, correctionCol, typeCol);
 
+    }
+
+    @FXML
+    private void initialize() {
+
+        Platform.runLater(() -> {
+            setColumns();
+            final ObservableList<Course> data = FXCollections.observableArrayList(
+                    report.getCourses()
+            );
+            resultTable.setEditable(true);
+            resultTable.setItems(data);
+
+
+        });
+
+    }
+
+    public interface EditAction {
+        void afterEdit();
     }
 
 }

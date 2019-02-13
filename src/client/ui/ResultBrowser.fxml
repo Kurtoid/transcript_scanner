@@ -25,6 +25,7 @@
                 <HBox>
                     <children>
                         <Label fx:id="gpaLabel" text="GPA: "/>
+                        <Label fx:id="reqClassLabel" text="Has Taken Required Classes:"/>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="100.0">

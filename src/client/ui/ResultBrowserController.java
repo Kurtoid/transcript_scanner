@@ -2,6 +2,7 @@ package client.ui;
 
 import common.FileManager;
 import common.ParsedReport;
+import common.courses.PrereqChecker;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,10 +23,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Set;
-
 public class ResultBrowserController extends Application implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(ResultBrowserController.class);
     public Label gpaLabel;
+    public Label reqClassLabel;
     int index = 0;
     ResultWindowController rwController;
 
@@ -82,10 +83,16 @@ public class ResultBrowserController extends Application implements Initializabl
             logger.error("couldnt load ui", e);
         }
         rwController = loader.getController();
+        rwController.setOnEdit(new ResultWindowController.EditAction() {
+            @Override
+            public void afterEdit() {
+                logger.debug("afterEdit callback called!");
+                updateReport();
+            }
+        });
         gridSubScene.setRoot(root);
         gridSubScene.widthProperty().bind(fitPane.widthProperty());
         gridSubScene.heightProperty().bind(fitPane.heightProperty());
-
     }
 
     private void updateReport() {
@@ -98,6 +105,18 @@ public class ResultBrowserController extends Application implements Initializabl
 
         rwController.setReport(reports.get(index));
         gpaLabel.setText("GPA: " + reports.get(index).getGPA());
+        Set<PrereqChecker.CLASSTYPES> missingClasses = PrereqChecker.getMissingClasses(reports.get(index));
+        if (missingClasses.isEmpty()) {
+            reqClassLabel.setText("Has Taken Required Classes: Yes");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Has Taken Required Classes: No. Missing ");
+            for (PrereqChecker.CLASSTYPES type : missingClasses) {
+                sb.append(type.getName());
+                sb.append(", ");
+            }
+            reqClassLabel.setText(sb.toString());
+        }
     }
 
     public void previousPage(ActionEvent actionEvent) {

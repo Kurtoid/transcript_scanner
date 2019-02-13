@@ -1,4 +1,4 @@
-package tests;
+package shortcuts;
 
 import client.ui.MainMenuController;
 import client.ui.ResultBrowserController;
