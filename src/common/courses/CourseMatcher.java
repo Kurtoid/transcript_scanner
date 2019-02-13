@@ -71,7 +71,7 @@ public class CourseMatcher {
 			double dist = FuzzySearch.weightedRatio(c.courseDesc.toUpperCase(), scannedLine.toUpperCase());
 			matches.add(new dPair(i, dist));
 		}
-		Course c = (courses.get(matches.poll().key));
+		Course c = (courses.get(Objects.requireNonNull(matches.poll()).key));
 		return c;
 	}
 
