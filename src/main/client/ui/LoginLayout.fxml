@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<GridPane alignment="center" hgap="10" stylesheets="@Login.css" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.client.ui.LoginController">
+    <padding>
+        <Insets bottom="10" left="25" right="25" top="25"/>
+    </padding>
+    <Text text="Welcome" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0">
+        <font>
+            <Font size="24.0"/>
+        </font>
+    </Text>
+
+    <Label text="User Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+
+    <PasswordField fx:id="passwordField" onAction="#loginUser" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="4">
+        <Button onAction="#loginUser" style="/*-fx-background-color: gold;*/" text="Sign In"/>
+    </HBox>
+
+    <Text text="Connection status:" GridPane.rowIndex="6"/>
+    <Text fx:id="networkStatusLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Connecting..."
+          GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
+</GridPane>
