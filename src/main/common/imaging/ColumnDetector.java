@@ -48,6 +48,9 @@ public class ColumnDetector {
         Mat img = Imgcodecs.imread(image.getAbsolutePath());
         Mat gray = new Mat();
         Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+//        Rect roi = new Rect(0, (int) (gray.height() * .2), gray.width(), (int) (gray.height() * .8));
+//        gray = new Mat(gray, roi);
+
         Core.bitwise_not(gray, gray);
         Core.transpose(gray, gray);
         Mat vert_proj = new Mat();
@@ -72,21 +75,26 @@ public class ColumnDetector {
         int count = 0;
         boolean isSpace = false;
         for (int i = 0; i < gray.rows(); ++i) {
-            if (!isSpace) {
-                if (filtered_hist.get(i, 0)[0] != 0) {
-                    isSpace = true;
-                    count = 1;
-                    y = i;
-                }
-            } else {
-                if (filtered_hist.get(i, 0)[0] == 0) {
+            if (filtered_hist.get(i, 0)[0] == 0) { // dark
+                xcoords.add((double) i);
+            }
+/*
+            if (isSpace) {
+                if (filtered_hist.get(i, 0)[0] == 0) { // dark
                     isSpace = false;
                     xcoords.add((double) (y / count));
                 } else {
                     y += i;
                     count++;
                 }
+            } else {
+                if (filtered_hist.get(i, 0)[0] != 0) { // light
+                    isSpace = true;
+                    count = 1;
+                    y = i;
+                }
             }
+*/
 
         }
         for (int i = 0; i < xcoords.size(); i++) {
