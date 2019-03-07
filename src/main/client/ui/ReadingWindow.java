@@ -25,14 +25,12 @@ import javafx.stage.Stage;
 import main.client.core.ApplicationState;
 import main.common.GradeReport;
 import main.common.ParsedReport;
-import main.common.imaging.ColumnDetector;
 import main.common.imaging.ImagePreprocessor;
 import main.common.tesseract.OCRReader;
 import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,6 +46,7 @@ public class ReadingWindow {
     public Canvas imagePreview;
     public Button LoadImagesButton;
     public GridPane basePane;
+    public CheckBox autoDetectColumns;
     private GradeReport selectedImage;
     @FXML
     private CheckBox columnSnapBox;
@@ -60,7 +59,6 @@ public class ReadingWindow {
 
     private double gradeColumnRight = -1;
     private double gradeColumnLeft = -1;
-    private ArrayList<Double> columnLocations;
     /**
      * runs when any image in the bottom scroll pane is clicked
      */
@@ -80,7 +78,6 @@ public class ReadingWindow {
             ChangeListener<Number> stageSizeListener = (observable, oldV, newV) -> updateCanvas();
             basePane.getScene().getWindow().widthProperty().addListener(stageSizeListener);
             basePane.getScene().getWindow().widthProperty().addListener(stageSizeListener);
-            columnLocations = ColumnDetector.findColumns(selectedImage.file);
             updateCanvas();
         }
 
@@ -102,11 +99,9 @@ public class ReadingWindow {
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
         List<File> images = fc.showOpenMultipleDialog(((Node) actionEvent.getTarget()).getScene().getWindow());
         if (images != null) {
-            for (int i = 0; i < images.size(); i++) {
-                GradeReport p = new GradeReport(images.get(i));
+            for (File image : images) {
+                GradeReport p = new GradeReport(image);
                 ApplicationState.scannedImages.add(p);
-
-//               imageViews[i].setF
             }
             showImages();
         }
@@ -128,7 +123,6 @@ public class ReadingWindow {
         }
         imageContainer.getChildren().clear();
         imageContainer.getChildren().addAll(imageViews);
-
     }
 
     /**
@@ -151,9 +145,13 @@ public class ReadingWindow {
         for (GradeReport f : ApplicationState.scannedImages) {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
+            ParsedReport pr;
+            if (autoDetectColumns.selectedProperty().getValue()) {
+                pr = OCRReader.scanImage(f, -1, -1, -1, -1);
+            } else {
+                pr = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
 
-
-            ParsedReport pr = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+            }
             reports.add(pr);
 
         }
@@ -161,9 +159,8 @@ public class ReadingWindow {
         FXMLLoader loader = null;
 
         try {
-            /**
-             * load the FXML files needed for reader layout
-             */
+
+            // load the FXML files needed for reader layout
             loader = new FXMLLoader(getClass().getResource("ResultBrowser.fxml"));
             root = loader.load();
         } catch (IOException e) {
@@ -219,7 +216,7 @@ public class ReadingWindow {
             });
             imagePreview.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
-                /**
+                /*
                  * this is a mess
                  * keeps the sliders a distance away from each other. if in column snap, find nearest snap point
                  * TODO: better drag

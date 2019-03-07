@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class GradeReport {
 	public File file;
-	public String id;
+	public final String id;
 	private Image img;
 
 	private static final Logger logger = LoggerFactory.getLogger(GradeReport.class);

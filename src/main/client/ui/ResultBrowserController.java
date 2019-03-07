@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.common.FileManager;
 import main.common.ParsedReport;
+import main.common.ScanWriter;
 import main.common.courses.PrereqChecker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,9 +75,8 @@ public class ResultBrowserController extends Application implements Initializabl
         Parent root = null;
         FXMLLoader loader = null;
         try {
-            /**
-             * load the FXML files needed for reader layout
-             */
+
+            // load the FXML files needed for reader layout
             loader = new FXMLLoader(getClass().getResource("ResultWindow.fxml"));
             root = loader.load();
         } catch (IOException e) {
@@ -127,5 +127,13 @@ public class ResultBrowserController extends Application implements Initializabl
     public void nextPage(ActionEvent actionEvent) {
         index++;
         updateReport();
+    }
+
+    public void exportReport(ActionEvent actionEvent) {
+        try {
+            ScanWriter.writeAll(reports);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -26,7 +26,7 @@ import javax.swing.text.html.ImageView;
 public class ResultWindowController {
     private final static Logger logger = org.slf4j.LoggerFactory.getLogger(ResultWindowController.class);
     @FXML
-    TableView resultTable;
+    TableView<Course> resultTable;
     private ParsedReport report;
     private EditAction onEdit;
 
@@ -132,7 +132,7 @@ public class ResultWindowController {
         );
 
         TableColumn<Course, ImageView> correctionCol = new TableColumn<>("Original");
-        correctionCol.setCellValueFactory(new PropertyValueFactory<Course, ImageView>("grade"));
+        correctionCol.setCellValueFactory(new PropertyValueFactory<>("grade"));
         TableColumn<Course, String> typeCol = new TableColumn<>("Subject");
         typeCol.setCellValueFactory(p -> {
             // p.getValue() returns the Person instance for a particular TableView row

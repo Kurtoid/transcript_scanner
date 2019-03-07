@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.common.FileManager;
+import main.common.constants.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,14 +30,12 @@ public class MainMenuController extends Application {
 
     /**
      * called when image read button is pressed
-     * @param actionEvent
      */
     public void startReadPaper(ActionEvent actionEvent) {
         Parent root = null;
         try {
-            /**
-             * load the FXML files needed for reader layout
-             */
+
+            // load the FXML files needed for reader layout
             root = FXMLLoader.load(getClass().getResource("ReadingWindow.fxml"));
         } catch (IOException e) {
             logger.error("couldnt load ui", e);
@@ -48,7 +47,6 @@ public class MainMenuController extends Application {
 
     /**
      * creates and shows main menu from layout file
-     * @param primaryStage
      * @throws Exception when layout file cant be read
      */
     @Override
@@ -79,7 +77,7 @@ public class MainMenuController extends Application {
 
         mControl = loader.getController();
 
-        primaryStage.setTitle("Suncoast Transcript Scanner");
+        primaryStage.setTitle(Constants.programName);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

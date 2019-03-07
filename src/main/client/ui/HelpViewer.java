@@ -3,10 +3,7 @@ package main.client.ui;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
@@ -41,19 +38,14 @@ public class HelpViewer extends Application {
 }
 class Browser extends Region {
 
-    final WebView browser = new WebView();
-    final WebEngine webEngine = browser.getEngine();
+    private final WebView browser = new WebView();
+    private final WebEngine webEngine = browser.getEngine();
 
     public Browser(String url) {
         webEngine.load(url);
         //add the web view to the scene
         getChildren().add(browser);
 
-    }
-    private Node createSpacer() {
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-        return spacer;
     }
 
     @Override protected void layoutChildren() {

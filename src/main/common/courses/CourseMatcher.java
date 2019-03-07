@@ -71,18 +71,17 @@ public class CourseMatcher {
 			double dist = FuzzySearch.weightedRatio(c.courseDesc.toUpperCase(), scannedLine.toUpperCase());
 			matches.add(new dPair(i, dist));
 		}
-		Course c = (courses.get(Objects.requireNonNull(matches.poll()).key));
-		return c;
+		return (courses.get(Objects.requireNonNull(matches.poll()).key));
 	}
 
 	/**
 	 * represents a pair sortable by value
 	 */
 	private static class dPair implements Comparable<dPair> {
-		public int key;
-		public double value;
+		int key;
+		double value;
 
-		public dPair(int i, double dist) {
+		dPair(int i, double dist) {
 			key = i;
 			value = dist;
 		}

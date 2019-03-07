@@ -86,7 +86,7 @@ public class PrereqChecker {
         WORLDLANG("World Languages"),
 
         ;
-        String name;
+        final String name;
 
         CLASSTYPES(String s) {
             this.name = s;

@@ -71,8 +71,7 @@ public class ImagePreprocessor {
 		Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
 
 		Imgcodecs.imwrite(FileManager.temp.getAbsolutePath() + File.separator + imageFile.getName(), rotated);
-		File outDir = new File(FileManager.temp.getAbsolutePath() + File.separator + imageFile.getName());
-		return outDir;
+        return new File(FileManager.temp.getAbsolutePath() + File.separator + imageFile.getName());
 //        Imgcodecs.imwrite("rot.png", rotated);
 
 	}
