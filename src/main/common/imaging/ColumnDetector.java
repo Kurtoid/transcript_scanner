@@ -75,10 +75,10 @@ public class ColumnDetector {
         int count = 0;
         boolean isSpace = false;
         for (int i = 0; i < gray.rows(); ++i) {
-            if (filtered_hist.get(i, 0)[0] == 0) { // dark
-                xcoords.add((double) i);
-            }
-/*
+//            if (filtered_hist.get(i, 0)[0] == 0) { // dark
+//                xcoords.add((double) i);
+//            }
+//*
             if (isSpace) {
                 if (filtered_hist.get(i, 0)[0] == 0) { // dark
                     isSpace = false;
@@ -94,7 +94,7 @@ public class ColumnDetector {
                     y = i;
                 }
             }
-*/
+//*/
 
         }
         for (int i = 0; i < xcoords.size(); i++) {

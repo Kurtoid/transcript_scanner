@@ -63,7 +63,14 @@ public class OCRReader {
 			try {
 				if (headerFound) {
 					instance.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_LINE);
-                    Column nameCol = findColumn("Course", boxes);
+					Column nameCol;
+					if (nameSelectedLeft == -1 && gradeSelectedRight == -1) {
+						nameCol = findColumn("Course", boxes);
+					} else {
+						nameCol = new Column();
+						nameCol.begin = nameSelectedLeft;
+						nameCol.end = nameSelectedRight;
+					}
 					File cropped = cropImage(f, nameCol.begin, nameCol.end);
 					String result = (instance.doOCR(cropped));
 					if (!result.trim().equals("")) {
@@ -72,7 +79,14 @@ public class OCRReader {
 						logger.debug("Line: " + result.replace("\n", ""));
 						Course course = (CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0));
 //						instance.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR);
-                        Column gradeCol = findColumn("Grade", boxes);
+						Column gradeCol;
+						if (gradeSelectedLeft == -1 && gradeSelectedRight == -1) {
+							gradeCol = findColumn("Grade", boxes);
+						} else {
+							gradeCol = new Column();
+							gradeCol.begin = gradeSelectedLeft;
+							gradeCol.end = gradeSelectedRight;
+						}
 						logger.trace("grade found at {}", gradeCol.toString());
 						File cropped_letter = cropImage(f, gradeCol.begin, gradeCol.end);
 						String grade = instance.doOCR(cropped_letter);

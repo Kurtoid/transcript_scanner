@@ -48,6 +48,7 @@ public class ReadingWindow {
     public Canvas imagePreview;
     public Button LoadImagesButton;
     public GridPane basePane;
+    public CheckBox autoDetectColumns;
     private GradeReport selectedImage;
     @FXML
     private CheckBox columnSnapBox;
@@ -151,9 +152,12 @@ public class ReadingWindow {
         for (GradeReport f : ApplicationState.scannedImages) {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
-
-
-            ParsedReport pr = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+            ParsedReport pr;
+            if (autoDetectColumns.selectedProperty().getValue()) {
+                pr = OCRReader.scanImage(f, -1, -1, -1, -1);
+            } else {
+                pr = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+            }
             reports.add(pr);
 
         }
