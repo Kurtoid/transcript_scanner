@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class FileManager {
-    public final static File temp = new File("temp");
+    public static final File temp = new File("temp");
 
     public static void removeTempFiles() throws IOException {
         if (temp.exists())

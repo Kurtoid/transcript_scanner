@@ -34,23 +34,16 @@ public class ParsedReport {
     private double calculateGPA() {
         double total = 0;
         for (Course c : courses) {
-            switch (c.grade) {
-                case "A":
-                    total += 4;
-                    break;
-                case "B":
-                    total += 3;
-                    break;
-                case "C":
-                    total += 2;
-                    break;
-                case "D":
-                    total += 1;
-                    break;
-                default:
-                    total += 0;
-                    break;
-            }
+            if (c.grade.equals("A"))
+                total += 4;
+            else if (c.grade.equals("B"))
+                total += 3;
+            else if (c.grade.equals("C"))
+                total += 2;
+            else if (c.grade.equals("D"))
+                total += 1;
+            else
+                total += 0;
         }
         return total / courses.size();
     }

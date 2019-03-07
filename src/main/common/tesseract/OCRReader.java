@@ -63,14 +63,7 @@ public class OCRReader {
 			try {
 				if (headerFound) {
 					instance.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_LINE);
-					Column nameCol;
-					if (nameSelectedLeft == -1 && gradeSelectedRight == -1) {
-						nameCol = findColumn("Course", boxes);
-					} else {
-						nameCol = new Column();
-						nameCol.begin = nameSelectedLeft;
-						nameCol.end = nameSelectedRight;
-					}
+                    Column nameCol = findColumn("Course", boxes);
 					File cropped = cropImage(f, nameCol.begin, nameCol.end);
 					String result = (instance.doOCR(cropped));
 					if (!result.trim().equals("")) {
@@ -79,14 +72,7 @@ public class OCRReader {
 						logger.debug("Line: " + result.replace("\n", ""));
 						Course course = (CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0));
 //						instance.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR);
-						Column gradeCol;
-						if (gradeSelectedLeft == -1 && gradeSelectedRight == -1) {
-							gradeCol = findColumn("Grade", boxes);
-						} else {
-							gradeCol = new Column();
-							gradeCol.begin = gradeSelectedLeft;
-							gradeCol.end = gradeSelectedRight;
-						}
+                        Column gradeCol = findColumn("Grade", boxes);
 						logger.trace("grade found at {}", gradeCol.toString());
 						File cropped_letter = cropImage(f, gradeCol.begin, gradeCol.end);
 						String grade = instance.doOCR(cropped_letter);
@@ -222,7 +208,7 @@ public class OCRReader {
 	 *
 	 * @param f    file to be read
 	 * @param mode mode to use; see https://github.com/tesseract-ocr/tesseract/wiki/Command-Line-Usage
-	 * @return text detected
+     * @return
 	 */
 	public static String doOcr(File f, int mode) {
 		if (instance == null) {
@@ -243,7 +229,9 @@ public class OCRReader {
 	 * crops an image given left and right percentage values
 	 * creates a new file and manipulates that
 	 * @param f the file to crop
-	 * @return a cropped image
+     * @param selectedLeft
+     * @param selectedRight
+     * @return a cropped image
 	 */
 	private static File cropImage(File f, double selectedLeft, double selectedRight) {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);

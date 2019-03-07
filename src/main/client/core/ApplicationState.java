@@ -13,5 +13,5 @@ public class ApplicationState {
     /**
      * images scanned
      */
-    public final static ArrayList<GradeReport> scannedImages = new ArrayList<>();
+    final public static ArrayList<GradeReport> scannedImages = new ArrayList<>();
 }

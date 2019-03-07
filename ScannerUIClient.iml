@@ -19,6 +19,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="opencv-400" level="project" />
+    <orderEntry type="library" name="jfxrt" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module-library">
       <library name="JUnit5.3">
         <CLASSES>

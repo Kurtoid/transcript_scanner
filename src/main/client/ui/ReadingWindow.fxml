@@ -19,9 +19,6 @@
         <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#alignAllImages" text="Align All" />
         <Button fx:id="scanImageButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#scanSelectedImage" text="Scan" />
       <Separator prefHeight="10.0" prefWidth="200.0" />
-        <CheckBox fx:id="autoDetectColumns" maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true"
-                  text="Detect columns automatically"/>
-
         <CheckBox fx:id="columnSnapBox" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
                   text="Snap to Columns"/>
       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setNameColumn" text="Set Name Column" />

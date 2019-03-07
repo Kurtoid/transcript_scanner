@@ -13,7 +13,7 @@ import java.net.URL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestOCR {
-    final static Logger logger = LoggerFactory.getLogger(TestOCR.class);
+    private final static Logger logger = LoggerFactory.getLogger(TestOCR.class);
 
     @Test
     public void TestOCROnImage() {

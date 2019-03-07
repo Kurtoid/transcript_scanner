@@ -4,9 +4,12 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Size;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
 
 import static org.opencv.imgproc.Imgproc.MORPH_RECT;
 
@@ -58,4 +61,37 @@ public class Lines {
 		Core.bitwise_not(horizontal, horizontal);
 		return horizontal;
 	}
+
+    static public File getVerticalLines(File image) {
+        logger.trace("aligning {}", image.getName());
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        Mat img = Imgcodecs.imread(image.getAbsolutePath());
+        Mat gray = new Mat();
+        Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
+
+        Mat thresh = new Mat();
+        Core.bitwise_not(gray, thresh);
+
+        Imgproc.threshold(thresh, thresh, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
+
+        // Specify size on vertical axis
+        Mat vertical = thresh.clone();
+
+        int verticalsize = 3;
+        // Create structure element for extracting vertical lines through morphology operations
+        Mat verticalStructure = Imgproc.getStructuringElement(MORPH_RECT, new Size(1, verticalsize));
+        // Apply morphology operations
+        Imgproc.erode(vertical, vertical, verticalStructure, new Point(-1, -1));
+        Imgproc.dilate(vertical, vertical, verticalStructure, new Point(-1, -1));
+        // Show extracted vertical lines
+
+        Core.subtract(thresh, vertical, vertical);
+        Imgcodecs.imwrite("vertical.jpg", vertical);
+        return null;
+    }
+
+    public static void main(String[] args) {
+        getVerticalLines(new File("image_rot.jpg"));
+    }
+
 }

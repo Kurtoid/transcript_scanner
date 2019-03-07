@@ -132,7 +132,7 @@ public class ResultWindowController {
         );
 
         TableColumn<Course, ImageView> correctionCol = new TableColumn<>("Original");
-        correctionCol.setCellValueFactory(new PropertyValueFactory<>("grade"));
+        correctionCol.setCellValueFactory(new PropertyValueFactory<Course, ImageView>("grade"));
         TableColumn<Course, String> typeCol = new TableColumn<>("Subject");
         typeCol.setCellValueFactory(p -> {
             // p.getValue() returns the Person instance for a particular TableView row

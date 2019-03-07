@@ -17,5 +17,5 @@ public class Constants {
     /**
      * used in title bars and etc
      */
-    public final static String programName = "Transcript Scanner";
+    public final static String programName = "Suncoast Transcript Scanner";
 }

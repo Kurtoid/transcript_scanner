@@ -15,7 +15,7 @@ import java.util.PriorityQueue;
  * uses fuzzy search to find a course similar to a scanned one
  */
 public class CourseMatcher {
-	static final Logger logger = LoggerFactory.getLogger(CourseMatcher.class);
+	private static final Logger logger = LoggerFactory.getLogger(CourseMatcher.class);
 
 	/**
 	 * @param scannedLine the course scanned from a paper
@@ -78,8 +78,8 @@ public class CourseMatcher {
 	 * represents a pair sortable by value
 	 */
 	private static class dPair implements Comparable<dPair> {
-		int key;
-		double value;
+		final int key;
+		final double value;
 
 		dPair(int i, double dist) {
 			key = i;

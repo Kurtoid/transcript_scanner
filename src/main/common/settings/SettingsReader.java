@@ -11,7 +11,7 @@ import java.util.Properties;
  * not used yet
  */
 public class SettingsReader {
-    final static String filePath = "settings/defaultProperties";
+    private final static String filePath = "settings/defaultProperties";
 
     public SettingsReader() {
 

@@ -27,11 +27,5 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/ScannerUIClient/libs/fuzzywuzzy-1.2.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/commons-lang3-3.8.1.jar"/>
-	<classpathentry kind="lib" path="libs/maven/apiguardian-api-1.0.0.jar"/>
-	<classpathentry kind="lib" path="libs/maven/junit-jupiter-api-5.4.0.jar"/>
-	<classpathentry kind="lib" path="libs/maven/junit-platform-commons-1.4.0.jar"/>
-	<classpathentry kind="lib" path="libs/maven/opentest4j-1.1.1.jar"/>
-	<classpathentry kind="lib" path="libs/commons-csv-1.6.jar" sourcepath="libs/commons-csv-1.6-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

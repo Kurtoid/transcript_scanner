@@ -30,12 +30,14 @@ public class MainMenuController extends Application {
 
     /**
      * called when image read button is pressed
+     * @param actionEvent
      */
     public void startReadPaper(ActionEvent actionEvent) {
         Parent root = null;
         try {
-
-            // load the FXML files needed for reader layout
+            /**
+             * load the FXML files needed for reader layout
+             */
             root = FXMLLoader.load(getClass().getResource("ReadingWindow.fxml"));
         } catch (IOException e) {
             logger.error("couldnt load ui", e);
@@ -47,6 +49,7 @@ public class MainMenuController extends Application {
 
     /**
      * creates and shows main menu from layout file
+     * @param primaryStage
      * @throws Exception when layout file cant be read
      */
     @Override
