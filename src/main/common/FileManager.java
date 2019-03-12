@@ -1,19 +1,20 @@
 package main.common;
 
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
+
 public class FileManager {
-    public static File temp = new File("temp");
+    public static final File TEMP_FOLDER = new File("temp");
+	public static final File COURSES_FILE = new File("resources/allCourses.csv");
 
     public static void removeTempFiles() throws IOException {
-        if (temp.exists())
-            FileUtils.cleanDirectory(temp);
+        if (TEMP_FOLDER.exists())
+            FileUtils.cleanDirectory(TEMP_FOLDER);
     }
 
     public static void createTempFolder() {
-        temp.mkdirs();
+        TEMP_FOLDER.mkdirs();
     }
 }

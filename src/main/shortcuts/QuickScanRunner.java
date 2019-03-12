@@ -11,7 +11,8 @@ import main.common.FileManager;
 import main.common.GradeReport;
 import main.common.ParsedReport;
 import main.common.imaging.ImagePreprocessor;
-import main.common.tesseract.OCRReader;
+import main.common.imaging.PageReader;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +44,7 @@ public class QuickScanRunner extends Application {
 		double nameColumnRight = 0.337431693989071;
 		double gradeColumnLeft = 0.4620879120879121;
 		double gradeColumnRight = 0.4800693989071038;
-		ParsedReport pr = OCRReader.scanImage(new GradeReport(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+		ParsedReport pr = PageReader.scanImage(new GradeReport(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
 
 		logger.info("stage started");
 		FXMLLoader loader = new FXMLLoader(MainMenuController.class.getResource("ResultBrowser.fxml"));

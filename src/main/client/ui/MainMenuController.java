@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.common.FileManager;
+import main.common.constants.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,7 +80,7 @@ public class MainMenuController extends Application {
 
         mControl = loader.getController();
 
-        primaryStage.setTitle("Suncoast Transcript Scanner");
+        primaryStage.setTitle(Constants.programName);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

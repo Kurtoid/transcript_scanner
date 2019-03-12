@@ -17,5 +17,10 @@ public class Constants {
     /**
      * used in title bars and etc
      */
-    public final static String programName = "Transcript Scanner";
+    public final static String programName = "Suncoast Transcript Scanner";
+
+	/**
+	 * used to check for updates to program. has version and download URL
+	 */
+    public static final String updateURL = "https://kurtoid.bitbucket.io/public/versions/TranscriptScanner.txt";
 }

@@ -57,6 +57,7 @@ public class PrereqChecker {
             requirements = new HashMap<>();
             requirements.put(CLASSTYPES.MATH, 2);
             requirements.put(CLASSTYPES.SCIENCE, 2);
+            requirements.put(CLASSTYPES.WORLDLANG, 1);
         }
     }
 
@@ -86,7 +87,7 @@ public class PrereqChecker {
         WORLDLANG("World Languages"),
 
         ;
-        String name;
+        final String name;
 
         CLASSTYPES(String s) {
             this.name = s;

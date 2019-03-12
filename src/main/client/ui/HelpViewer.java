@@ -41,8 +41,8 @@ public class HelpViewer extends Application {
 }
 class Browser extends Region {
 
-    final WebView browser = new WebView();
-    final WebEngine webEngine = browser.getEngine();
+    private final WebView browser = new WebView();
+    private final WebEngine webEngine = browser.getEngine();
 
     public Browser(String url) {
         webEngine.load(url);
@@ -50,6 +50,7 @@ class Browser extends Region {
         getChildren().add(browser);
 
     }
+
     private Node createSpacer() {
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);

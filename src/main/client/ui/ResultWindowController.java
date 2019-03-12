@@ -1,5 +1,9 @@
 package main.client.ui;
 
+import javax.swing.text.html.ImageView;
+
+import org.slf4j.Logger;
+
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -16,17 +20,11 @@ import javafx.util.converter.DefaultStringConverter;
 import main.common.ParsedReport;
 import main.common.courses.Course;
 import main.common.courses.CourseMatcher;
-import org.slf4j.Logger;
 
-import javax.swing.text.html.ImageView;
-
-/**
- * TODO: add todos
- */
 public class ResultWindowController {
     private final static Logger logger = org.slf4j.LoggerFactory.getLogger(ResultWindowController.class);
     @FXML
-    TableView resultTable;
+    TableView<Course> resultTable;
     private ParsedReport report;
     private EditAction onEdit;
 

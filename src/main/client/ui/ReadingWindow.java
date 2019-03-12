@@ -1,5 +1,14 @@
 package main.client.ui;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.slf4j.Logger;
+
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,27 +36,20 @@ import main.common.GradeReport;
 import main.common.ParsedReport;
 import main.common.imaging.ColumnDetector;
 import main.common.imaging.ImagePreprocessor;
-import main.common.tesseract.OCRReader;
-import org.slf4j.Logger;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import main.common.imaging.PageReader;
 
 /**
  * the meat of  the application
  * Used by user to load images, annotate them, and export extracted class information
  */
 public class ReadingWindow {
-    final static Logger logger = org.slf4j.LoggerFactory.getLogger(ReadingWindow.class);
+    private final static Logger logger = org.slf4j.LoggerFactory.getLogger(ReadingWindow.class);
     public HBox imageContainer;
     public ScrollPane imageScroller;
     public Canvas imagePreview;
     public Button LoadImagesButton;
     public GridPane basePane;
+    public CheckBox autoDetectColumns;
     private GradeReport selectedImage;
     @FXML
     private CheckBox columnSnapBox;
@@ -151,9 +153,12 @@ public class ReadingWindow {
         for (GradeReport f : ApplicationState.scannedImages) {
 //        	System.out.println(selectedImage.file.getName());
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
-
-
-            ParsedReport pr = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+            ParsedReport pr;
+            if (autoDetectColumns.selectedProperty().getValue()) {
+                pr = PageReader.scanImage(f, -1, -1, -1, -1);
+            } else {
+                pr = PageReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+            }
             reports.add(pr);
 
         }
@@ -222,7 +227,6 @@ public class ReadingWindow {
                 /**
                  * this is a mess
                  * keeps the sliders a distance away from each other. if in column snap, find nearest snap point
-                 * TODO: better drag
                  */
                 public void handle(MouseEvent event) {
                     if (!columnSnapBox.isSelected()) {

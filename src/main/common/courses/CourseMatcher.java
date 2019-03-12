@@ -1,21 +1,22 @@
 package main.common.courses;
 
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.PriorityQueue;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import main.common.FileManager;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
+
 /**
  * uses fuzzy search to find a course similar to a scanned one
  */
 public class CourseMatcher {
-	static final Logger logger = LoggerFactory.getLogger(CourseMatcher.class);
+	private static final Logger logger = LoggerFactory.getLogger(CourseMatcher.class);
 
 	/**
 	 * @param scannedLine the course scanned from a paper
@@ -26,8 +27,7 @@ public class CourseMatcher {
 		CoursesReader cr = new CoursesReader();
 		List<Course> courses = new ArrayList<>();
 		try {
-			// TODO: move this string to constants
-			courses = CoursesReader.getCoursesFromFile(new File("resources/allCourses.csv"));
+			courses = CoursesReader.getCoursesFromFile(FileManager.COURSES_FILE);
 		} catch (IOException e) {
 			logger.error("problem loading courses", e);
 		}
@@ -60,8 +60,7 @@ public class CourseMatcher {
 		CoursesReader cr = new CoursesReader();
 		List<Course> courses = new ArrayList<>();
 		try {
-			// TODO: move this string to constants
-			courses = CoursesReader.getCoursesFromFile(new File("resources/allCourses.csv"));
+			courses = CoursesReader.getCoursesFromFile(FileManager.COURSES_FILE);
 		} catch (IOException e) {
 			logger.error("problem loading courses", e);
 		}
@@ -71,18 +70,17 @@ public class CourseMatcher {
 			double dist = FuzzySearch.weightedRatio(c.courseDesc.toUpperCase(), scannedLine.toUpperCase());
 			matches.add(new dPair(i, dist));
 		}
-		Course c = (courses.get(Objects.requireNonNull(matches.poll()).key));
-		return c;
+		return (courses.get(Objects.requireNonNull(matches.poll()).key));
 	}
 
 	/**
 	 * represents a pair sortable by value
 	 */
 	private static class dPair implements Comparable<dPair> {
-		public int key;
-		public double value;
+		final int key;
+		final double value;
 
-		public dPair(int i, double dist) {
+		dPair(int i, double dist) {
 			key = i;
 			value = dist;
 		}

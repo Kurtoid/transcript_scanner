@@ -1,46 +1,50 @@
-package main.common.tesseract;
+package main.common.imaging;
+
+import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.imageio.ImageIO;
+
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import main.common.GradeReport;
 import main.common.ParsedReport;
 import main.common.courses.Course;
 import main.common.courses.CourseMatcher;
 import main.common.courses.GradeParser;
-import main.common.imaging.ImagePreprocessor;
+import main.common.tesseract.OcrAPI;
 import me.xdrop.fuzzywuzzy.FuzzySearch;
 import net.sourceforge.tess4j.ITessAPI;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract1;
 import net.sourceforge.tess4j.TesseractException;
-import org.opencv.core.Point;
-import org.opencv.core.*;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static main.common.imaging.ImagePreprocessor.getFileName;
 
 /**
  * convenience functions for using Tesseract
  */
-public class OCRReader {
-	final static Logger logger = LoggerFactory.getLogger(OCRReader.class);
-	static ITesseract instance;
+public class PageReader {
+	private final static Logger logger = LoggerFactory.getLogger(PageReader.class);
 
 
 	/**
 	 * scans an image in tesseract according to mode, with left and right
-	 * boundaries. Prints result for now uses a temporary image to store
-	 * intermediate crop TODO: crop in memory only
+	 * boundaries. uses a temporary image to store intermediate crop TODO: crop in
+	 * memory only
 	 *
 	 * @param selectedImage the split image line
 	 */
@@ -63,8 +67,15 @@ public class OCRReader {
 			try {
 				if (headerFound) {
 					instance.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_LINE);
-					Column nameCol = findColumn("Course", boxes);
-					File cropped = cropImage(f, nameCol.begin, nameCol.end);
+					Column nameCol;
+					if (nameSelectedLeft == -1 && gradeSelectedRight == -1) {
+						nameCol = findColumn("Course", boxes);
+					} else {
+						nameCol = new Column();
+						nameCol.begin = nameSelectedLeft;
+						nameCol.end = nameSelectedRight;
+					}
+					File cropped = Utils.cropImage(f, nameCol.begin, nameCol.end);
 					String result = (instance.doOCR(cropped));
 					if (!result.trim().equals("")) {
 //                result = result.replaceAll("IB", "International Baccalaureate");
@@ -72,9 +83,16 @@ public class OCRReader {
 						logger.debug("Line: " + result.replace("\n", ""));
 						Course course = (CourseMatcher.matchCourse(result.toLowerCase(), 1).get(0));
 //						instance.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR);
-						Column gradeCol = findColumn("Grade", boxes);
+						Column gradeCol;
+						if (gradeSelectedLeft == -1 && gradeSelectedRight == -1) {
+							gradeCol = findColumn("Grade", boxes);
+						} else {
+							gradeCol = new Column();
+							gradeCol.begin = gradeSelectedLeft;
+							gradeCol.end = gradeSelectedRight;
+						}
 						logger.trace("grade found at {}", gradeCol.toString());
-						File cropped_letter = cropImage(f, gradeCol.begin, gradeCol.end);
+						File cropped_letter = Utils.cropImage(f, gradeCol.begin, gradeCol.end);
 						String grade = instance.doOCR(cropped_letter);
 						course.setGrade(GradeParser.parseGrade(grade), cropped_letter);
 						logger.info("detected course {}", course);
@@ -88,7 +106,7 @@ public class OCRReader {
 				}
 
 				if (!gpaFound) {
-					String wholeLine = doOcr(f);
+					String wholeLine = OcrAPI.doOcr(f);
 					logger.trace("read whole line: {}", wholeLine.trim());
 					if (isGPALine(wholeLine.trim())) {
 						Pattern pat = Pattern.compile("([0-9]\\.[0-9]{4})");
@@ -106,7 +124,7 @@ public class OCRReader {
 					}
 				}
 				if (!headerFound) {
-					String wholeLine = doOcr(f);
+					String wholeLine = OcrAPI.doOcr(f);
 					logger.trace("read whole line: {}", wholeLine.trim());
 					double score = FuzzySearch.ratio("Year Marking Period Course Course Number Percent Grade Grade Scale Cred. Attempted Cred. Earned GPA PTS Weighted GPA Affects GPA Teacher", wholeLine.trim());
 					logger.trace("Header score: {}", score);
@@ -145,10 +163,6 @@ public class OCRReader {
 		return cumGPAScore > 50 && cumGPAScore > cumWeightedGPAScore;
 	}
 
-	public static String doOcr(File f) {
-		return doOcr(f, 7);
-	}
-
 	public static List<BoxResult> getBoxes(File f) throws IOException, TesseractException {
 
 		Mat img = Imgcodecs.imread(f.getAbsolutePath());
@@ -161,7 +175,7 @@ public class OCRReader {
 		int level = ITessAPI.TessPageIteratorLevel.RIL_WORD;
 		List<Rectangle> result = instance.getSegmentedRegions(ImageIO.read(f), level);
 		List<BoxResult> boxes = new ArrayList<>();
-		String[] words = doOcr(f).trim().split(" ");
+		String[] words = OcrAPI.doOcr(f).trim().split(" ");
 		for (int i = 0; i < result.size(); i++) {
 			Rectangle rect = result.get(i);
 			BoxResult b = new BoxResult();
@@ -183,7 +197,6 @@ public class OCRReader {
 
 	}
 
-	// TODO: multi word columns
 	static Column findColumn(String name, List<BoxResult> boxes) {
 		for (int i = 0; i < boxes.size(); i++) {
 			BoxResult r = boxes.get(i);
@@ -203,54 +216,6 @@ public class OCRReader {
 		}
 		return null;
 	}
-	/**
-	 * runs tesseract on an image by PSM mode
-	 *
-	 * @param f    file to be read
-	 * @param mode mode to use; see https://github.com/tesseract-ocr/tesseract/wiki/Command-Line-Usage
-	 * @return
-	 */
-	public static String doOcr(File f, int mode) {
-		if (instance == null) {
-			instance = new Tesseract1();
-		}
-
-//		instance.setTessVariable("psm", Integer.toString(mode));
-		try {
-			return (instance.doOCR(f));
-		} catch (TesseractException e) {
-			logger.error("ocr error", e);
-			return null;
-		}
-
-	}
-
-	/**
-	 * crops an image given left and right percentage values
-	 * creates a new file and manipulates that
-	 * @param f the file to crop
-	 * @param selectedLeft
-	 * @param selectedRight
-	 * @return a cropped image
-	 */
-	private static File cropImage(File f, double selectedLeft, double selectedRight) {
-		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-		Mat img = Imgcodecs.imread(f.getAbsolutePath());
-//        f.delete();
-
-		Rect roi = new Rect((int) (selectedLeft * img.width()), 0, (int) ((selectedRight - selectedLeft) * img.width()),
-				img.height());
-//        System.out.println(roi.toString());
-//			System.out.println(roi.toString()+"\t"+i);
-		Mat cropped = new Mat(img, roi);
-		File result = new File(
-				f.getParent() + File.separator + getFileName(f.getName()) + "_" + ((int) (Math.random() * 1000))
-						+ ".png");
-		logger.trace("saving file at {}", result.getAbsolutePath());
-		Imgcodecs.imwrite(result.getAbsolutePath(), cropped);
-		return (result);
-	}
-
 	static class BoxResult implements Comparable<BoxResult> {
 		String word;
 		double x;

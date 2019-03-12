@@ -1,17 +1,25 @@
 package main.common.imaging;
 
-import main.common.FileManager;
-import org.opencv.core.*;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.RotatedRect;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import main.common.FileManager;
 
 /**
  * convenience functions to manipulate images
@@ -70,9 +78,8 @@ public class ImagePreprocessor {
 		Mat rotated = new Mat();
 		Imgproc.warpAffine(gray, rotated, rotMat, new Size(w, h), Imgproc.INTER_CUBIC, Core.BORDER_REPLICATE);
 
-		Imgcodecs.imwrite(FileManager.temp.getAbsolutePath() + File.separator + imageFile.getName(), rotated);
-		File outDir = new File(FileManager.temp.getAbsolutePath() + File.separator + imageFile.getName());
-		return outDir;
+		Imgcodecs.imwrite(FileManager.TEMP_FOLDER.getAbsolutePath() + File.separator + imageFile.getName(), rotated);
+		return new File(FileManager.TEMP_FOLDER.getAbsolutePath() + File.separator + imageFile.getName());
 //        Imgcodecs.imwrite("rot.png", rotated);
 
 	}
@@ -115,21 +122,22 @@ public class ImagePreprocessor {
 			}
 
 		}
-		File folder = new File(FileManager.temp.getAbsolutePath() + File.separator + getFileName(image.getName()));
+		File folder = new File(FileManager.TEMP_FOLDER.getAbsolutePath() + File.separator + getFileName(image.getName()));
 		folder.mkdirs();
 		logger.debug("saving new images at " + folder.getAbsolutePath());
 		Core.bitwise_not(gray, gray);
-		// TODO: some system for this
 		LinkedList<File> files = new LinkedList<>();
+		// for each line marked
 		for (int i = 0; i < ycoords.size() - 1; i++) {
+			// create cropping rectangle between this line and the next
 			Rect roi = new Rect(0, Math.max(0, ycoords.get(i) + 2), gray.width(),
 					Math.min(((int) ycoords.get(i + 1) - (ycoords.get(i))) - 3, gray.height()));
-			Mat cropped = new Mat(gray, roi);
-			Scalar s = Core.mean(cropped);
+			Mat cropped = new Mat(gray, roi); // crop the image
+			// create a temp file based off the the image name
 			File f = new File(
 					folder.getAbsolutePath() + File.separator + getFileName(image.getName()) + "_" + i + ".png");
 			files.add(f);
-			Imgcodecs.imwrite(f.getAbsolutePath(), cropped);
+			Imgcodecs.imwrite(f.getAbsolutePath(), cropped); // add and save
 
 		}
 		return files;
