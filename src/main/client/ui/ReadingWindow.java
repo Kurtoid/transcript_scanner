@@ -1,5 +1,14 @@
 package main.client.ui;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.slf4j.Logger;
+
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,15 +36,7 @@ import main.common.GradeReport;
 import main.common.ParsedReport;
 import main.common.imaging.ColumnDetector;
 import main.common.imaging.ImagePreprocessor;
-import main.common.tesseract.OCRReader;
-import org.slf4j.Logger;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import main.common.imaging.PageReader;
 
 /**
  * the meat of  the application
@@ -154,9 +155,9 @@ public class ReadingWindow {
 //    		System.out.println(ImagePreprocessor.splitImage(selectedImage.file).getAbsolutePath());
             ParsedReport pr;
             if (autoDetectColumns.selectedProperty().getValue()) {
-                pr = OCRReader.scanImage(f, -1, -1, -1, -1);
+                pr = PageReader.scanImage(f, -1, -1, -1, -1);
             } else {
-                pr = OCRReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
+                pr = PageReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
             }
             reports.add(pr);
 
@@ -226,7 +227,6 @@ public class ReadingWindow {
                 /**
                  * this is a mess
                  * keeps the sliders a distance away from each other. if in column snap, find nearest snap point
-                 * TODO: better drag
                  */
                 public void handle(MouseEvent event) {
                     if (!columnSnapBox.isSelected()) {

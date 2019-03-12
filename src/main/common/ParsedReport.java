@@ -1,9 +1,9 @@
 package main.common;
 
-import main.common.courses.Course;
-
 import java.util.ArrayList;
 import java.util.Set;
+
+import main.common.courses.Course;
 
 public class ParsedReport {
     ArrayList<Course> courses;
@@ -29,8 +29,9 @@ public class ParsedReport {
     }
 
     /**
-     * super complicated patent-pending top secret proprietary GPA calculator
-     */
+	 * <sarcasm>super complicated patent-pending top secret proprietary GPA
+	 * calculator</sarcasm>
+	 */
     private double calculateGPA() {
         double total = 0;
         for (Course c : courses) {

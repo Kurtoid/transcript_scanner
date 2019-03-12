@@ -1,15 +1,16 @@
 package main.common.courses;
 
-import me.xdrop.fuzzywuzzy.FuzzySearch;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.PriorityQueue;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import main.common.FileManager;
+import me.xdrop.fuzzywuzzy.FuzzySearch;
 
 /**
  * uses fuzzy search to find a course similar to a scanned one
@@ -26,8 +27,7 @@ public class CourseMatcher {
 		CoursesReader cr = new CoursesReader();
 		List<Course> courses = new ArrayList<>();
 		try {
-			// TODO: move this string to constants
-			courses = CoursesReader.getCoursesFromFile(new File("resources/allCourses.csv"));
+			courses = CoursesReader.getCoursesFromFile(FileManager.COURSES_FILE);
 		} catch (IOException e) {
 			logger.error("problem loading courses", e);
 		}
@@ -60,8 +60,7 @@ public class CourseMatcher {
 		CoursesReader cr = new CoursesReader();
 		List<Course> courses = new ArrayList<>();
 		try {
-			// TODO: move this string to constants
-			courses = CoursesReader.getCoursesFromFile(new File("resources/allCourses.csv"));
+			courses = CoursesReader.getCoursesFromFile(FileManager.COURSES_FILE);
 		} catch (IOException e) {
 			logger.error("problem loading courses", e);
 		}

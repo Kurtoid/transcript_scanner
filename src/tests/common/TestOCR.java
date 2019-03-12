@@ -2,7 +2,8 @@ package tests.common;
 
 import main.common.GradeReport;
 import main.common.imaging.ImagePreprocessor;
-import main.common.tesseract.OCRReader;
+import main.common.imaging.PageReader;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ public class TestOCR {
         double gradeColumnLeft = 0.4620879120879121;
         double gradeColumnRight = 0.4800693989071038;
 
-        assertEquals(15, OCRReader.scanImage(new GradeReport(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight).getCourses().size());
+        assertEquals(15, PageReader.scanImage(new GradeReport(f), nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight).getCourses().size());
     }
 
 }

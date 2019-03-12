@@ -16,7 +16,7 @@ public class TestFileManager {
     @Test
     public void testRemoveTempFiles() {
         main.common.FileManager.createTempFolder();
-        File f = main.common.FileManager.temp;
+        File f = main.common.FileManager.TEMP_FOLDER;
         File newFile = new File(f, "empty.file");
         try {
             newFile.createNewFile();

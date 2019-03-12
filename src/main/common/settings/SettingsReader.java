@@ -6,13 +6,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * read settings from a file
  * not used yet
  */
 public class SettingsReader {
     private final static String filePath = "settings/defaultProperties";
-
+	private static Logger logger = LoggerFactory.getLogger(SettingsReader.class);
     public SettingsReader() {
 
     }
@@ -33,8 +36,7 @@ public class SettingsReader {
             out.close();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+			logger.error("Problem reading settings", e);
         }
 
     }
