@@ -18,4 +18,9 @@ public class Constants {
      * used in title bars and etc
      */
     public final static String programName = "Suncoast Transcript Scanner";
+
+	/**
+	 * used to check for updates to program. has version and download URL
+	 */
+	public static final String updateURL = "https://github.com/Kurtoid/kurtoid.github.io/raw/master/public/versions/TranscriptScanner.txt";
 }
