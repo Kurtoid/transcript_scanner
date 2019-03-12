@@ -61,6 +61,11 @@ public class PrereqChecker {
         }
     }
 
+    public static HashMap<CLASSTYPES, Integer> getRequirements() {
+        initRequirements();
+        return requirements;
+    }
+
     public enum CLASSTYPES {
         ART("Art - Visual Arts"),
         CLEP("CLEP Credits via CAP"),
