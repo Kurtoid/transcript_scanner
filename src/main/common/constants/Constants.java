@@ -22,5 +22,5 @@ public class Constants {
 	/**
 	 * used to check for updates to program. has version and download URL
 	 */
-	public static final String updateURL = "https://github.com/Kurtoid/kurtoid.github.io/raw/master/public/versions/TranscriptScanner.txt";
+    public static final String updateURL = "https://kurtoid.bitbucket.io/public/versions/TranscriptScanner.txt";
 }
