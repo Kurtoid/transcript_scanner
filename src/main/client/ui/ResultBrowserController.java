@@ -14,6 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import main.common.FileManager;
 import main.common.ParsedReport;
+import main.common.ReportWriter;
 import main.common.courses.PrereqChecker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -127,5 +128,9 @@ public class ResultBrowserController extends Application implements Initializabl
     public void nextPage(ActionEvent actionEvent) {
         index++;
         updateReport();
+    }
+
+    public void exportReports(ActionEvent actionEvent) {
+        ReportWriter.saveReports(reports);
     }
 }

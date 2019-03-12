@@ -29,45 +29,45 @@
     <SUITE FILE_PATH="coverage/scannerui$TestPrereqChecker_testCheckClassType.ic" NAME="TestPrereqChecker.testCheckClassType Coverage Results" MODIFIED="1550696245491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>main.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/scannerui$Whole_project.ic" NAME="Whole project Coverage Results" MODIFIED="1550694299045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/scannerui$All_in_ScannerUIClient.ic" NAME="All in ScannerUIClient Coverage Results" MODIFIED="1550696567023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.common.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/scannerui$QuickScanRunner.ic" NAME="QuickScanRunner Coverage Results" MODIFIED="1549992072498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tests.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/scannerui$tests_common_in_ScannerUIClient.exec" NAME="tests.common in ScannerUIClient Coverage Results" MODIFIED="1551289064040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.common.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/scannerui$OCRTests.ic" NAME="OCRTests Coverage Results" MODIFIED="1550693716050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>client.*</FILTER>
       <FILTER>common.*</FILTER>
       <FILTER>shortcuts.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$Whole_project.ic" NAME="Whole project Coverage Results" MODIFIED="1550694299045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>*</FILTER>
+    <SUITE FILE_PATH="coverage/scannerui$FileTests.ic" NAME="FileTests Coverage Results" MODIFIED="1550693484008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>tests.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/scannerui$FileManager.ic" NAME="FileManager Coverage Results" MODIFIED="1550694271384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>client.*</FILTER>
       <FILTER>common.*</FILTER>
       <FILTER>shortcuts.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$QuickScanRunner.ic" NAME="QuickScanRunner Coverage Results" MODIFIED="1549992072498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>tests.*</FILTER>
+    <SUITE FILE_PATH="coverage/scannerui$OCRTests_TestOCROnImage.ic" NAME="OCRTests.TestOCROnImage Coverage Results" MODIFIED="1550695358444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.common.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/scannerui$TestPrereqChecker.ic" NAME="TestPrereqChecker Coverage Results" MODIFIED="1550696163800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>main.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/scannerui$main_common_in_ScannerUIClient.exec" NAME="main.common in ScannerUIClient Coverage Results" MODIFIED="1550696730960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.common.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/scannerui$All_in_ScannerUIClient.exec" NAME="All in ScannerUIClient Coverage Results" MODIFIED="1550696650915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.common.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/scannerui$FileManager_testRemoveTempFiles.ic" NAME="FileManager.testRemoveTempFiles Coverage Results" MODIFIED="1550694382599" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
       <FILTER>*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$TestPrereqChecker.ic" NAME="TestPrereqChecker Coverage Results" MODIFIED="1550696163800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$OCRTests_TestOCROnImage.ic" NAME="OCRTests.TestOCROnImage Coverage Results" MODIFIED="1550695358444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.common.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$main_common_in_ScannerUIClient.exec" NAME="main.common in ScannerUIClient Coverage Results" MODIFIED="1550696730960" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.common.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$FileTests.ic" NAME="FileTests Coverage Results" MODIFIED="1550693484008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>tests.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$All_in_ScannerUIClient.ic" NAME="All in ScannerUIClient Coverage Results" MODIFIED="1550696567023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="true">
-      <FILTER>main.common.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/scannerui$tests_common_in_ScannerUIClient.exec" NAME="tests.common in ScannerUIClient Coverage Results" MODIFIED="1551289064040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.common.*</FILTER>
     </SUITE>
   </component>
   <component name="CoverageOptionsProvider">
