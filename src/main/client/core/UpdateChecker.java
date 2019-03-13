@@ -12,8 +12,18 @@ import java.net.URL;
 import java.security.cert.CertificateException;
 import java.util.Properties;
 
+/**
+ * checks for updates from a hosted text file and zip
+ */
 public class UpdateChecker {
 	final static private Logger logger = LoggerFactory.getLogger(UpdateChecker.class);
+
+	/**
+	 * determines if an update is required from the online update file
+	 *
+	 * @return true or false; whether there is a new version available
+	 * @throws IOException if it cant connect
+	 */
 	public static boolean needsUpdate() throws IOException {
 		Properties props = new Properties();
 		props.load(readUpdateFile());
@@ -30,6 +40,11 @@ public class UpdateChecker {
 		}
 	}
 
+	/**
+	 * utility method to read the file contents from the link
+	 * @return a stream representing the file contents
+	 * @throws IOException
+	 */
 	private static InputStream readUpdateFile() throws IOException {
 		trustAllHosts();
 		URL url = new URL(Constants.updateURL);
@@ -40,7 +55,7 @@ public class UpdateChecker {
 	 * because school computers don't allow java to use SDPBC cert :/<br/>
 	 * this is bad because we are about to download AND RUN(!!!) an executable over this now-insecure connection
 	 */
-	public static void trustAllHosts() {
+	private static void trustAllHosts() {
 		try {
 			TrustManager[] trustAllCerts = new TrustManager[]{
 					new X509ExtendedTrustManager() {

@@ -11,10 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e827d78-7588-4b3f-a884-ee5f92d3ac19" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ScannerUIClient_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/client/core/UpdateChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/client/core/UpdateChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/common/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/common/constants/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/client/ui/HelpViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/client/ui/HelpViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/client/ui/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/client/ui/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/client/ui/ReadingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/client/ui/ReadingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/client/ui/ResizableCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/client/ui/ResizableCanvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/client/ui/ResultBrowserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/client/ui/ResultBrowserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/client/ui/ResultWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/client/ui/ResultWindowController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -84,96 +88,114 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/common/FileManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/client/ui/ReadingWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
+            <state relative-caret-position="365">
+              <caret line="195" column="39" selection-start-line="195" selection-start-column="39" selection-end-line="195" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/common/GradeReport.java">
+        <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResizableCanvas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/common/courses/PrereqChecker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="59" column="54" selection-start-line="59" selection-start-column="54" selection-end-line="59" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/shortcuts/QuickScanRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/common/ScanWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/common/imaging/ColumnDetector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1377">
-              <caret line="91" column="35" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/client/core/UpdateChecker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+            <state relative-caret-position="68">
+              <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
               <folding>
-                <element signature="e#1272#1273#0" expanded="true" />
-                <element signature="e#1300#1301#0" expanded="true" />
+                <element signature="e#358#359#0" expanded="true" />
+                <element signature="e#385#386#0" expanded="true" />
+                <element signature="e#445#446#0" expanded="true" />
+                <element signature="e#478#479#0" expanded="true" />
+                <element signature="e#538#539#0" expanded="true" />
+                <element signature="e#572#573#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/common/constants/Constants.java">
+        <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultBrowserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+            <state relative-caret-position="875">
+              <caret line="103" column="49" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultWindowController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
+              <folding>
+                <element signature="e#1060#1061#0" expanded="true" />
+                <element signature="e#1096#1097#0" expanded="true" />
+                <element signature="e#1954#2194#0" expanded="true" />
+                <element signature="e#2193#2194#0" expanded="true" />
+                <element signature="e#3755#4897#0" expanded="true" />
+                <element signature="e#4896#4897#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/client/ui/ReadingWindow.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/main/client/core/UpdateChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+            <state relative-caret-position="-467">
+              <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
+              <folding>
+                <element signature="e#1473#1474#0" expanded="true" />
+                <element signature="e#1501#1502#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/client/ui/HelpViewer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-93">
+              <caret line="44" column="34" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
+              <folding>
+                <element signature="e#1965#1966#0" expanded="true" />
+                <element signature="e#1991#1992#0" expanded="true" />
+                <element signature="e#2057#2058#0" expanded="true" />
+                <element signature="e#2083#2084#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/client/ui/Login.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/client/ui/MainMenuController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="57" column="1" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/client/ui/MainMenu.fxml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+            </state>
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/client/core/ApplicationState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -245,8 +267,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/common/FileManager.java" />
-        <option value="$PROJECT_DIR$/src/common/imaging/ColumnDetector.java" />
         <option value="$PROJECT_DIR$/src/common/imaging/LineRemover.java" />
         <option value="$PROJECT_DIR$/src/common/imaging/Lines.java" />
         <option value="$PROJECT_DIR$/src/common/courses/GradeParser.java" />
@@ -279,9 +299,6 @@
         <option value="$PROJECT_DIR$/src/main/common/courses/Course.java" />
         <option value="$PROJECT_DIR$/src/main/common/imaging/Utils.java" />
         <option value="$PROJECT_DIR$/src/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/main/client/ui/ResultWindowController.java" />
-        <option value="$PROJECT_DIR$/src/main/client/ui/HelpViewer.java" />
-        <option value="$PROJECT_DIR$/src/main/client/ui/MainMenuController.java" />
         <option value="$PROJECT_DIR$/src/main/common/settings/SettingsReader.java" />
         <option value="$PROJECT_DIR$/src/tests/common/TestOCR.java" />
         <option value="$PROJECT_DIR$/src/main/client/core/ApplicationState.java" />
@@ -289,13 +306,18 @@
         <option value="$PROJECT_DIR$/src/main/common/FileManager.java" />
         <option value="$PROJECT_DIR$/src/main/common/GradeReport.java" />
         <option value="$PROJECT_DIR$/src/main/client/ui/ReadingWindow.fxml" />
-        <option value="$PROJECT_DIR$/src/main/client/ui/ReadingWindow.java" />
         <option value="$PROJECT_DIR$/src/main/common/tesseract/OCRReader.java" />
         <option value="$PROJECT_DIR$/src/main/common/courses/PrereqChecker.java" />
         <option value="$PROJECT_DIR$/src/main/common/ScanWriter.java" />
         <option value="$PROJECT_DIR$/src/main/common/imaging/ColumnDetector.java" />
         <option value="$PROJECT_DIR$/src/main/common/constants/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/client/core/UpdateChecker.java" />
+        <option value="$PROJECT_DIR$/src/main/client/ui/HelpViewer.java" />
+        <option value="$PROJECT_DIR$/src/main/client/ui/MainMenuController.java" />
+        <option value="$PROJECT_DIR$/src/main/client/ui/ReadingWindow.java" />
+        <option value="$PROJECT_DIR$/src/main/client/ui/ResizableCanvas.java" />
+        <option value="$PROJECT_DIR$/src/main/client/ui/ResultBrowserController.java" />
+        <option value="$PROJECT_DIR$/src/main/client/ui/ResultWindowController.java" />
       </list>
     </option>
   </component>
@@ -405,7 +427,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -439,6 +460,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -447,7 +469,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552408854463" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552495348755" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/out" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -481,7 +503,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.UpdateChecker">
+  <component name="RunManager" selected="Application.MainMenuController">
     <configuration name="ColumnDetector" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <log_file alias="logs" path="logs/logs.log" />
       <option name="MAIN_CLASS_NAME" value="main.common.imaging.ColumnDetector" />
@@ -603,9 +625,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainMenuController" />
         <item itemvalue="Application.UpdateChecker" />
         <item itemvalue="Application.QuickScanRunner" />
-        <item itemvalue="Application.MainMenuController" />
         <item itemvalue="JUnit.TestOCR.TestOCROnImage (1)" />
         <item itemvalue="Application.ColumnDetector" />
       </list>
@@ -790,7 +812,14 @@
       <option name="project" value="LOCAL" />
       <updated>1551985689859</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="add update checking; jar output for IntelliJ">
+      <created>1552409494287</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1552409494287</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -838,7 +867,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49963847" visible="true" weight="0.1339381" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49963847" visible="true" weight="0.13500534" />
       <window_info id="Structure" order="1" sideWeight="0.50036156" side_tool="true" weight="0.43684635" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -847,12 +876,12 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3257329" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48879403" weight="0.330076" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48879403" visible="true" weight="0.330076" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946266" weight="0.39739415" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32899022" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.499194" visible="true" weight="0.32899022" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.499194" weight="0.32899022" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.511206" side_tool="true" weight="0.33224756" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49840087" weight="0.22584148" />
       <window_info anchor="bottom" id="Inspection Results" order="10" sideWeight="0.4986588" weight="0.32899022" />
@@ -933,7 +962,8 @@
     <MESSAGE value="stupid simple fix" />
     <MESSAGE value="testing column stuff" />
     <MESSAGE value="some cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="some cleanup" />
+    <MESSAGE value="add update checking; jar output for IntelliJ" />
+    <option name="LAST_COMMIT_MESSAGE" value="add update checking; jar output for IntelliJ" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -952,11 +982,8 @@
         <state relative-caret-position="-174554" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/Login.css" />
     <entry file="file://$PROJECT_DIR$/src/main/client/ui/LoginLayout.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultWindow.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResizableCanvas.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/MainMenu.fxml" />
     <entry file="file://$PROJECT_DIR$/resources/help/style/normalize.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -976,7 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultBrowserController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultBrowser.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/common/imaging/PaperAligner.java" />
     <entry file="file://$PROJECT_DIR$/columns.png">
@@ -1036,27 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="140" column="8" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/HelpViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="44" column="34" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/MainMenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="82" column="45" lean-forward="true" selection-start-line="82" selection-start-column="45" selection-end-line="82" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/common/courses/Course.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1106,23 +1111,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/core/ApplicationState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/common/tesseract/OCRReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="88" column="24" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/common/tesseract/OCRReader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/common/courses/CourseMatcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
@@ -1132,15 +1121,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/common/FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="85">
           <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ReadingWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1160,7 +1142,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/shortcuts/QuickScanRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="221">
           <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
         </state>
       </provider>
@@ -1169,14 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ReadingWindow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1194,13 +1168,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ReadingWindow.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/core/ApplicationState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/client/core/UpdateChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        <state relative-caret-position="-467">
+          <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
           <folding>
-            <element signature="e#1272#1273#0" expanded="true" />
-            <element signature="e#1300#1301#0" expanded="true" />
+            <element signature="e#1473#1474#0" expanded="true" />
+            <element signature="e#1501#1502#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/HelpViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-93">
+          <caret line="44" column="34" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
+          <folding>
+            <element signature="e#1965#1966#0" expanded="true" />
+            <element signature="e#1991#1992#0" expanded="true" />
+            <element signature="e#2057#2058#0" expanded="true" />
+            <element signature="e#2083#2084#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/Login.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/MainMenu.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/MainMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="57" column="1" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ReadingWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="195" column="39" selection-start-line="195" selection-start-column="39" selection-end-line="195" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResizableCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
+          <folding>
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#385#386#0" expanded="true" />
+            <element signature="e#445#446#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#538#539#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultBrowserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="875">
+          <caret line="103" column="49" selection-start-line="103" selection-start-column="49" selection-end-line="103" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/client/ui/ResultWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="48" column="46" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
+          <folding>
+            <element signature="e#1060#1061#0" expanded="true" />
+            <element signature="e#1096#1097#0" expanded="true" />
+            <element signature="e#1954#2194#0" expanded="true" />
+            <element signature="e#2193#2194#0" expanded="true" />
+            <element signature="e#3755#4897#0" expanded="true" />
+            <element signature="e#4896#4897#0" expanded="true" />
           </folding>
         </state>
       </provider>

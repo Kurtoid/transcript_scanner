@@ -1,14 +1,5 @@
 package main.client.ui;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.slf4j.Logger;
-
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,6 +28,14 @@ import main.common.ParsedReport;
 import main.common.imaging.ColumnDetector;
 import main.common.imaging.ImagePreprocessor;
 import main.common.imaging.PageReader;
+import org.slf4j.Logger;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * the meat of  the application
@@ -135,10 +134,8 @@ public class ReadingWindow {
 
     /**
      * runs opencv align on all of the images
-     *
-     * @param actionEvent
      */
-    public void alignAllImages(ActionEvent actionEvent) {
+    public void alignAllImages() {
         for (GradeReport f : ApplicationState.scannedImages) {
             f.file = ImagePreprocessor.alignImage(f.file);
         }
@@ -146,6 +143,9 @@ public class ReadingWindow {
         updateCanvas();
     }
 
+    /**
+     * name incorrect; now scans <i>all</i> the images in the loaded set<br/>then creates a result browser
+     */
     @FXML
     public void scanSelectedImage(ActionEvent actionEvent) {
         Set<ParsedReport> reports = new HashSet<>();
@@ -182,15 +182,21 @@ public class ReadingWindow {
 
     }
 
+    /**
+     * used for manual column selection
+     */
     @FXML
-    public void setGradeColumn(ActionEvent e) {
+    public void setGradeColumn() {
         gradeColumnLeft = selectedLeft;
         gradeColumnRight = selectedRight;
         updateCanvas();
     }
 
+    /**
+     * used for manual column selection
+     */
     @FXML
-    public void setNameColumn(ActionEvent e) {
+    public void setNameColumn() {
         nameColumnLeft = selectedLeft;
         nameColumnRight = selectedRight;
         updateCanvas();

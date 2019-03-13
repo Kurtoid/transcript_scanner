@@ -54,20 +54,17 @@ public class MainMenuController extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(Thread t, Throwable e) {
-                File logs = new File("logs/log.log");
-                File out = new File(System.getProperty("user.home") + "/Desktop/transcriptscanner_logs.log");
-                logger.error("uncaught exception!", e);
-                try {
-                    Files.copy(logs.toPath(), out.toPath());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                JOptionPane.showMessageDialog(null, "Something went wrong. Please send transcriptscanner_logs (on your desktop) to kurtwilson099@gmail.com", "Error", JOptionPane.ERROR_MESSAGE, null);
-
+        Thread.setDefaultUncaughtExceptionHandler((t, e) -> {
+            File logs = new File("logs/log.log");
+            File out = new File(System.getProperty("user.home") + "/Desktop/transcriptscanner_logs.log");
+            logger.error("uncaught exception!", e);
+            try {
+                Files.copy(logs.toPath(), out.toPath());
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
+            JOptionPane.showMessageDialog(null, "Something went wrong. Please send transcriptscanner_logs (on your desktop) to kurtwilson099@gmail.com", "Error", JOptionPane.ERROR_MESSAGE, null);
+
         });
         logger.info("stage started");
         FileManager.createTempFolder();
@@ -85,7 +82,10 @@ public class MainMenuController extends Application {
         primaryStage.show();
     }
 
-    public void showHelp(ActionEvent actionEvent) {
+    /**
+     * creates a browser in a window to render help html files
+     */
+    public void showHelp() {
         Stage stage = new Stage();
         stage.setTitle("Web View");
         Scene scene;
