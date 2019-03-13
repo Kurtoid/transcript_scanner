@@ -23,6 +23,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+/**
+ * window used to browse a set of scanned pages<br/>provides controls for saving files and changing the current page
+ */
 public class ResultBrowserController extends Application implements Initializable {
     private static final Logger logger = LoggerFactory.getLogger(ResultBrowserController.class);
     public Label gpaLabel;
@@ -95,6 +99,10 @@ public class ResultBrowserController extends Application implements Initializabl
         gridSubScene.heightProperty().bind(fitPane.heightProperty());
     }
 
+    /**
+     * called when selected report changes<br/>
+     * changes missing classes, status lines, etc
+     */
     private void updateReport() {
         if (index < 0)
             index = 0;

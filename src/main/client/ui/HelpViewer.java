@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 
 /**
  * adapted from https://docs.oracle.com/javafx/2/webview/jfxpub-webview.htm
+ * @author Alla Redko, modified by Kurt Wilson
  */
 public class HelpViewer extends Application {
     private Scene scene;
@@ -39,6 +40,10 @@ public class HelpViewer extends Application {
         launch(args);
     }
 }
+
+/**
+ * javaFX embeddable html renderer
+ */
 class Browser extends Region {
 
     private final WebView browser = new WebView();
