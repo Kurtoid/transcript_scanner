@@ -27,11 +27,17 @@ public class TestPrereqChecker {
         Course sci2 = new Course();
         sci2.grade = "A";
         sci2.type = "SCIENCE";
+
+        Course wl1 = new Course();
+        wl1.grade = "A";
+        wl1.type = "WORLDLANG";
+
         Set<Course> courses = new HashSet<>();
         courses.add(math1);
         courses.add(math2);
         courses.add(sci1);
         courses.add(sci2);
+        courses.add(wl1);
         ParsedReport pr = new ParsedReport();
         pr.setCourses(courses);
         assertEquals(PrereqChecker.getMissingClasses(pr).size(), 0);

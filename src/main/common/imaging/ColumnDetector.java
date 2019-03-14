@@ -2,7 +2,6 @@ package main.common.imaging;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
@@ -18,29 +17,6 @@ import java.util.ArrayList;
 public class ColumnDetector {
 
     private static final Logger logger = LoggerFactory.getLogger(ColumnDetector.class);
-
-    public static void main(String[] args) {
-        logger.trace("Finding columns");
-        File f = new File("source.jpg");
-        f = ImagePreprocessor.alignImage(f);
-        logger.trace("{} exists? {}", f.getAbsolutePath(), f.exists());
-        ArrayList<Double> xcoords = findColumns(f);
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        Mat img = Imgcodecs.imread(f.getAbsolutePath());
-//        Imgproc.cvtColor(img, img,
-//                Imgproc.COLOR_GRAY2BGR);
-        Core.transpose(img, img);
-
-        for (int i = 0; i < xcoords.size(); ++i) {
-            Imgproc.line(img, new Point(0, xcoords.get(i) * img.rows()), new Point(img.cols(),
-                    xcoords.get(i) * img.rows()), new Scalar(0, 255, 0));
-        }
-        Core.transpose(img, img);
-
-        Imgcodecs.imwrite("columns_ovrlay.png", img); //
-
-
-    }
 
     static public ArrayList<Double> findColumns(File image) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);

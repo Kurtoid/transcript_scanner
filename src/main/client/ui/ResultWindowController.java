@@ -49,6 +49,16 @@ public class ResultWindowController {
      * utility method to set column properties
      */
     private void setColumns() {
+        resultTable.getColumns().addAll(getColumns());
+
+    }
+
+    /**
+     * generates required display columns and binds properties to them
+     *
+     * @return a list of columns used by the table
+     */
+    public TableColumn[] getColumns() {
         TableColumn<Course, String> courseCol = new TableColumn<>("Course");
         courseCol.setCellValueFactory(p -> {
             // p.getValue() returns the Course instance for a particular TableView row
@@ -133,18 +143,18 @@ public class ResultWindowController {
                     onEdit.afterEdit();
                 }
         );
-
+        gradeCol.setEditable(true);
         TableColumn<Course, ImageView> correctionCol = new TableColumn<>("Original");
         correctionCol.setCellValueFactory(new PropertyValueFactory<Course, ImageView>("grade"));
+        correctionCol.setEditable(false);
         TableColumn<Course, String> typeCol = new TableColumn<>("Subject");
         typeCol.setCellValueFactory(p -> {
             // p.getValue() returns the Person instance for a particular TableView row
             return new SimpleStringProperty(p.getValue().type);
         });
-        resultTable.getColumns().addAll(courseCol, gradeCol, correctionCol, typeCol);
-
+        typeCol.setEditable(false);
+        return new TableColumn[]{courseCol, gradeCol, correctionCol, typeCol};
     }
-
     @FXML
     private void initialize() {
 
