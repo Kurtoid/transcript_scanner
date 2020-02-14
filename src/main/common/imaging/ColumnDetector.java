@@ -22,25 +22,30 @@ public class ColumnDetector {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         logger.trace("reading {}", image.getAbsolutePath());
         Mat img = Imgcodecs.imread(image.getAbsolutePath());
+        // convert to B&W
         Mat gray = new Mat();
         Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
 //        Rect roi = new Rect(0, (int) (gray.height() * .2), gray.width(), (int) (gray.height() * .8));
 //        gray = new Mat(gray, roi);
-
+        // invert
         Core.bitwise_not(gray, gray);
         Core.transpose(gray, gray);
         Mat vert_proj = new Mat();
+
+        // compress to 1d line
         Core.reduce(Lines.removeHorizontalLines(gray), vert_proj, 1, Core.REDUCE_AVG);
 //		Core.reduce(gray, vert_proj, 1, Core.REDUCE_AVG);
 
         Core.transpose(vert_proj, vert_proj);
 
+        // save a debug snapshot
         Imgcodecs.imwrite("columns.png", vert_proj);
 
         // put everything back
         Core.transpose(vert_proj, vert_proj);
 //		Core.transpose(gray, gray);
 
+        // create a threshold
         Scalar th = new Scalar(10);
         Mat filtered_hist = new Mat();
         Core.compare(vert_proj, th, filtered_hist, Core.CMP_LE);
@@ -50,15 +55,13 @@ public class ColumnDetector {
         int y = 0;
         int count = 0;
         boolean isSpace = false;
+        // for each light area, find it's transition to dark
         for (int i = 0; i < gray.rows(); ++i) {
-//            if (filtered_hist.get(i, 0)[0] == 0) { // dark
-//                xcoords.add((double) i);
-//            }
 //*
             if (isSpace) {
                 if (filtered_hist.get(i, 0)[0] == 0) { // dark
                     isSpace = false;
-                    xcoords.add((double) (y / count));
+                    xcoords.add((double) (y / count)); // mark it
                 } else {
                     y += i;
                     count++;

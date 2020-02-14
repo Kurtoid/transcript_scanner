@@ -16,20 +16,20 @@ public class TestPrereqChecker {
     public void testCheckClassType() {
         Course math1 = new Course();
         math1.type = "MATH";
-        math1.grade = "A";
+        math1.setGrade("A");
         Course math2 = new Course();
-        math2.grade = "A";
+        math2.setGrade("A");
         math2.type = "MATH";
 
         Course sci1 = new Course();
-        sci1.grade = "A";
+        sci1.setGrade("A");
         sci1.type = "SCIENCE";
         Course sci2 = new Course();
-        sci2.grade = "A";
+        sci2.setGrade("A");
         sci2.type = "SCIENCE";
 
         Course wl1 = new Course();
-        wl1.grade = "A";
+        wl1.setGrade("A");
         wl1.type = "WORLDLANG";
 
         Set<Course> courses = new HashSet<>();

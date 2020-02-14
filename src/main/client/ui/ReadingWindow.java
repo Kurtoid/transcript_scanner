@@ -1,10 +1,12 @@
 package main.client.ui;
 
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -14,6 +16,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -32,16 +36,14 @@ import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.net.URL;
+import java.util.*;
 
 /**
  * the meat of  the application
  * Used by user to load images, annotate them, and export extracted class information
  */
-public class ReadingWindow {
+public class ReadingWindow implements Initializable {
     private final static Logger logger = org.slf4j.LoggerFactory.getLogger(ReadingWindow.class);
     public HBox imageContainer;
     public ScrollPane imageScroller;
@@ -49,6 +51,7 @@ public class ReadingWindow {
     public Button LoadImagesButton;
     public GridPane basePane;
     public CheckBox autoDetectColumns;
+    public TextField nameField;
     private GradeReport selectedImage;
     @FXML
     private CheckBox columnSnapBox;
@@ -75,6 +78,7 @@ public class ReadingWindow {
                 if (s.id.equals(source.getProperties().get("imageID"))) {
                     // found it; make it the big image
                     selectedImage = s;
+                    nameField.setText(s.name);
                     selectedImage.updateImage();
                 }
             }
@@ -97,7 +101,7 @@ public class ReadingWindow {
     @FXML
     public void loadImages(ActionEvent actionEvent) {
         logger.trace("loading image");
-        logger.trace("selecting image {}" + columnSnapBox.isSelected());
+        logger.trace("selecting image {}", columnSnapBox.isSelected());
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
@@ -117,6 +121,7 @@ public class ReadingWindow {
      * updates bottom row of images for display
      */
     private void showImages() {
+        DropShadow ds = new DropShadow(20, Color.AQUA);
         ImageView[] imageViews = new ImageView[ApplicationState.scannedImages.size()];
         for (int i = 0; i < ApplicationState.scannedImages.size(); i++) {
             imageViews[i] = new ImageView(ApplicationState.scannedImages.get(i).file.toURI().toString());
@@ -125,6 +130,11 @@ public class ReadingWindow {
             imageViews[i].setPreserveRatio(true);
             imageViews[i].setOnMouseClicked(smallImageClicked);
             imageViews[i].getProperties().put("imageID", ApplicationState.scannedImages.get(i).id);
+            if (ApplicationState.scannedImages.get(i).name.equals("")) {
+                imageViews[i].setEffect(ds);
+            } else {
+                imageViews[i].setEffect(null);
+            }
 
         }
         imageContainer.getChildren().clear();
@@ -159,6 +169,7 @@ public class ReadingWindow {
             } else {
                 pr = PageReader.scanImage(f, nameColumnLeft, nameColumnRight, gradeColumnLeft, gradeColumnRight);
             }
+            pr.name = f.name;
             reports.add(pr);
 
         }
@@ -166,9 +177,7 @@ public class ReadingWindow {
         FXMLLoader loader = null;
 
         try {
-            /**
-             * load the FXML files needed for reader layout
-             */
+            //* load the FXML files needed for reader layout
             loader = new FXMLLoader(getClass().getResource("ResultBrowser.fxml"));
             root = loader.load();
         } catch (IOException e) {
@@ -359,4 +368,17 @@ public class ReadingWindow {
                 && mouseX < (selectedRight * imagePreview.getWidth() + (imagePreview.getWidth() * 0.02));
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        nameField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String s2) {
+                if (selectedImage != null) {
+                    selectedImage.name = s;
+                    System.out.println(s);
+                }
+                showImages();
+            }
+        });
+    }
 }

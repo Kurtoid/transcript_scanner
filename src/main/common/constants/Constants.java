@@ -12,7 +12,7 @@ public class Constants {
      * increment every change released
      * internal use only
      */
-    public final static int buildNumber = 1;
+    public final static int buildNumber = 3;
 
     /**
      * used in title bars and etc

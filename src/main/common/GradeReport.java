@@ -11,7 +11,7 @@ public class GradeReport {
 	public File file;
 	public final String id;
 	private Image img;
-
+	public String name = "";
 	private static final Logger logger = LoggerFactory.getLogger(GradeReport.class);
 
 	public GradeReport(File file) {

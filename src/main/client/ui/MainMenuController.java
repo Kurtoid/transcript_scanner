@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.common.FileManager;
@@ -26,6 +27,7 @@ import java.nio.file.Files;
  */
 public class MainMenuController extends Application {
     final static Logger logger = LoggerFactory.getLogger(MainMenuController.class);
+    public Button scanPaperButton;
     MainMenuController mControl;
 
     /**
@@ -69,13 +71,13 @@ public class MainMenuController extends Application {
         logger.info("stage started");
         FileManager.createTempFolder();
         FileManager.removeTempFiles();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ReadingWindow.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
 //        scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
 
-        mControl = loader.getController();
+//        mControl = loader.getController();
 
         primaryStage.setTitle(Constants.programName);
         primaryStage.setScene(scene);

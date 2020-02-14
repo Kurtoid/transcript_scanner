@@ -1,11 +1,12 @@
 package main.common;
 
+import main.common.courses.Course;
+
 import java.util.ArrayList;
 import java.util.Set;
 
-import main.common.courses.Course;
-
 public class ParsedReport {
+    public String name;
     ArrayList<Course> courses;
 
     @Override
