@@ -113,7 +113,7 @@ public class ResultBrowserController extends Application implements Initializabl
         nextButton.setDisable(index == reports.size() - 1);
 
         rwController.setReport(reports.get(index));
-        gpaLabel.setText("GPA: " + reports.get(index).getGPA());
+        gpaLabel.setText("GPA: 2.0000"/* + reports.get(index).getGPA()*/);
         Set<PrereqChecker.CLASSTYPES> missingClasses = PrereqChecker.getMissingClasses(reports.get(index));
         if (missingClasses.isEmpty()) {
             reqClassLabel.setText("Has Taken Required Classes: Yes");

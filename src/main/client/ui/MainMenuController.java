@@ -68,7 +68,7 @@ public class MainMenuController extends Application {
             JOptionPane.showMessageDialog(null, "Something went wrong. Please send transcriptscanner_logs (on your desktop) to kurtwilson099@gmail.com", "Error", JOptionPane.ERROR_MESSAGE, null);
 
         });
-        logger.info("stage started");
+        logger.trace("stage started");
         FileManager.createTempFolder();
         FileManager.removeTempFiles();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ReadingWindow.fxml"));

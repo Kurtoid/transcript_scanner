@@ -101,18 +101,19 @@ public class ReadingWindow implements Initializable {
     @FXML
     public void loadImages(ActionEvent actionEvent) {
         logger.trace("loading image");
-        logger.trace("selecting image {}", columnSnapBox.isSelected());
         FileChooser fc = new FileChooser();
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
                 new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
         List<File> images = fc.showOpenMultipleDialog(((Node) actionEvent.getTarget()).getScene().getWindow());
         if (images != null) {
             for (int i = 0; i < images.size(); i++) {
+                logger.trace("loading image {}", images.get(i).getName());
                 GradeReport p = new GradeReport(images.get(i));
                 ApplicationState.scannedImages.add(p);
 
 //               imageViews[i].setF
             }
+            logger.trace("image loading complete, loaded {} images", images.size());
             showImages();
         }
     }

@@ -12,12 +12,18 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * used by 'Snap to Columns'
+ * detects columns by finding darker-than-average rows
  */
 public class ColumnDetector {
 
     private static final Logger logger = LoggerFactory.getLogger(ColumnDetector.class);
 
+    /**
+     * from an aligned image, find the probable x-locations of each column
+     * 
+     * @param image the image file to read from. must be aligned and cropped
+     * @return the list of normalized x-locations, 0 to 1
+     */
     static public ArrayList<Double> findColumns(File image) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         logger.trace("reading {}", image.getAbsolutePath());
@@ -25,39 +31,32 @@ public class ColumnDetector {
         // convert to B&W
         Mat gray = new Mat();
         Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
-//        Rect roi = new Rect(0, (int) (gray.height() * .2), gray.width(), (int) (gray.height() * .8));
-//        gray = new Mat(gray, roi);
-        // invert
+        // invert image
         Core.bitwise_not(gray, gray);
         Core.transpose(gray, gray);
         Mat vert_proj = new Mat();
 
-        // compress to 1d line
+        // collapse to 1d line
         Core.reduce(Lines.removeHorizontalLines(gray), vert_proj, 1, Core.REDUCE_AVG);
-//		Core.reduce(gray, vert_proj, 1, Core.REDUCE_AVG);
-
-        Core.transpose(vert_proj, vert_proj);
 
         // save a debug snapshot
+        Core.transpose(vert_proj, vert_proj);
         Imgcodecs.imwrite("columns.png", vert_proj);
-
         // put everything back
         Core.transpose(vert_proj, vert_proj);
-//		Core.transpose(gray, gray);
 
         // create a threshold
         Scalar th = new Scalar(10);
         Mat filtered_hist = new Mat();
         Core.compare(vert_proj, th, filtered_hist, Core.CMP_LE);
-        logger.trace("filtered_hist", filtered_hist);
 
         ArrayList<Double> xcoords = new ArrayList<>();
         int y = 0;
         int count = 0;
+        // keep track of empty areas
         boolean isSpace = false;
         // for each light area, find it's transition to dark
         for (int i = 0; i < gray.rows(); ++i) {
-//*
             if (isSpace) {
                 if (filtered_hist.get(i, 0)[0] == 0) { // dark
                     isSpace = false;
@@ -73,9 +72,8 @@ public class ColumnDetector {
                     y = i;
                 }
             }
-//*/
-
         }
+        // normalize coordinates
         for (int i = 0; i < xcoords.size(); i++) {
             xcoords.set(i, xcoords.get(i) / gray.rows());
         }
