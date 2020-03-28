@@ -26,8 +26,9 @@ public class ColumnDetector {
      */
     static public ArrayList<Double> findColumns(File image) {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        logger.trace("reading {}", image.getAbsolutePath());
-        Mat img = Imgcodecs.imread(image.getAbsolutePath());
+        String imgPath = image.getAbsolutePath();
+        logger.trace("reading {}", imgPath);
+        Mat img = Imgcodecs.imread(imgPath);
         // convert to B&W
         Mat gray = new Mat();
         Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
